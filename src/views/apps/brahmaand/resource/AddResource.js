@@ -1,29 +1,10 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    Row,
-    Col,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, Row, Col, CustomInput, Form, FormGroup, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
+import { FiArrowDown } from "react-icons/fi";
 // import { history } from "../../../history";
 import swal from "sweetalert";
 import { Route } from "react-router-dom";
-// import {
-//     Accordion,
-//     AccordionItem,
-//     AccordionItemHeading,
-//     AccordionItemButton,
-//     AccordionItemPanel,
-// } from 'react-accessible-accordion';
-// import 'react-accessible-accordion/dist/fancy-example.css';
 import Accordion from 'react-bootstrap/Accordion';
 
 export default class AddResource extends Component {
@@ -139,12 +120,12 @@ export default class AddResource extends Component {
                                         value={this.state.script_type}
                                         onChange={this.changeHandler}
                                     >
-                                        <optgroup>Free</optgroup>
+                                        <optgroup label="Free">
 
-                                        <option>No Register Required</option>
-                                        <option>Register Required</option>
-                                        <option>Paid</option>
-
+                                            <option>No Register Required</option>
+                                            <option>Register Required</option></optgroup>
+                                        <optgroup label="Paid">
+                                            <option>Paid</option></optgroup>
                                     </Input>
                                 </Col>
                                 <Col lg="" md="6" className="mb-2">
@@ -202,9 +183,6 @@ export default class AddResource extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                            </Row>
-
-                            <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Descripition</Label>
                                     <Input
@@ -217,45 +195,36 @@ export default class AddResource extends Component {
                                     ></Input>
                                 </Col>
 
-                                <Col lg="6" md="6" sm="6" className="mb-2 ">
-                                    {/* <Accordion>
-                                        <AccordionItem>
-                                            <AccordionItemHeading>
-                                                <AccordionItemButton>
-                                                    What harsh truths do you prefer to ignore?
-                                                </AccordionItemButton>
-                                            </AccordionItemHeading>
-                                            <AccordionItemPanel region={false}>
-                                                <Card>
-                                                    <Form>
-                                                        <Input type="text" placeholder="this is a text" />
-                                                        <Input type="text" placeholder="this is a text" />
-                                                        <Input type="text" placeholder="this is a text" />
-                                                        <Input type="text" placeholder="this is a text" />
-                                                        <Input type="text" placeholder="this is a text" />
-                                                    </Form>
-                                                </Card>
-                                            </AccordionItemPanel>
-                                        </AccordionItem>
-
-                                    </Accordion> */}
+                                <Col lg="6" className="d-flex justify-content">
+                                    <Label>Optional</Label>
                                     <Accordion defaultActiveKey="0">
+                                        <Accordion.Item eventKey="0" >
+                                            <Col lg='12' className='d-flex justify-content-end align-items-end'>
+                                                <Accordion.Button style={{
+                                                    paddingLeft: '490px', paddingRight: '40px', marginLeft: '-70px', marginTop: '22px',
+                                                    height: '36px', backgroundColor: 'white', borderRadius: '0.5rem', border: '1px solid #d9d9d9'
+                                                }}><FiArrowDown /></Accordion.Button>
+                                            </Col>
 
-                                        <Accordion.Item eventKey="0">
-                                            <Accordion.Header>
-                                                {/* <Row> */}
-                                                {/* <Col lg="12"> */}
-                                                <Label className="d-flex my-2" style={{ marginTop: '10px', padding: "-2px -1px" }}>Optional</Label>
-                                                {/* </Col> */}
-                                                {/* </Row> */}
-                                            </Accordion.Header>
                                             <Accordion.Body>
-                                                <Form> <Label>Title</Label>
+
+                                                <Form style={{ marginLeft: '-55px', marginRight: '16px' }}> <Label>Title</Label>
                                                     <Input type="text" name="Title" placeholder="Enter Title" />
                                                     <Label>Creator Name</Label>
                                                     <Input type="text" />
                                                     <Label>Release Year</Label>
-                                                    <Input type="text" />
+                                                    <Input
+                                                        id="exampleSelect"
+                                                        name="script_type"
+                                                        type="select"
+                                                        value={this.state.script_type}
+                                                        onChange={this.changeHandler}
+                                                    >
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+
+                                                    </Input>
                                                     <Label>Descripition</Label>
                                                     <Input type="text" />
                                                     <Label>Comments</Label>
@@ -265,10 +234,7 @@ export default class AddResource extends Component {
                                         </Accordion.Item>
                                     </Accordion>
                                 </Col>
-
                             </Row>
-
-
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Button.Ripple
@@ -282,8 +248,8 @@ export default class AddResource extends Component {
                             </Row>
                         </Form>
                     </CardBody>
-                </Card>
-            </div>
+                </Card >
+            </div >
         );
     }
 }

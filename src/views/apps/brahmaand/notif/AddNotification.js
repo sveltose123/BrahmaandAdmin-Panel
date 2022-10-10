@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    Col,
-    Form,
-    Row,
-    Input,
-    Label,
-    Button,
-    // FormGroup,
-    // CustomInput,
-} from "reactstrap";
+import { Card, CardBody, Col, Form, Row, Input, Label, Button, } from "reactstrap";
 import { Route } from "react-router-dom";
 import Select from "react-select";
 // import { history } from "../../../history";
-// import axiosConfig from "../../../../axiosConfig";
 // import swal from "sweetalert";
 import axiosConfig from "../../../../axiosConfig";
 

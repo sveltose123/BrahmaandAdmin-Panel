@@ -1,16 +1,5 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    Row,
-    Col,
-    Form,
-    Label,
-    Input,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import swal from "sweetalert";
@@ -113,9 +102,9 @@ export default class AddRegisterUser extends Component {
                                     <Input
                                         required
                                         type="text"
-                                        name="script_name"
+                                        name="script_type"
                                         placeholder="Enter name"
-                                        value={this.state.script_name}
+                                        value={this.state.script_type}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
@@ -134,10 +123,10 @@ export default class AddRegisterUser extends Component {
                                     <Label>Password</Label>
                                     <Input
                                         required
-                                        type="text"
-                                        name="script_name"
+                                        type=""
+                                        name="script_type"
                                         placeholder="Enter Password"
-                                        value={this.state.script_name}
+                                        value={this.state.script_type}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>

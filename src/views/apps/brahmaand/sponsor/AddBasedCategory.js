@@ -1,15 +1,5 @@
 import React from "react";
-import {
-    Card,
-    CardBody,
-    Col,
-    Row,
-    Form,
-    Button,
-    Label,
-    Input,
-    CustomInput,
-} from "reactstrap";
+import { Card, CardBody, Col, Row, Form, Button, Label, Input, CustomInput, } from "reactstrap";
 import "react-toastify/dist/ReactToastify.css";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";

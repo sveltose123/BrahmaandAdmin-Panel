@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    Row,
-    Col,
-    Form,
-    Label,
-    Input,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
+import Accordion from 'react-bootstrap/Accordion';
+import { FiArrowDown } from "react-icons/fi";
 export default class EditResource extends Component {
     constructor (props) {
         super(props);
@@ -129,11 +120,12 @@ export default class EditResource extends Component {
                                         value={this.state.script_type}
                                         onChange={this.changeHandler}
                                     >
-                                        <optgroup>Free</optgroup>
+                                        <optgroup label="Free">
 
-                                        <option>No Register Required</option>
-                                        <option>Register Required</option>
-                                        <option>Paid</option>
+                                            <option>No Register Required</option>
+                                            <option>Register Required</option></optgroup>
+                                        <optgroup label="Paid">
+                                            <option>Paid</option></optgroup>
 
                                     </Input>
                                 </Col>
@@ -202,6 +194,45 @@ export default class EditResource extends Component {
                                         value={this.state.script_name}
                                         onChange={this.changeHandler}
                                     ></Input>
+                                </Col>
+                                <Col lg="6" className="d-flex justify-content">
+                                    <Label>Optional</Label>
+                                    <Accordion defaultActiveKey="0">
+                                        <Accordion.Item eventKey="0" >
+                                            <Col lg='12' className='d-flex justify-content-end align-items-end'>
+                                                <Accordion.Button style={{
+                                                    paddingLeft: '490px', paddingRight: '40px', marginLeft: '-70px', marginTop: '22px',
+                                                    height: '36px', backgroundColor: 'white', borderRadius: '0.5rem', border: '1px solid #d9d9d9'
+                                                }}><FiArrowDown /></Accordion.Button>
+                                            </Col>
+
+                                            <Accordion.Body>
+
+                                                <Form style={{ marginLeft: '-55px', marginRight: '16px' }}> <Label>Title</Label>
+                                                    <Input type="text" name="Title" placeholder="Enter Title" />
+                                                    <Label>Creator Name</Label>
+                                                    <Input type="text" />
+                                                    <Label>Release Year</Label>
+                                                    <Input
+                                                        id="exampleSelect"
+                                                        name="script_type"
+                                                        type="select"
+                                                        value={this.state.script_type}
+                                                        onChange={this.changeHandler}
+                                                    >
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+
+                                                    </Input>
+                                                    <Label>Descripition</Label>
+                                                    <Input type="text" />
+                                                    <Label>Comments</Label>
+                                                    <Input type="text" />
+                                                </Form>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
                                 </Col>
 
                             </Row>

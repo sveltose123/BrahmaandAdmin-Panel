@@ -1,16 +1,5 @@
 import React from "react";
-import {
-    Card,
-    CardBody,
-    Input,
-    Row,
-    Col,
-    Button,
-    UncontrolledDropdown,
-    DropdownMenu,
-    DropdownItem,
-    DropdownToggle,
-} from "reactstrap";
+import { Card, CardBody, Input, Row, Col, Button, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
@@ -137,18 +126,18 @@ class ResourceList extends React.Component {
                     );
                 },
             },
-            // {
-            //     headerName: " Optional",
-            //     field: "SL",
-            //     width: 140,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.SL}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
+            {
+                headerName: " Optional",
+                field: "SL",
+                width: 140,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.SL}</span>
+                        </div>
+                    );
+                },
+            },
             // {
             //   headerName: "Trial",
             //   field: "trl",

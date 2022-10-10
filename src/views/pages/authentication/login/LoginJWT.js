@@ -11,7 +11,7 @@ import swal from "sweetalert";
 import { Token } from "prismjs";
 import axiosConfig from "../../../../axiosConfig";
 class LoginJWT extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       email: "",
@@ -19,10 +19,10 @@ class LoginJWT extends React.Component {
       // token: "",
     };
   }
-  handlechange = (e) => {
-    e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // handlechange = (e) => {
+  //   e.preventDefault();
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
   // checkHandler = (e) => {
   //   e.preventDefault();
@@ -67,33 +67,33 @@ class LoginJWT extends React.Component {
   //   }
   // };
 
-  handleLogin = (e) => {
-    e.preventDefault();
-    axiosConfig
-      .post("/adminlogin", this.state)
-      .then((response) => {
-        console.log(response.data);
+  // handleLogin = (e) => {
+  //   e.preventDefault();
+  //   axiosConfig
+  //     // .post("/adminlogin", this.state)
+  //     .then((response) => {
+  //       console.log(response.data);
 
-        if (response.data.status === true) {
-          this.setState({ ad_token: response.data.token });
-          swal(response.data.msg);
-          localStorage.setItem("ad-token", response.data.token);
-          localStorage.setItem("userId", response.data.data._id);
-          window.location.replace("/#/");
-        } else if (response.data.status === 204) {
-          swal(response.data.msg);
-        }
-      })
+  //       if (response.data.status === true) {
+  //         this.setState({ ad_token: response.data.token });
+  //         swal(response.data.msg);
+  //         localStorage.setItem("ad-token", response.data.token);
+  //         localStorage.setItem("userId", response.data.data._id);
+  //         // window.location.replace("/#/");
+  //       } else if (response.data.status === 204) {
+  //         swal(response.data.msg);
+  //       }
+  //     })
 
-      .catch((error) => {
-        console.log(error.response);
-        swal(
-          "error!",
-          "Invalied! Please enter valied Email. or Password",
-          "error"
-        );
-      });
-  };
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //       swal(
+  //         "error!",
+  //         "Invalied! Please enter valied Email. or Password",
+  //         "error"
+  //       );
+  //     });
+  // };
   render() {
     return (
       <React.Fragment>
@@ -143,7 +143,7 @@ class LoginJWT extends React.Component {
             <div className="d-flex justify-content-between">
               <Route
                 render={({ history }) => (
-                  <Button.Ripple color="primary" type="submit">
+                  <Button.Ripple color="primary" onClick={() => window.location.replace("/#/")} >
                     Login
                   </Button.Ripple>
                 )}

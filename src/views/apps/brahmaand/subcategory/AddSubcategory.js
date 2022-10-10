@@ -1,17 +1,5 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    CustomInput,
-    Row,
-    Col,
-    Form,
-    Label,
-    Input,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, CustomInput, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import swal from "sweetalert";
@@ -149,7 +137,7 @@ export default class AddSubcategory extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Upload Image</Label>
                                     <Input
                                         // required
@@ -159,7 +147,7 @@ export default class AddSubcategory extends Component {
                                         value={this.state.script_name}
                                         onChange={this.changeHandler}
                                     ></Input>
-                                </Col>
+                                </Col> */}
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">

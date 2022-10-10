@@ -20,31 +20,6 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/registeruser/registerUserList",
   },
-  // {
-  //   id: "fnoOption",
-  //   title: "FNO OPTIONS SCRIPT ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/scripts/fnoOption",
-  // },
-  // {
-  //   id: "cashEquity",
-  //   title: " CASH EQUITY SCRIPT",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/scripts/cashEquity",
-  // },
-  // {
-  //   id: "expDateList",
-  //   title: "Trade Expiry Date",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/trade/expdate/expDateList",
-  // },
-
   {
     type: "groupHeader",
     groupTitle: "Category",
@@ -57,24 +32,6 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/category/categoryList",
   },
-
-  // {
-  //   id: "fnoEquityList",
-  //   title: "FNO OPTIONS LIST",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/trade/fnoEquityList",
-  // },
-  // {
-  //   id: "equityCashList",
-  //   title: "CASH EQUITY LIST",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/trade/equityCashList",
-  // },
-
   {
     type: "groupHeader",
     groupTitle: "Subcategory",
@@ -131,7 +88,7 @@ const navigationConfig = [
   },
   // {
   //   id: "basedSubCategory",
-  //   title: "Add based on subcategory ",
+  //   title: "based on subcategory list ",
   //   type: "item",
   //   icon: <Icon.ArrowRight size={12} />,
   //   permissions: ["admin", "editor"],
@@ -152,39 +109,6 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/blog/blogCategoryList",
   },
-  // {
-  //   id: "trupeeUnivercity",
-  //   title: "Trupee Univercity List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/explore/Trupee/trupeeUnivercity",
-  // },
-  //
-  // {
-  //   id: "refferEarn",
-  //   title: "Reffer Earn List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/explore/Trupee/refferEarn",
-  // },
-  // {
-  //   id: "opportunity",
-  //   title: "Opportunity List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/explore/Trupee/opportunity",
-  // },
-  // {
-  //   id: "tradingViewCharts",
-  //   title: "Trading View Charts List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/explore/Trupee/tradingViewCharts",
-  // },
 
   {
     type: "groupHeader",
@@ -232,7 +156,7 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    navLink: "/pages/profile",
+    // navLink: "/pages/profile",
   },
   {
     id: "logout",
@@ -240,7 +164,7 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    navLink: "/pages/login",
+    // navLink: "/pages/login",
   },
 
 

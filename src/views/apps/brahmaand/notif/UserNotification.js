@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Row,
-  Card,
-  CardBody,
-  Input,
-  Button,
-  Col,
-  UncontrolledDropdown,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle,
-} from "reactstrap";
+import { Row, Card, CardBody, Input, Button, Col, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
 import axios from "axios";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";

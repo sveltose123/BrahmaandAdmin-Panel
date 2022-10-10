@@ -1,16 +1,5 @@
 import React, { Component } from "react";
-import {
-    Card,
-    CardBody,
-    Row,
-    Col,
-    Form,
-    Label,
-    Input,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import swal from "sweetalert";
