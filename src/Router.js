@@ -10,11 +10,9 @@ import { ContextLayout } from "./utility/context/Layout";
 
 // Route-based code splitting
 const analyticsDashboard = lazy(() =>
-  import("./views/dashboard/analytics/AnalyticsDashboard")
-);
+  import("./views/dashboard/analytics/AnalyticsDashboard"));
 const ecommerceDashboard = lazy(() =>
-  import("./views/dashboard/ecommerce/EcommerceDashboard")
-);
+  import("./views/dashboard/ecommerce/EcommerceDashboard"));
 
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
 
@@ -28,35 +26,26 @@ const FeedBackList = lazy(() => import("./views/apps/feedback/FeedBackList"));
 //pageSetUp//
 const aboutUs = lazy(() => import("./views/apps/pageSetUp/about/AboutUs"));
 const AllaboutUs = lazy(() =>
-  import("./views/apps/pageSetUp/about/AllaboutUs")
-);
+  import("./views/apps/pageSetUp/about/AllaboutUs"));
 const EditAboutUs = lazy(() =>
-  import("./views/apps/pageSetUp/about/EditAboutUs")
-);
+  import("./views/apps/pageSetUp/about/EditAboutUs"));
 
 const TermConditionList = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/TermConditionList")
-);
+  import("./views/apps/pageSetUp/termscondition/TermConditionList"));
 const AddTermsCondition = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/AddTermsCondition")
-);
+  import("./views/apps/pageSetUp/termscondition/AddTermsCondition"));
 const EditTermCondition = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/EditTermCondition")
-);
+  import("./views/apps/pageSetUp/termscondition/EditTermCondition"));
 const helpUs = lazy(() => import("./views/apps/pageSetUp/helpUs/HelpUS"));
 const EdithelpusForm = lazy(() =>
-  import("./views/apps/pageSetUp/helpUs/EdithelpusForm")
-);
+  import("./views/apps/pageSetUp/helpUs/EdithelpusForm"));
 const ViewHelpUs = lazy(() =>
-  import("./views/apps/pageSetUp/helpUs/ViewHelpUs")
-);
+  import("./views/apps/pageSetUp/helpUs/ViewHelpUs"));
 
 const membershipList = lazy(() =>
-  import("./views/apps/membership/MembershipList")
-);
+  import("./views/apps/membership/MembershipList"));
 const AddMembership = lazy(() =>
-  import("./views/apps/membership/AddMembership")
-);
+  import("./views/apps/membership/AddMembership"));
 
 const EditMembership = lazy(() =>
   import("./views/apps/membership/EditMembership")
@@ -90,85 +79,74 @@ const UsersList = lazy(() => import("./views/apps/users/UsersList"));
 const AddUsers = lazy(() => import("./views/apps/users/AddUsers"));
 const EditUsers = lazy(() => import("./views/apps/users/EditUsers"));
 const ViewUsers = lazy(() => import("./views/apps/users/ViewUsers"));
-// userNotification//
-// const UserNotification = lazy(() =>
-//   import("./views/apps/brahmaand/notif/UserNotification")
-// );
-// // scripts//
-// const FnIndex = lazy(() => import("./views/apps/scripts/FnIndex"));
-// const AddFnIndex = lazy(() => import("./views/apps/scripts/AddFnIndex"));
-// const EditFnIndex = lazy(() => import("./views/apps/scripts/EditFnIndex"));
-
-// const FnoOption = lazy(() => import("./views/apps/scripts/FnoOption"));
-// const AddFnoOption = lazy(() => import("./views/apps/scripts/AddFnoOption"));
-// const EditOption = lazy(() => import("./views/apps/scripts/EditOption"));
-
-// const CashEquity = lazy(() => import("./views/apps/scripts/CashEquity"));
-// const AddCashEquity = lazy(() => import("./views/apps/scripts/AddCashEqutiy"));
-// const EditCash = lazy(() => import("./views/apps/scripts/EditCash"));
 
 //RegisterUser//
-
-const RegisterUserList = lazy(() => import("./views/apps/brahmaand/registeruser/RegisterUserList"));
-const AddRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/AddRegisterUser"));
+const RegisterUserList = lazy(() => import("./views/apps/brahmaand/registeruser/RegisterUserList"));// const AddRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/AddRegisterUser"));
 const EditRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/EditRegisterUser"));
 const ViewRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/ViewRegisterUser"));
 
 // Category//
-
 const CategoryList = lazy(() => import("./views/apps/brahmaand/category/CategoryList"));
 const AddCategory = lazy(() => import("./views/apps/brahmaand/category/AddCategory"));
 const EditCategory = lazy(() => import("./views/apps/brahmaand/category/EditCategory"));
 
 // SubCategory//
-
 const SubcategoryList = lazy(() => import("./views/apps/brahmaand/subcategory/SubcategoryList"));
 const AddSubcategory = lazy(() => import("./views/apps/brahmaand/subcategory/AddSubcategory"));
 const EditSubcategory = lazy(() => import("./views/apps/brahmaand/subcategory/EditSubcategory"));
 
 // Resource//
-
 const ResourceList = lazy(() => import("./views/apps/brahmaand/resource/ResourceList"));
 const AddResource = lazy(() => import("./views/apps/brahmaand/resource/AddResource"));
 const EditResource = lazy(() => import("./views/apps/brahmaand/resource/EditResource"));
 const ViewResource = lazy(() => import("./views/apps/brahmaand/resource/ViewResource"));
+const UserResourceList = lazy(() => import("./views/apps/brahmaand/resource/UserResourceList"));
+const ResourceComment = lazy(() => import("./views/apps/brahmaand/resource/ResourceComment"));
+const EditUserResource = lazy(() => import("./views/apps/brahmaand/resource/EditUserResource"))
 
 //Sponsor//
 
-const BasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedCategory"));
-const AddBasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/AddBasedCategory"));
-const BasedSubCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedSubCategory"));
+// const BasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedCategory"));
+// const AddBasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/AddBasedCategory"));
+// const BasedSubCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedSubCategory"));
 
 // Notification//
-
 const Notification = lazy(() => import("./views/apps/brahmaand/notif/Notification"));
 const AddNotification = lazy(() => import("./views/apps/brahmaand/notif/AddNotification"));
 const UserNotification = lazy(() => import("./views/apps/brahmaand/notif/UserNotification"));
 
 //BlogCategory//
-
 const BlogCategoryList = lazy(() => import("./views/apps/brahmaand/blog/BlogCategoryList"));
 const AddBlogCategory = lazy(() => import("./views/apps/brahmaand/blog/AddBlogCategory"));
 const EditBlogCategory = lazy(() => import("./views/apps/brahmaand/blog/EditBlogCategory"));
 
 //Blogs//
-
 const BlogList = lazy(() => import("./views/apps/brahmaand/blogs/BlogList"));
 const AddBlog = lazy(() => import("./views/apps/brahmaand/blogs/AddBlog"));
 const EditBlog = lazy(() => import("./views/apps/brahmaand/blogs/EditBlog"));
+const CommentBlog = lazy(() => import("./views/apps/brahmaand/blogs/CommentBlog"));
+const ViewBlog = lazy(() => import("./views/apps/brahmaand/blogs/ViewBlog"));
+const EditCommentBlog = lazy(() => import("./views/apps/brahmaand/blogs/EditCommentBlog"));
 
 const Profile = lazy(() => import("./views/pages/profile/Profile"));
 
 //LeaderBoard//
-
 const LeaderBoardList = lazy(() => import("./views/apps/brahmaand/leaderboard/LeaderBoardList"));
 const AddLeader = lazy(() => import("./views/apps/brahmaand/leaderboard/AddLeader"));
 const EditLeader = lazy(() => import("./views/apps/brahmaand/leaderboard/EditLeader"));
+const WeeklyWinner = lazy(() => import("./views//apps/brahmaand/leaderboard/WeeklyWinner"));
 
+//Feature Content//
+const FeatureContent = lazy(() => import("./views/apps/brahmaand/content/FeatureContent"));
+const AddContent = lazy(() => import("./views/apps/brahmaand/content/AddContent"));
+const EditContent = lazy(() => import("./views/apps/brahmaand/content/EditContent"));
 
+//Contact//
+const Contact = lazy(() => import("./views/apps/brahmaand/contact/Contact"))
 
-
-
+//Newsletter//
+const NewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/NewsLetter"))
+const AddNewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/AddNewsLetter"))
 
 
 
@@ -523,8 +501,8 @@ class AppRouter extends React.Component {
     console.log("token data", data);
     sessionStorage.clear();
     if (data === undefined || data === null) {
-      //history.push("/#/pages/login")
-      //window.location.replace("/#/");
+      // history.push("/#/pages/login")
+      // window.location.replace("/#/");
 
       window.location.replace("/#/pages/login");
     }
@@ -602,16 +580,16 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/registeruser/registerUserList"
               component={RegisterUserList}
             />
-            <AppRoute
+            {/* <AppRoute
               path="/app/brahmaand/registeruser/addRegisterUser"
               component={AddRegisterUser}
-            />
+            /> */}
             <AppRoute
-              path="/app/brahmaand/registeruser/editRegisterUser"
+              path="/app/brahmaand/registeruser/editRegisterUser/:id"
               component={EditRegisterUser}
             />
             <AppRoute
-              path="/app/brahmaand/registeruser/viewRegisterUser"
+              path="/app/brahmaand/registeruser/viewRegisterUser/:id"
               component={ViewRegisterUser}
             />
 
@@ -626,7 +604,7 @@ class AppRouter extends React.Component {
               component={AddCategory}
             />
             <AppRoute
-              path="/app/brahmaand/category/editCategory"
+              path="/app/brahmaand/category/editCategory/:id"
               component={EditCategory}
             />
             {/*SubCategory */}
@@ -640,10 +618,18 @@ class AppRouter extends React.Component {
               component={AddSubcategory}
             />
             <AppRoute
-              path="/app/brahmaand/subcategory/editSubcategory"
+              path="/app/brahmaand/subcategory/editSubcategory/:id"
               component={EditSubcategory}
             />
             {/* Resource*/}
+            <AppRoute
+              path="/app/brahmaand/resource/resourceComment"
+              component={ResourceComment}
+            />
+            <AppRoute
+              path="/app/brahmaand/resource/editUserResource/:id"
+              component={EditUserResource}
+            />
             <AppRoute
               path="/app/brahmaand/resource/resourceList"
               component={ResourceList}
@@ -653,14 +639,19 @@ class AppRouter extends React.Component {
               component={AddResource}
             />
             <AppRoute
-              path="/app/brahmaand/resource/editResource"
+              path="/app/brahmaand/resource/editResource/:id"
               component={EditResource}
             />
+
             <AppRoute
               path="/app/brahmaand/resource/viewResource"
               component={ViewResource}
             />
-            {/*Sponsor*/}
+            <AppRoute
+              path="/app/brahmaand/resource/userResourceList"
+              component={UserResourceList}
+            />
+            {/* Sponsor
 
             <AppRoute
               path="/app/brahmaand/sponsor/basedCategory"
@@ -673,7 +664,7 @@ class AppRouter extends React.Component {
             <AppRoute
               path="/app/brahmaand/sponsor/basedSubCategory"
               component={BasedSubCategory}
-            />
+            /> */}
             {/*Notification*/}
             <AppRoute
               path="/app/notif/Notification"
@@ -687,6 +678,34 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/notif/UserNotification"
               component={UserNotification}
             />
+            {/*FeatureContent */}
+            <AppRoute
+              path="/app/brahmaand/content/featureContent"
+              component={FeatureContent}
+            />
+            <AppRoute
+              path="/app/brahmaand/content/addContent"
+              component={AddContent}
+            />
+            <AppRoute
+              path="/app/brahmaand/content/editContent/:id"
+              component={EditContent}
+            />
+            {/*Newsletter */}
+            <AppRoute
+              path="/app/brahmaand/newsletter/newsLetter"
+              component={NewsLetter}
+            />
+            <AppRoute
+              path="/app/brahmaand/newsletter/addNewsLetter"
+              component={AddNewsLetter}
+            />
+
+            {/*Contact */}
+            <AppRoute
+              path="/app/brahmaand/contact/contact"
+              component={Contact}
+            />
             {/*BlogCategory*/}
 
             <AppRoute
@@ -698,7 +717,7 @@ class AppRouter extends React.Component {
               component={AddBlogCategory}
             />
             <AppRoute
-              path="/app/brahmaand/blog/editBlogCategory"
+              path="/app/brahmaand/blog/editBlogCategory/:id"
               component={EditBlogCategory}
             />
             {/*Blog*/}
@@ -708,12 +727,24 @@ class AppRouter extends React.Component {
               component={BlogList}
             />
             <AppRoute
+              path="/app/brahmaand/blogs/viewBlog"
+              component={ViewBlog}
+            />
+            <AppRoute
               path="/app/brahmaand/blogs/addBlog"
               component={AddBlog}
             />
             <AppRoute
-              path="/app/brahmaand/blogs/editBlog"
+              path="/app/brahmaand/blogs/editBlog/:id"
               component={EditBlog}
+            />
+            <AppRoute
+              path="/app/brahmaand/blogs/commentBlog"
+              component={CommentBlog}
+            />
+            <AppRoute
+              path="/app/brahmaand/blogs/editCommentBlog/:id"
+              component={EditCommentBlog}
             />
 
             {/*LeaderBoard*/}
@@ -727,10 +758,13 @@ class AppRouter extends React.Component {
               component={AddLeader}
             />
             <AppRoute
-              path="/app/brahmaand/leaderboard/editLeader"
+              path="/app/brahmaand/leaderboard/editLeader/:id"
               component={EditLeader}
             />
-
+            <AppRoute
+              path="/app/brahmaand/leaderboard/weeklyWinner/"
+              component={WeeklyWinner}
+            />
 
 
 

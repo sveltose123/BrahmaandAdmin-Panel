@@ -12,10 +12,9 @@ import { Route } from "react-router-dom";
 import swal from "sweetalert";
 import Switch from "react-switch";
 
-class RegisterUserList extends React.Component {
+class NewsLetter extends React.Component {
 
     state = {
-        status: "",
         rowData: [],
         paginationPageSize: 20,
         currenPageSize: "",
@@ -37,112 +36,72 @@ class RegisterUserList extends React.Component {
                 filter: true,
 
             },
+
+
             {
-                headerName: "Name",
-                field: "username",
-                width: 250,
+                headerName: "Video",
+                field: "videoid",
+                width: 270,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.username}</span>
+                            <span>{params.data.videoid}</span>
                         </div>
-                    );
-                },
-            },
-            {
-                headerName: "Email Id",
-                field: "email",
-                width: 210,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.email}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Image",
-                field: "profileImg",
-                filter: true,
-                width: 170,
-                cellRendererFramework: (params) => {
-                    return (
-                        <img className="w-50 h-50  rounded-circle" src={params.data.profileImg} />
                     );
                 },
             },
 
-            {
-                headerName: "Status",
-                field: "status",
-                filter: true,
-                width: 250,
-                cellRendererFramework: (params) => {
-                    return params.value == "Active" ? (
-                        <div className="badge badge-pill badge-success">
-                            {params.data.status}
-                        </div>
-                    ) : params.value == "Deactive" ? (
-                        <div className="badge badge-pill badge-warning">
-                            {params.data.status}
-                        </div>
-                    ) : null;
-                },
-            },
+            // {
+            //     headerName: "Status",
+            //     field: "status",
+            //     filter: true,
+            //     width: 120,
+            //     cellRendererFramework: (params) => {
+            //         return params.value == "Active" ? (
+            //             <div className="badge badge-pill badge-success">
+            //                 {params.data.status}
+            //             </div>
+            //         ) : params.value == "Deactive" ? (
+            //             <div className="badge badge-pill badge-warning">
+            //                 {params.data.status}
+            //             </div>
+            //         ) : null;
+            //     },
+            // },
             {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 250,
+                width: 150,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             <Route
                                 render={({ history }) => (
 
-                                    <Edit
+                                    <Trash2
                                         className="mr-50"
                                         size="25px"
-                                        color="blue"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/registeruser/editRegisterUser/${params.data._id}`)
-                                        }
+                                        color="red"
+                                        onClick={() => {
+                                            let selectedData = this.gridApi.getSelectedRows();
+                                            this.runthisfunction(params.data._id);
+                                            this.gridApi.updateRowData({ remove: selectedData });
+                                        }}
                                     />
                                 )}
                             />
-                            <Route
-                                render={({ history }) => (
-                                    <Eye
-                                        className="mr-50"
-                                        color="green"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/registeruser/viewRegisterUser/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
-
-                            <Trash2
-                                className="mr-50"
-                                size="25px"
-                                color="red"
-                                onClick={() => {
-                                    let selectedData = this.gridApi.getSelectedRows();
-                                    this.runthisfunction(params.data._id);
-                                    this.gridApi.updateRowData({ remove: selectedData });
-                                }}
-                            />
-
                         </div>
                     );
                 },
             },
         ],
+
+
     };
 
     async componentDidMount() {
         await axiosConfig
-            .get("/admin/userlist")
+            .get("/user/getVideo")
             .then((response) => {
                 const rowData = response.data.data;
                 this.setState({ rowData });
@@ -150,16 +109,15 @@ class RegisterUserList extends React.Component {
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig
-            .get(`/admin/dltUser/${id}`)
-            .then(
-                (response) => {
-                    console.log(response);
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
+
+        await axiosConfig.get(`/admin/dlt_video/${id}`).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 
     onGridReady = (params) => {
@@ -195,23 +153,23 @@ class RegisterUserList extends React.Component {
                     <Card>
                         <Row className="m-2">
                             <Col>
-                                <h1 col-sm-6 className="float-left">
-                                    User List
+                                <h1 sm="6" className="float-left">
+                                    NewsLetter List
                                 </h1>
                             </Col>
+                            <Col>
+                                <Route
+                                    render={({ history }) => (
+                                        <Button
+                                            className="btn btn-success float-right"
+                                            onClick={() => history.push("/app/brahmaand/newsletter/addNewsLetter")}
+                                        >
+                                            Add Video
+                                        </Button>
+                                    )}
+                                />
+                            </Col>
                         </Row>
-                        {/* <Col className="pt-4">
-                            <Route
-                                render={({ history }) => (
-                                    <Button
-                                        className=" btn btn-success float-right"
-                                        onClick={() => history.push("/app/brahmaand/registeruser/addRegisterUser")}
-                                    >
-                                        Add User
-                                    </Button>
-                                )}
-                            />
-                        </Col> */}
                         <CardBody className="py-0">
                             {this.state.rowData === null ? null : (
                                 <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -304,8 +262,8 @@ class RegisterUserList extends React.Component {
                         </CardBody>
                     </Card>
                 </Col>
-            </Row>
+            </Row >
         );
     }
 }
-export default RegisterUserList;
+export default NewsLetter;

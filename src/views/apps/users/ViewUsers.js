@@ -15,7 +15,7 @@ import axiosConfig from "../../../axiosConfig";
 import axios from "axios";
 import { Route } from "react-router-dom";
 class ViewUsers extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       data: {},
@@ -25,7 +25,7 @@ class ViewUsers extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
-      .get(`/getoneuser/${id}`)
+      .get(`/admin/getone_reslist/${id}`)
 
       .then((response) => {
         // console.log(response.data);
@@ -51,7 +51,7 @@ class ViewUsers extends React.Component {
                   <BreadcrumbItem href="/app/users/usersList" tag="a">
                     User List
                   </BreadcrumbItem>
-                  <BreadcrumbItem active>View Users</BreadcrumbItem>
+                  <BreadcrumbItem active>View Users </BreadcrumbItem>
                 </Breadcrumb>
               </div>
             </Col>

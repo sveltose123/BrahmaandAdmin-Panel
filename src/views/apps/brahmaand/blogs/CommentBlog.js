@@ -12,7 +12,7 @@ import { Route } from "react-router-dom";
 import Switch from "react-switch";
 import swal from "sweetalert";
 
-class ResourceList extends React.Component {
+class CommentBlog extends React.Component {
     state = {
         aprv_status: "",
         rowData: [],
@@ -34,166 +34,84 @@ class ResourceList extends React.Component {
                 field: "node.rowIndex + 1",
                 width: 80,
                 filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
             },
             {
-                headerName: "Creator Name",
-                field: "creatorName",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
+                headerName: "User Name",
+                field: "username",
+                width: 150,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.creatorName}</span>
+                            <span>{params.data.username}</span>
                         </div>
                     );
                 },
             },
             {
-                headerName: "Link",
-                field: "link",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
+                headerName: "Rating",
+                field: "rating",
+                width: 150,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.link}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Category",
-                field: "title",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.category?.title}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "SubCategory",
-                field: "title",
-                width: 80,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.sub_category?.title}</span>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                headerName: "Type",
-                field: "type",
-                width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.type}</span>
-
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Format",
-                field: "format",
-                width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.format}</span>
-
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Language",
-                field: "language",
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            {params.data.language?.map((lang) => (
-                                <span key={lang._id}>{lang?.language}</span>
-                            ))}
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Image",
-                field: "img",
-                filter: true,
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <img className="w-50 h-50  rounded-circle" src={params.data.img} />
-                    );
-                },
-            },
-            {
-                headerName: "Topic",
-                field: "topics",
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.topics}</span>
+                            <span>{params.data.rating}</span>
                         </div>
                     );
                 },
             },
             // {
-            //     headerName: "Descripition",
-            //     field: "desc",
-            //     width: 90,
+            //     headerName: "Review",
+            //     field: "title",
+            //     width: 150,
+            //     // pinned: window.innerWidth > 992 ? "left" : false,
             //     cellRendererFramework: (params) => {
             //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.desc}</span>
+            //             <div className="d-flex  align-items-center cursor-pointer">
+            //                 <span>{params.data.category?.title}</span>
             //             </div>
             //         );
             //     },
             // },
+            {
+                headerName: "Date",
+                field: "createdAt",
+                width: 150,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.createdAt}</span>
+                        </div>
+                    );
+                },
+            },
 
-            // {
-            //     headerName: " Optional",
-            //     field: "optional",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.optional}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
+            {
+                headerName: "Comment",
+                field: "comment",
+                width: 150,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex  align-items-center cursor-pointer">
+                            <span>{params.data.comment}</span>
 
+                        </div>
+                    );
+                },
+
+            },
             {
                 headerName: "Status",
-                field: "aprv_status",
+                field: "status",
                 filter: true,
                 width: 120,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : params.value == "Deactive" ? (
                         <div className="badge badge-pill badge-warning">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : null;
                 },
@@ -201,28 +119,11 @@ class ResourceList extends React.Component {
             {
                 headerName: "Actions",
                 field: "sortorder",
-                // field: "transactions",
-                width: 150,
-                // pinned: window.innerWidth > 992 ? "right" : false,
-
+                width: 200,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
-                            <Route
-                                render={({ history }) => (
-
-                                    <Edit
-                                        className="mr-50"
-                                        size="25px"
-                                        color="blue"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/resource/editResource/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
-
-                            <Route
+                            {/* <Route
                                 render={({ history }) => (
                                     <Eye
                                         className="mr-50"
@@ -232,8 +133,22 @@ class ResourceList extends React.Component {
                                             history.push(`/app/brahmaand/resource/viewResource/${params.data._id}`)
                                         }
                                     />
+
+                                )}
+                            /> */}
+                            <Route
+                                render={({ history }) => (
+                                    <Edit
+                                        className="mr-50"
+                                        size="25px"
+                                        color="blue"
+                                        onClick={() =>
+                                            history.push(`/app/brahmaand/blogs/editCommentBlog/${params.data._id}`)
+                                        }
+                                    />
                                 )}
                             />
+
                             <Trash2
                                 size={20}
                                 color="red"
@@ -243,13 +158,13 @@ class ResourceList extends React.Component {
                                     this.gridApi.updateRowData({ remove: selectedData });
                                 }}
                             />
+
                         </div>
                     );
                 },
             },
         ],
     };
-
     async componentDidMount() {
 
         await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
@@ -306,21 +221,21 @@ class ResourceList extends React.Component {
                             <Row className="m-2">
                                 <Col>
                                     <h1 sm="6" className="float-left">
-                                        Resources List
+                                        Comment Blog List
                                     </h1>
                                 </Col>
-                                <Col className="pt-4">
+                                {/* <Col className="pt-4">
                                     <Route
                                         render={({ history }) => (
                                             <Button
                                                 className=" btn btn-success float-right"
-                                                onClick={() => history.push("/app/brahmaand/resource/addResource")}
+                                                onClick={() => history.push("/app/brahmaand/resource/addresource")}
                                             >
                                                 Add
                                             </Button>
                                         )}
                                     />
-                                </Col>
+                                </Col> */}
                             </Row>
                             <CardBody>
                                 {this.state.rowData === null ? null : (
@@ -421,4 +336,4 @@ class ResourceList extends React.Component {
         );
     }
 }
-export default ResourceList;
+export default CommentBlog;

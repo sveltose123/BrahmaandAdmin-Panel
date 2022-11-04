@@ -12,10 +12,10 @@ import { Route } from "react-router-dom";
 import Switch from "react-switch";
 import swal from "sweetalert";
 
-class ResourceList extends React.Component {
+class UserResourceList extends React.Component {
     state = {
-        aprv_status: "",
         rowData: [],
+        aprv_status: "",
         paginationPageSize: 20,
         currenPageSize: "",
         getPageSize: "",
@@ -32,30 +32,14 @@ class ResourceList extends React.Component {
                 headerName: "S.No",
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
-                width: 80,
+                width: 100,
                 filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
-            },
-            {
-                headerName: "Creator Name",
-                field: "creatorName",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.creatorName}</span>
-                        </div>
-                    );
-                },
+
             },
             {
                 headerName: "Link",
                 field: "link",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
+                width: 100,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -67,8 +51,7 @@ class ResourceList extends React.Component {
             {
                 headerName: "Category",
                 field: "title",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
+                width: 100,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -80,7 +63,7 @@ class ResourceList extends React.Component {
             {
                 headerName: "SubCategory",
                 field: "title",
-                width: 80,
+                width: 100,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -94,7 +77,6 @@ class ResourceList extends React.Component {
                 headerName: "Type",
                 field: "type",
                 width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -108,7 +90,6 @@ class ResourceList extends React.Component {
                 headerName: "Format",
                 field: "format",
                 width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -155,19 +136,18 @@ class ResourceList extends React.Component {
                     );
                 },
             },
-            // {
-            //     headerName: "Descripition",
-            //     field: "desc",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.desc}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
+            {
+                headerName: "Descripition",
+                field: "desc",
+                width: 90,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
+                        </div>
+                    );
+                },
+            },
             // {
             //     headerName: " Optional",
             //     field: "optional",
@@ -201,39 +181,22 @@ class ResourceList extends React.Component {
             {
                 headerName: "Actions",
                 field: "sortorder",
-                // field: "transactions",
-                width: 150,
-                // pinned: window.innerWidth > 992 ? "right" : false,
-
+                width: 100,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             <Route
                                 render={({ history }) => (
-
                                     <Edit
                                         className="mr-50"
-                                        size="25px"
                                         color="blue"
                                         onClick={() =>
-                                            history.push(`/app/brahmaand/resource/editResource/${params.data._id}`)
+                                            history.push(`/app/brahmaand/resource/editUserResource/${params.data._id}`)
                                         }
                                     />
                                 )}
                             />
 
-                            <Route
-                                render={({ history }) => (
-                                    <Eye
-                                        className="mr-50"
-                                        color="green"
-                                        size={20}
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/resource/viewResource/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
                             <Trash2
                                 size={20}
                                 color="red"
@@ -252,7 +215,7 @@ class ResourceList extends React.Component {
 
     async componentDidMount() {
 
-        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
+        await axiosConfig.get(`user/user_sub_res_lsit`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
@@ -306,10 +269,10 @@ class ResourceList extends React.Component {
                             <Row className="m-2">
                                 <Col>
                                     <h1 sm="6" className="float-left">
-                                        Resources List
+                                        User Resources List
                                     </h1>
                                 </Col>
-                                <Col className="pt-4">
+                                {/* <Col className="pt-4">
                                     <Route
                                         render={({ history }) => (
                                             <Button
@@ -320,7 +283,7 @@ class ResourceList extends React.Component {
                                             </Button>
                                         )}
                                     />
-                                </Col>
+                                </Col> */}
                             </Row>
                             <CardBody>
                                 {this.state.rowData === null ? null : (
@@ -421,4 +384,4 @@ class ResourceList extends React.Component {
         );
     }
 }
-export default ResourceList;
+export default UserResourceList;

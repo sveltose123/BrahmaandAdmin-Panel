@@ -9,16 +9,18 @@ import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
-import Switch from "react-switch";
-import swal from "sweetalert";
+// import Calendar from "../../calendar/Calendar";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
-class ResourceList extends React.Component {
+
+class WeeklyWinner extends React.Component {
     state = {
-        aprv_status: "",
         rowData: [],
         paginationPageSize: 20,
         currenPageSize: "",
         getPageSize: "",
+        value: "",
         defaultColDef: {
             sortable: true,
             editable: true,
@@ -32,210 +34,125 @@ class ResourceList extends React.Component {
                 headerName: "S.No",
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
-                width: 80,
-                filter: true,
+                width: 150,
+                pinned: window.innerWidth > 992 ? "left" : false,
+                // filter: true,
                 // checkboxSelection: true,
                 // headerCheckboxSelectionFilteredOnly: true,
                 // headerCheckboxSelection: true,
             },
             {
-                headerName: "Creator Name",
-                field: "creatorName",
-                width: 80,
+                headerName: "Name",
+                field: "name",
+                // filter: true,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.creatorName}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Link",
-                field: "link",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.link}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Category",
-                field: "title",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.category?.title}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "SubCategory",
-                field: "title",
-                width: 80,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.sub_category?.title}</span>
+                            <span>{params.data.name}</span>
                         </div>
                     );
                 },
             },
 
+
             {
-                headerName: "Type",
-                field: "type",
-                width: 90,
+                headerName: "Current Month Point",
+                field: "title",
+                // filter: true,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.type}</span>
-
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Format",
-                field: "format",
-                width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.format}</span>
-
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Language",
-                field: "language",
-                width: 90,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            {params.data.language?.map((lang) => (
-                                <span key={lang._id}>{lang?.language}</span>
-                            ))}
+                            <span>{params.data.title}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                headerName: "All Time Point",
+                field: "desc",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
                         </div>
                     );
                 },
             },
             {
                 headerName: "Image",
-                field: "img",
-                filter: true,
-                width: 90,
+                field: "file",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
-                        <img className="w-50 h-50  rounded-circle" src={params.data.img} />
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.cat_img} />
+
                     );
                 },
             },
             {
-                headerName: "Topic",
-                field: "topics",
-                width: 90,
+                headerName: "Planet Position",
+                field: "desc",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.topics}</span>
+                            <span>{params.data.desc}</span>
                         </div>
                     );
                 },
             },
-            // {
-            //     headerName: "Descripition",
-            //     field: "desc",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.desc}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
-            // {
-            //     headerName: " Optional",
-            //     field: "optional",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.optional}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
             {
-                headerName: "Status",
-                field: "aprv_status",
-                filter: true,
-                width: 120,
+                headerName: "Date",
+                field: "desc",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
-                    return params.value == "Active" ? (
-                        <div className="badge badge-pill badge-success">
-                            {params.data.aprv_status}
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
                         </div>
-                    ) : params.value == "Deactive" ? (
-                        <div className="badge badge-pill badge-warning">
-                            {params.data.aprv_status}
-                        </div>
-                    ) : null;
+                    );
                 },
             },
+
             {
                 headerName: "Actions",
                 field: "sortorder",
-                // field: "transactions",
                 width: 150,
                 // pinned: window.innerWidth > 992 ? "right" : false,
-
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             <Route
                                 render={({ history }) => (
-
                                     <Edit
                                         className="mr-50"
                                         size="25px"
                                         color="blue"
                                         onClick={() =>
-                                            history.push(`/app/brahmaand/resource/editResource/${params.data._id}`)
+                                            history.push(
+                                                `/app/brahmaand/leaderboard/editLeader/${params.data._id}`
+                                            )
                                         }
                                     />
                                 )}
                             />
 
-                            <Route
-                                render={({ history }) => (
-                                    <Eye
-                                        className="mr-50"
-                                        color="green"
-                                        size={20}
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/resource/viewResource/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
                             <Trash2
-                                size={20}
+                                className="mr-50"
+                                size="25px"
                                 color="red"
                                 onClick={() => {
                                     let selectedData = this.gridApi.getSelectedRows();
@@ -251,16 +168,19 @@ class ResourceList extends React.Component {
     };
 
     async componentDidMount() {
+        await axiosConfig
+            .get("/get_startup", {
 
-        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
-            const rowData = response.data.data;
-            console.log(rowData);
-            this.setState({ rowData });
-        });
+            })
+            .then((response) => {
+                const rowData = response.data.data;
+                console.log(rowData);
+                this.setState({ rowData });
+            });
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig.get(`/admin/dlt_subres_list/${id}`).then(
+        await axiosConfig.get(`/dlt_startup/${id}`).then(
             (response) => {
                 console.log(response);
             },
@@ -269,7 +189,6 @@ class ResourceList extends React.Component {
             }
         );
     }
-
     onGridReady = (params) => {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
@@ -295,31 +214,56 @@ class ResourceList extends React.Component {
     };
 
     render() {
+
         const { rowData, columnDefs, defaultColDef } = this.state;
         return (
             console.log(rowData),
             (
-                <Row className="app-user-list">
-                    <Col sm="12"></Col>
-                    <Col sm="12">
+                <Row sm="12">
+                    <Col>
                         <Card>
                             <Row className="m-2">
-                                <Col>
-                                    <h1 sm="6" className="float-left">
-                                        Resources List
+                                <Col sm="6" className="tb">
+                                    <h1 className="float-left">
+                                        Weekly Winner List
                                     </h1>
                                 </Col>
-                                <Col className="pt-4">
-                                    <Route
+                                <Col style={{ marginLeft: "120px" }}>
+
+                                    <h5>Start Date</h5>
+                                    <Input className="btn btn-success"
+                                        required
+                                        type="date"
+                                        name="date"
+                                        placeholder="Enter name"
+                                        value={this.state.date}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+                                </Col>
+                                <Col> <h5>End Date</h5>
+                                    <Input className="btn btn-success"
+                                        required
+                                        type="date"
+                                        name="date"
+                                        placeholder="Enter name"
+                                        value={this.state.date}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+
+                                </Col>
+                                <Col >
+                                    {/* <Route
                                         render={({ history }) => (
-                                            <Button
-                                                className=" btn btn-success float-right"
-                                                onClick={() => history.push("/app/brahmaand/resource/addResource")}
-                                            >
-                                                Add
-                                            </Button>
+                                            // <Button
+                                            //     className="btn btn-success float-right"
+                                            //     onClick={() =>
+                                            //         history.push("/app/brahmaand/leaderboard/weeklyWinner")
+                                            //     }
+                                            // >
+                                            //     Choose Winner
+                                            // </Button>
                                         )}
-                                    />
+                                    /> */}
                                 </Col>
                             </Row>
                             <CardBody>
@@ -421,4 +365,4 @@ class ResourceList extends React.Component {
         );
     }
 }
-export default ResourceList;
+export default WeeklyWinner;

@@ -14,7 +14,7 @@ import "../../../../assets/scss/pages/users.scss";
 import axiosConfig from "../../../../axiosConfig";
 import axios from "axios";
 import { Route } from "react-router-dom";
-class ViewUsers extends React.Component {
+class ViewBlog extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -174,4 +174,4 @@ class ViewUsers extends React.Component {
     }
 }
 
-export default ViewUsers;
+export default ViewBlog;

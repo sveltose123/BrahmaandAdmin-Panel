@@ -10,46 +10,40 @@ export default class EditResource extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            script_type: "",
-            script_name: "",
+            aprv_status: "",
         };
     }
-
     componentDidMount() {
         let { id } = this.props.match.params;
         axiosConfig
-            .get(`/getone_script/${id}`, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
+            .get(`/admin/getone_reslist/${id}`, {
+
             })
             .then((response) => {
                 console.log(response);
                 this.setState({
-                    script_type: response.data.data.script_type,
-                    script_name: response.data.data.script_name,
+
                 });
             })
             .catch((error) => {
                 console.log(error);
             });
+
     }
     changeHandler1 = (e) => {
-        this.setState({ status: e.target.value });
+        this.setState({ aprv_status: e.target.value });
     };
 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
+
     submitHandler = (e) => {
         e.preventDefault();
         let { id } = this.props.match.params;
+
         axiosConfig
-            .post(`/editScript/${id}`, this.state, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
-            })
+            .post(`/admin/approve_submit_resrc/${id}`, this.state)
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
@@ -72,7 +66,7 @@ export default class EditResource extends Component {
                                 <BreadcrumbItem href="/app/brahmaand/resource/resourceList" tag="a">
                                     Resource List
                                 </BreadcrumbItem>
-                                <BreadcrumbItem active>Edit  Resource</BreadcrumbItem>
+                                <BreadcrumbItem active>Edit Resource List</BreadcrumbItem>
                             </Breadcrumb>
                         </div>
                     </Col>
@@ -81,7 +75,7 @@ export default class EditResource extends Component {
                     <Row className="m-2">
                         <Col>
                             <h1 col-sm-6 className="float-left">
-                                Edit Resource
+                                Edit Resource List
                             </h1>
                         </Col>
                         <Col>
@@ -99,149 +93,40 @@ export default class EditResource extends Component {
                     </Row>
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
+
                             <Row>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Link</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder="Enter name"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
+                                <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                                    <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                                        <Label className="mb-1"><h4>Status</h4></Label>
+                                        <div
+                                            className="form-label-group"
+                                            onChange={this.changeHandler1}
+                                        >
+                                            <input
+                                                style={{ marginRight: "3px" }}
+                                                type="radio"
+                                                name="aprv_status"
+                                                value="Active"
+                                            />
+                                            <span style={{ marginRight: "20px" }}>Active</span>
+
+                                            <input
+                                                style={{ marginRight: "3px" }}
+                                                type="radio"
+                                                name="aprv_status"
+                                                value="Deactive"
+                                            />
+                                            <span style={{ marginRight: "3px" }}>Deactive</span>
+                                        </div>
+                                    </Col>
                                 </Col>
-                                <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">Type</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <optgroup label="Free">
-
-                                            <option>No Register Required</option>
-                                            <option>Register Required</option></optgroup>
-                                        <optgroup label="Paid">
-                                            <option>Paid</option></optgroup>
-
-                                    </Input>
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">Format</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <option>Video</option>
-                                        <option>Text</option>
-                                        <option>Video and Text</option>
-
-                                    </Input>
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">Level</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <option>Beginner</option>
-                                        <option>Advanced</option>
-
-                                    </Input>
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">Language</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-
-                                    </Input>
-                                </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Topic</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder=""
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Descripition</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder=""
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
-                                <Col lg="6" className="d-flex justify-content">
-                                    <Label>Optional</Label>
-                                    <Accordion defaultActiveKey="0">
-                                        <Accordion.Item eventKey="0" >
-                                            <Col lg='12' className='d-flex justify-content-end align-items-end'>
-                                                <Accordion.Button style={{
-                                                    paddingLeft: '490px', paddingRight: '40px', marginLeft: '-70px', marginTop: '22px',
-                                                    height: '36px', backgroundColor: 'white', borderRadius: '0.5rem', border: '1px solid #d9d9d9'
-                                                }}><FiArrowDown /></Accordion.Button>
-                                            </Col>
-
-                                            <Accordion.Body>
-
-                                                <Form style={{ marginLeft: '-55px', marginRight: '16px' }}> <Label>Title</Label>
-                                                    <Input type="text" name="Title" placeholder="Enter Title" />
-                                                    <Label>Creator Name</Label>
-                                                    <Input type="text" />
-                                                    <Label>Release Year</Label>
-                                                    <Input
-                                                        id="exampleSelect"
-                                                        name="script_type"
-                                                        type="select"
-                                                        value={this.state.script_type}
-                                                        onChange={this.changeHandler}
-                                                    >
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-
-                                                    </Input>
-                                                    <Label>Descripition</Label>
-                                                    <Input type="text" />
-                                                    <Label>Comments</Label>
-                                                    <Input type="text" />
-                                                </Form>
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-                                    </Accordion>
-                                </Col>
-
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Button.Ripple
                                         color="primary"
                                         type="submit"
-                                        className="mr-1 mb-1"
+                                        className="mr-2 mb-1"
                                     >
                                         Update
                                     </Button.Ripple>
@@ -250,7 +135,7 @@ export default class EditResource extends Component {
                         </Form>
                     </CardBody>
                 </Card>
-            </div >
+            </div>
         );
     }
 }

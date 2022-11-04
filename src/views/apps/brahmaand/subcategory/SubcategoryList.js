@@ -31,9 +31,6 @@ class SubcategoryList extends React.Component {
                 field: "node.rowIndex + 1",
                 width: 100,
                 filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
             },
             {
                 headerName: "Category Selection ",
@@ -48,7 +45,7 @@ class SubcategoryList extends React.Component {
                 },
             },
             {
-                headerName: "Title",
+                headerName: "Subcategory Name",
                 field: "title",
                 width: 250,
                 cellRendererFramework: (params) => {
@@ -56,6 +53,17 @@ class SubcategoryList extends React.Component {
                         <div className="d-flex align-items-center cursor-pointer">
                             <span>{params.data.title}</span>
                         </div>
+                    );
+                },
+            },
+            {
+                headerName: "Image",
+                field: "Subcat_img ",
+                filter: true,
+                width: 150,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className="w-50 h-50  rounded-circle" src={params.data.Subcat_img} />
                     );
                 },
             },
@@ -75,21 +83,11 @@ class SubcategoryList extends React.Component {
             {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 150,
-                pinned: window.innerWidth > 992 ? "right" : false,
+                width: 250,
+                // pinned: window.innerWidth > 992 ? "right" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
-                            {/* <Smartphone
-                                className="mr-50"
-                                size="25px"
-                                color={params.data.status === "Active" ? "green" : "red"}
-                                onClick={() => {
-                                    let selectedData = this.gridApi.getSelectedRows();
-                                    this.runthisfunctionEdit(params.data._id, selectedData);
-                                }}
-                            /> */}
-
                             <Route
                                 render={({ history }) => (
                                     <Edit
@@ -120,25 +118,23 @@ class SubcategoryList extends React.Component {
     };
 
     async componentDidMount() {
-        await axiosConfig.get(`/getallSubCategory`).then((response) => {
+        await axiosConfig.get(`/admin/getallSubCategory`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
         });
     }
-    // async runthisfunction(id) {
-    //     console.log(id);
-    //     await axiosConfig.get(`/dlt_alltrade/${id}`).then(
-    //         (response) => {
-    //             console.log(response);
-    //         },
-    //         (error) => {
-    //             console.log(error);
-    //         }
-    //     );
-    // }
-
-
+    async runthisfunction(id) {
+        console.log(id);
+        await axiosConfig.get(`/admin/dltSubCategory/${id}`).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
 
     onGridReady = (params) => {
         this.gridApi = params.api;

@@ -38,8 +38,8 @@ const NavbarUser = () => {
         //axiosConfig.get(`/dlt_startup/${id}`)
         // let userId = localStorage.getItem("userId");
         const data = await axiosConfig.get(
-          // (`/viewoneadmin/${userId}`);
-          `/viewoneadmin/62e125db337df218d9c152f9`
+
+          `/admin/viewoneadmin/6343ec888e7a479c70336029`
         );
         console.log(data.data.data);
         setAdminimg(data.data.data);

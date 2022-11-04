@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Row, Card, CardBody, Input, Button, Col, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
 // import axios from "axios";
@@ -12,10 +13,9 @@ import { Route } from "react-router-dom";
 import swal from "sweetalert";
 import Switch from "react-switch";
 
-class RegisterUserList extends React.Component {
+class Contact extends React.Component {
 
     state = {
-        status: "",
         rowData: [],
         paginationPageSize: 20,
         currenPageSize: "",
@@ -39,12 +39,12 @@ class RegisterUserList extends React.Component {
             },
             {
                 headerName: "Name",
-                field: "username",
+                field: "name",
                 width: 250,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.username}</span>
+                            <span>{params.data.name}</span>
                         </div>
                     );
                 },
@@ -52,7 +52,7 @@ class RegisterUserList extends React.Component {
             {
                 headerName: "Email Id",
                 field: "email",
-                width: 210,
+                width: 270,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -62,87 +62,81 @@ class RegisterUserList extends React.Component {
                 },
             },
             {
-                headerName: "Image",
-                field: "profileImg",
-                filter: true,
-                width: 170,
+                headerName: "Mobile No.",
+                field: "mobile",
+                width: 270,
                 cellRendererFramework: (params) => {
                     return (
-                        <img className="w-50 h-50  rounded-circle" src={params.data.profileImg} />
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.mobile}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                headerName: "Massage",
+                field: "msg",
+                width: 270,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.msg}</span>
+                        </div>
                     );
                 },
             },
 
-            {
-                headerName: "Status",
-                field: "status",
-                filter: true,
-                width: 250,
-                cellRendererFramework: (params) => {
-                    return params.value == "Active" ? (
-                        <div className="badge badge-pill badge-success">
-                            {params.data.status}
-                        </div>
-                    ) : params.value == "Deactive" ? (
-                        <div className="badge badge-pill badge-warning">
-                            {params.data.status}
-                        </div>
-                    ) : null;
-                },
-            },
+            // {
+            //     headerName: "Status",
+            //     field: "status",
+            //     filter: true,
+            //     width: 120,
+            //     cellRendererFramework: (params) => {
+            //         return params.value == "Active" ? (
+            //             <div className="badge badge-pill badge-success">
+            //                 {params.data.status}
+            //             </div>
+            //         ) : params.value == "Deactive" ? (
+            //             <div className="badge badge-pill badge-warning">
+            //                 {params.data.status}
+            //             </div>
+            //         ) : null;
+            //     },
+            // },
             {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 250,
+                width: 150,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             <Route
                                 render={({ history }) => (
 
-                                    <Edit
+                                    <Trash2
                                         className="mr-50"
                                         size="25px"
-                                        color="blue"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/registeruser/editRegisterUser/${params.data._id}`)
-                                        }
+                                        color="red"
+                                        onClick={() => {
+                                            let selectedData = this.gridApi.getSelectedRows();
+                                            this.runthisfunction(params.data._id);
+                                            this.gridApi.updateRowData({ remove: selectedData });
+                                        }}
                                     />
                                 )}
                             />
-                            <Route
-                                render={({ history }) => (
-                                    <Eye
-                                        className="mr-50"
-                                        color="green"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/registeruser/viewRegisterUser/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
-
-                            <Trash2
-                                className="mr-50"
-                                size="25px"
-                                color="red"
-                                onClick={() => {
-                                    let selectedData = this.gridApi.getSelectedRows();
-                                    this.runthisfunction(params.data._id);
-                                    this.gridApi.updateRowData({ remove: selectedData });
-                                }}
-                            />
-
                         </div>
                     );
                 },
             },
         ],
+
+
     };
 
     async componentDidMount() {
         await axiosConfig
-            .get("/admin/userlist")
+            .get("/admin/getContactus")
             .then((response) => {
                 const rowData = response.data.data;
                 this.setState({ rowData });
@@ -150,16 +144,15 @@ class RegisterUserList extends React.Component {
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig
-            .get(`/admin/dltUser/${id}`)
-            .then(
-                (response) => {
-                    console.log(response);
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
+
+        await axiosConfig.get(`/admin/dltContactus/${id}`).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 
     onGridReady = (params) => {
@@ -196,7 +189,7 @@ class RegisterUserList extends React.Component {
                         <Row className="m-2">
                             <Col>
                                 <h1 col-sm-6 className="float-left">
-                                    User List
+                                    Contact List
                                 </h1>
                             </Col>
                         </Row>
@@ -308,4 +301,4 @@ class RegisterUserList extends React.Component {
         );
     }
 }
-export default RegisterUserList;
+export default Contact;

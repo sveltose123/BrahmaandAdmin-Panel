@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { Card, CardBody, Row, Col, Form, Label, Input, CustomInput, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, CustomInput, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import swal from "sweetalert";
 import { Route } from "react-router-dom";
 
-export default class AddCategory extends Component {
+export default class AddContent extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            title: "",
-            desc: "",
-            cat_img: "",
+            thumbnail_img: "",
+            video_link: "",
             selectedFile: null,
             selectedName: "",
+            status: "",
         };
     }
     onChangeHandler = (event) => {
@@ -36,11 +36,12 @@ export default class AddCategory extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append("title", this.state.title);
-        data.append("desc", this.state.desc);
+        data.append("video_link", this.state.video_link);
+        data.append("status", this.state.status);
+
         for (const file of this.state.selectedFile) {
             if (this.state.selectedFile !== null) {
-                data.append("cat_img", file, file.name);
+                data.append("thumbnail_img", file, file.name);
             }
         }
         for (var value of data.values()) {
@@ -49,12 +50,14 @@ export default class AddCategory extends Component {
         for (var key of data.keys()) {
             console.log(key);
         }
+
         axiosConfig
-            .post("/admin/addCategory", data)
+            .post("/admin/add_feature_cnt", data)
+
             .then((response) => {
-                console.log(response);
+                console.log(response.data.data);
                 swal("Success!", "Submitted SuccessFull!", "success");
-                this.props.history.push("/app/brahmaand/category/categoryList");
+                this.props.history.push("/app/brahmaand/content/featureContent");
             })
             .catch((error) => {
                 console.log(error);
@@ -71,10 +74,11 @@ export default class AddCategory extends Component {
                                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                                     Home
                                 </BreadcrumbItem>
-                                <BreadcrumbItem href="/app/brahmaand/category/categoryList" tag="a">
-                                    Category List
+                                <BreadcrumbItem href="/app/brahmaand/content/featureContent" tag="a">
+                                    Featuer Content List
                                 </BreadcrumbItem>
-                                <BreadcrumbItem active>Add Category</BreadcrumbItem>
+                                <BreadcrumbItem active>Add Content </BreadcrumbItem>
+
                             </Breadcrumb>
                         </div>
                     </Col>
@@ -83,7 +87,7 @@ export default class AddCategory extends Component {
                     <Row className="m-2">
                         <Col>
                             <h1 col-sm-6 className="float-left">
-                                Add Category
+                                Add Content
                             </h1>
                         </Col>
                         <Col>
@@ -91,7 +95,7 @@ export default class AddCategory extends Component {
                                 render={({ history }) => (
                                     <Button
                                         className=" btn btn-danger float-right"
-                                        onClick={() => history.push("/app/brahmaand/category/categoryList")}
+                                        onClick={() => history.push("/app/brahmaand/content/featureContent")}
                                     >
                                         Back
                                     </Button>
@@ -102,34 +106,24 @@ export default class AddCategory extends Component {
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
-
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Title</Label>
+                                    <Label>Video Link</Label>
                                     <Input
                                         required
-                                        type="text"
-                                        name="title"
-                                        value={this.state.title}
+
+                                        name="video_link"
+                                        placeholder="Enter title"
+                                        value={this.state.video_link}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Note</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="desc"
-                                        value={this.state.desc}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
-
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Upload Image</Label>
+                                    <Label>Thumnail Image</Label>
                                     <CustomInput
+                                        // required
                                         type="file"
-                                        //   multiple
-                                        onChange={this.onChangeHandler} />
+                                        onChange={this.onChangeHandler}
+                                    ></CustomInput>
                                 </Col>
                             </Row>
                             <Row>

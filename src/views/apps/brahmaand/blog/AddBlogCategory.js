@@ -25,9 +25,7 @@ export default class AddBlogCategory extends Component {
 
         axiosConfig
             .post("/addScript", this.state, {
-                // headers: {
-                //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                // },
+
             })
             .then((response) => {
                 console.log(response);
@@ -81,23 +79,6 @@ export default class AddBlogCategory extends Component {
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
-                                {/* <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">Entry Script</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <option>Select Script</option>
-                                    
-                                        <option>FNO INDEX</option>
-                                        <option>FNO EQUITY</option>
-                                        <option>CASH EQUITY</option>
-                                     
-                                    </Input>
-                                </Col> */}
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Title</Label>
                                     <Input
@@ -121,7 +102,7 @@ export default class AddBlogCategory extends Component {
                                     ></Input>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Image</Label>
+                                    <Label> Upload Image</Label>
                                     <Input
                                         required
                                         type="file"

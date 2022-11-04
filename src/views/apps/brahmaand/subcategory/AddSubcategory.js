@@ -11,12 +11,26 @@ export default class AddSubcategory extends Component {
         this.state = {
             title: "",
             desc: "",
+            Subcat_img: "",
+            category: "",
+            selectedFile: null,
+            selectedName: "",
         };
 
         this.state = {
             categoryT: []
         };
     }
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files[0] });
+        this.setState({ selectedName: event.target.files[0].name });
+        console.log(event.target.files[0]);
+    };
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files });
+        this.setState({ selectedName: event.target.files.name });
+        console.log(event.target.files);
+    };
     changeHandler1 = (e) => {
         this.setState({ status: e.target.value });
     };
@@ -24,13 +38,13 @@ export default class AddSubcategory extends Component {
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
+
     async componentDidMount() {
         axiosConfig
-            .get("/getallCategory")
+            .get("/admin/getallCategory")
             .then((response) => {
                 console.log(response);
                 this.setState({
-                    // scriptT: response.data.data,
                     categoryT: response.data.data,
                 });
             })
@@ -40,13 +54,23 @@ export default class AddSubcategory extends Component {
     }
     submitHandler = (e) => {
         e.preventDefault();
-
+        const data = new FormData();
+        data.append("title", this.state.title);
+        data.append("desc", this.state.desc);
+        data.append("category", this.state.category);
+        for (const file of this.state.selectedFile) {
+            if (this.state.selectedFile !== null) {
+                data.append("Subcat_img", file, file.name);
+            }
+        }
+        for (var value of data.values()) {
+            console.log(value);
+        }
+        for (var key of data.keys()) {
+            console.log(key);
+        }
         axiosConfig
-            .post("/addSubCategory", this.state, {
-                // headers: {
-                //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                // },
-            })
+            .post("/admin/addSubCategory", data)
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
@@ -99,7 +123,7 @@ export default class AddSubcategory extends Component {
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
                                 <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">SubCategory</Label>
+                                    <Label for="exampleSelect">Category Selection</Label>
 
                                     <CustomInput
                                         type="select"
@@ -116,7 +140,7 @@ export default class AddSubcategory extends Component {
                                     </CustomInput>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Title</Label>
+                                    <Label>Subcategory Name</Label>
                                     <Input
                                         required
                                         type="text"
@@ -137,17 +161,13 @@ export default class AddSubcategory extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
+                                <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Upload Image</Label>
-                                    <Input
-                                        // required
+                                    <CustomInput
                                         type="file"
-                                        name="script_name"
-                                        placeholder="Enter mobile no"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
+                                        //   multiple
+                                        onChange={this.onChangeHandler} />
+                                </Col>
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">

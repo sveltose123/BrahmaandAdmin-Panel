@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardBody, Input, Row, Col, Button, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 import moment from "moment";
-
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import { Edit, Trash2, ChevronDown, Smartphone } from "react-feather";
@@ -29,13 +28,20 @@ class CategoryList extends React.Component {
                 headerName: "S.No",
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
-                width: 100,
+                width: 200,
                 filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
             },
-
+            {
+                headerName: "Image",
+                field: "cat_img",
+                filter: true,
+                width: 150,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className="w-50 h-50  rounded-circle" src={params.data.cat_img} />
+                    );
+                },
+            },
             {
                 headerName: "Title",
                 field: "title",
@@ -48,11 +54,10 @@ class CategoryList extends React.Component {
                     );
                 },
             },
-
             {
                 headerName: "Note",
                 field: "desc",
-                width: 250,
+                width: 300,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -61,43 +66,30 @@ class CategoryList extends React.Component {
                     );
                 },
             },
-            {
-                headerName: "Upload Image",
-                field: "image",
-                // filter: true,
-                width: 300,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.image}</span>
-                        </div>
-                    );
-                },
-            },
-
-
-
-
-
+            // {
+            //     headerName: "Status",
+            //     field: "aprv_status",
+            //     filter: true,
+            //     width: 200,
+            //     cellRendererFramework: (params) => {
+            //         return params.value === "Active" ? (
+            //             <div className="badge badge-pill badge-success">
+            //                 {params.data.aprv_status}
+            //             </div>
+            //         ) : params.value === "Deactive" ? (
+            //             <div className="badge badge-pill badge-warning">
+            //                 {params.data.aprv_status}
+            //             </div>
+            //         ) : null;
+            //     },
+            // },
             {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 150,
-                // pinned: window.innerWidth > 992 ? "right" : false,
+                width: 300,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
-                            {/* <Smartphone
-                                className="mr-50"
-                                size="25px"
-                                color={params.data.status === "Active" ? "green" : "red"}
-                                onClick={() => {
-                                    let selectedData = this.gridApi.getSelectedRows();
-                                    this.runthisfunctionEdit(params.data._id, selectedData);
-                                }}
-                            /> */}
-
                             <Route
                                 render={({ history }) => (
                                     <Edit
@@ -110,7 +102,6 @@ class CategoryList extends React.Component {
                                     />
                                 )}
                             />
-
                             <Trash2
                                 size={20}
                                 color="red"
@@ -128,63 +119,23 @@ class CategoryList extends React.Component {
     };
 
     async componentDidMount() {
-        await axiosConfig.get(`/getallCategory`).then((response) => {
+        await axiosConfig.get(`/admin/getallCategory`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
         });
     }
-    // async runthisfunction(id) {
-    //     console.log(id);
-    //     await axiosConfig.get(`/dlt_alltrade/${id}`).then(
-    //         (response) => {
-    //             console.log(response);
-    //         },
-    //         (error) => {
-    //             console.log(error);
-    //         }
-    //     );
-    // }
-
-    async runthisfunctionEdit(id, selectedData) {
-        console.log("@@selectedData", id, selectedData[0].FT1);
-        //
-        let status = selectedData[0].status === "Active" ? "Deactive" : "Active";
-        let payload = {
-            // expiryDate:selectedData[0].expiryDate,
-            // script_type:selectedData[0].script_type,
-            // fnoindex_scrpt_name:selectedData[0].fnoindex_scrpt_name,
-            call_type: selectedData[0].call_type,
-            active_value: selectedData[0].active_value,
-            T1: selectedData[0].T1,
-            T2: selectedData[0].T2,
-            T3: selectedData[0].T3,
-            trl: selectedData[0].trl,
-            trl_type: selectedData[0].trl_type,
-            FT1_type: selectedData[0].FT1_type,
-            FT2_type: selectedData[0].FT2_type,
-            FT3_type: selectedData[0].FT3_type,
-            FT5_type: selectedData[0].FT5_type,
-            qty: selectedData[0].qty,
-            sl_type: selectedData[0].sl_type,
-            // no_of_lots:selectedData[0].no_of_lots,
-            trade_type: selectedData[0].trade_type,
-            cstmMsg: selectedData[0].cstmMsg,
-            status: status,
-        };
-        await axiosConfig
-            .post(`/editalltrade/${id}`, payload)
-            .then((response) => {
-                console.log("sdjgsjdgjhgsdjh", response);
-                swal("Success!", "Status " + status + " SuccessFull!", "success");
-                // this.props.history.push("/app/trade/categorylist");
-                window.location.reload();
-            })
-            .catch((error) => {
+    async runthisfunction(id) {
+        console.log(id);
+        await axiosConfig.get(`/admin/dltCategory/${id}`).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
                 console.log(error);
-            });
+            }
+        );
     }
-
     onGridReady = (params) => {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;

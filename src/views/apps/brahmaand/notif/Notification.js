@@ -92,7 +92,7 @@ class Notification extends React.Component {
     };
     componentDidMount() {
         axiosConfig
-            .get(`/get_notification`)
+            .get(`/admin/get_notification`)
             .then((response) => {
                 let rowData = response.data.data;
                 JSON.stringify(rowData);

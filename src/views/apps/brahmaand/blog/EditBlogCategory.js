@@ -121,7 +121,7 @@ export default class EditBlogCategory extends Component {
                                     ></Input>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Upload Image</Label>
+                                    <Label>Thumnail Image</Label>
                                     <Input
                                         required
                                         type="file"

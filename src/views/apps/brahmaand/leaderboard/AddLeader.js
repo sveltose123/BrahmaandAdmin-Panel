@@ -4,6 +4,8 @@ import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import swal from "sweetalert";
 import { Route } from "react-router-dom";
+import AddEvent from "../../calendar/AddEventSidebar";
+
 
 export default class AddLeader extends Component {
     constructor (props) {
@@ -81,6 +83,17 @@ export default class AddLeader extends Component {
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
+                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                    <Label>Name</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        name="script_name"
+                                        placeholder="Enter name"
+                                        value={this.state.script_name}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+                                </Col>
                                 {/* <Col lg="6" md="6" className="mb-2">
                                     <Label for="exampleSelect">Entry Script</Label>
                                     <Input
@@ -120,17 +133,7 @@ export default class AddLeader extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Name</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder="Enter name"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
+
 
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Image</Label>

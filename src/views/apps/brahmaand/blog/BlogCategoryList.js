@@ -63,33 +63,32 @@ class BlogCategory extends React.Component {
                 },
             },
             {
-                headerName: "Upload Image",
+                headerName: "Image",
                 field: "file",
                 // filter: true,
                 width: 200,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.image}</span>
-                        </div>
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.cat_img} />
+
                     );
                 },
             },
-            {
-                headerName: "Posted By",
-                field: "post",
-                // filter: true,
-                width: 200,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.video_link}</span>
-                        </div>
-                    );
-                },
-            },
+            // {
+            //     headerName: "Posted By",
+            //     field: "post",
+            //     // filter: true,
+            //     width: 200,
+            //     // pinned: window.innerWidth > 992 ? "left" : false,
+            //     cellRendererFramework: (params) => {
+            //         return (
+            //             <div className="d-flex align-items-center cursor-pointer">
+            //                 <span>{params.data.video_link}</span>
+            //             </div>
+            //         );
+            //     },
+            // },
 
             {
                 headerName: "Actions",

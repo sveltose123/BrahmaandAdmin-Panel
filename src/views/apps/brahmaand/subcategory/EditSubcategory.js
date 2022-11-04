@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, CustomInput } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
@@ -8,30 +8,29 @@ export default class EditSubcategory extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            script_type: "",
-            script_name: "",
-        };
-    }
+            title: "",
+            desc: "",
+            Subcat_img: "",
+            category: "",
+            selectedFile: null,
+            selectedName: "",
 
-    componentDidMount() {
-        let { id } = this.props.match.params;
-        axiosConfig
-            .get(`/getone_script/${id}`, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
-            })
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                    script_type: response.data.data.script_type,
-                    script_name: response.data.data.script_name,
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        };
+        this.state = {
+            categoryT: []
+        };
+
     }
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files[0] });
+        this.setState({ selectedName: event.target.files[0].name });
+        console.log(event.target.files[0]);
+    };
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files });
+        this.setState({ selectedName: event.target.files.name });
+        console.log(event.target.files);
+    };
     changeHandler1 = (e) => {
         this.setState({ status: e.target.value });
     };
@@ -39,14 +38,62 @@ export default class EditSubcategory extends Component {
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
+
+    componentDidMount() {
+        let { id } = this.props.match.params;
+        axiosConfig
+            .get(`/admin/getoneSubCategory/${id}`, {
+                // headers: {
+                //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+                // },
+            })
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    title: response.data.data.title,
+                    desc: response.data.data.desc,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        axiosConfig
+            .get("/admin/getallCategory")
+            .then((response) => {
+                console.log(response);
+                this.setState({
+                    categoryT: response.data.data,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     submitHandler = (e) => {
         e.preventDefault();
         let { id } = this.props.match.params;
+        const data = new FormData();
+        data.append("title", this.state.title);
+        data.append("desc", this.state.desc);
+        data.append("category", this.state.category);
+        for (const file of this.state.selectedFile) {
+            if (this.state.selectedFile !== null) {
+                data.append("Subcat_img", file, file.name);
+            }
+        }
+        for (var value of data.values()) {
+            console.log(value);
+        }
+        for (var key of data.keys()) {
+            console.log(key);
+        }
+
         axiosConfig
-            .post(`/editScript/${id}`, this.state, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
+            .post(`/admin/editSubCategory/${id}`, this.state, {
+                // headers: {
+                //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+                // },
             })
             .then((response) => {
                 console.log(response);
@@ -99,66 +146,51 @@ export default class EditSubcategory extends Component {
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
                                 <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect">SubCategory</Label>
-                                    <Input
-                                        id="exampleSelect"
-                                        name="script_type"
+                                    <Label for="exampleSelect">Category Selection</Label>
+                                    <CustomInput
                                         type="select"
-                                        value={this.state.script_type}
+                                        name="category"
+                                        value={this.state.category}
                                         onChange={this.changeHandler}
                                     >
-                                        <option>Select</option>
-
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-
-                                    </Input>
+                                        <option>select Category</option>
+                                        {this.state.categoryT?.map((allCategory) => (
+                                            <option value={allCategory?._id} key={allCategory?._id}>
+                                                {allCategory?.title}
+                                            </option>
+                                        ))}
+                                    </CustomInput>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Title</Label>
+                                    <Label>subcategory Name</Label>
                                     <Input
-                                        required
+
                                         type="text"
-                                        name="script_name"
+                                        name="title"
                                         placeholder=""
-                                        value={this.state.script_name}
+                                        value={this.state.title}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Note</Label>
                                     <Input
-                                        required
+
                                         type="text"
-                                        name="script_name"
+                                        name="desc"
                                         placeholder=""
-                                        value={this.state.script_name}
+                                        value={this.state.desc}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
+                                <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Upload Image</Label>
-                                    <Input
-                                        required
+                                    <CustomInput
                                         type="file"
-                                        name="script_name"
-                                        placeholder=""
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
-                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Mobile No.</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder="Enter mobile no"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
+                                        //   multiple
+                                        onChange={this.onChangeHandler} />
+                                </Col>
+
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">

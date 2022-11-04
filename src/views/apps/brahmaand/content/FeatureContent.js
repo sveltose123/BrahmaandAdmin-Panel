@@ -1,5 +1,8 @@
 import React from "react";
-import { Card, CardBody, Input, Row, Col, Button, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
+import {
+    Card, CardBody, Input, Row, Col, Button, UncontrolledDropdown, DropdownMenu,
+    DropdownItem, DropdownToggle,
+} from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
@@ -9,13 +12,10 @@ import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
-import Switch from "react-switch";
-import swal from "sweetalert";
-
-class ResourceList extends React.Component {
+class FeatureContent extends React.Component {
     state = {
-        aprv_status: "",
         rowData: [],
+        status: "",
         paginationPageSize: 20,
         currenPageSize: "",
         getPageSize: "",
@@ -26,216 +26,82 @@ class ResourceList extends React.Component {
             suppressMenu: true,
         },
 
-
         columnDefs: [
             {
                 headerName: "S.No",
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
-                width: 80,
-                filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
+                width: 200,
             },
+
             {
-                headerName: "Creator Name",
-                field: "creatorName",
-                width: 80,
+                headerName: "Video Link",
+                field: "video_link",
+                width: 250,
                 // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.creatorName}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Link",
-                field: "link",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.link}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Category",
-                field: "title",
-                width: 80,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.category?.title}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "SubCategory",
-                field: "title",
-                width: 80,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.sub_category?.title}</span>
+                            <span>{params.data.video_link}</span>
                         </div>
                     );
                 },
             },
 
             {
-                headerName: "Type",
-                field: "type",
-                width: 90,
+                headerName: " Thumnail Image",
+                field: "thumbnail_img",
+                // filter: true,
+                width: 250,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.type}</span>
-
-                        </div>
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.thumbnail_img} />
                     );
                 },
             },
-            {
-                headerName: "Format",
-                field: "format",
-                width: 90,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.format}</span>
-
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Language",
-                field: "language",
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            {params.data.language?.map((lang) => (
-                                <span key={lang._id}>{lang?.language}</span>
-                            ))}
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Image",
-                field: "img",
-                filter: true,
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <img className="w-50 h-50  rounded-circle" src={params.data.img} />
-                    );
-                },
-            },
-            {
-                headerName: "Topic",
-                field: "topics",
-                width: 90,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.topics}</span>
-                        </div>
-                    );
-                },
-            },
-            // {
-            //     headerName: "Descripition",
-            //     field: "desc",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.desc}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
-            // {
-            //     headerName: " Optional",
-            //     field: "optional",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.optional}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
 
             {
                 headerName: "Status",
-                field: "aprv_status",
+                field: "status",
                 filter: true,
-                width: 120,
+                width: 250,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : params.value == "Deactive" ? (
                         <div className="badge badge-pill badge-warning">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : null;
                 },
             },
+
             {
                 headerName: "Actions",
                 field: "sortorder",
-                // field: "transactions",
-                width: 150,
+                width: 250,
                 // pinned: window.innerWidth > 992 ? "right" : false,
-
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             <Route
                                 render={({ history }) => (
-
                                     <Edit
                                         className="mr-50"
                                         size="25px"
                                         color="blue"
                                         onClick={() =>
-                                            history.push(`/app/brahmaand/resource/editResource/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
-
-                            <Route
-                                render={({ history }) => (
-                                    <Eye
-                                        className="mr-50"
-                                        color="green"
-                                        size={20}
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/resource/viewResource/${params.data._id}`)
+                                            history.push(`/app/brahmaand/content/editContent/${params.data._id}`)
                                         }
                                     />
                                 )}
                             />
                             <Trash2
-                                size={20}
+                                className="mr-50"
+                                size="25px"
                                 color="red"
                                 onClick={() => {
                                     let selectedData = this.gridApi.getSelectedRows();
@@ -251,16 +117,17 @@ class ResourceList extends React.Component {
     };
 
     async componentDidMount() {
-
-        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
-            const rowData = response.data.data;
-            console.log(rowData);
-            this.setState({ rowData });
-        });
+        await axiosConfig
+            .get("/admin/admin_featured_cnt")
+            .then((response) => {
+                const rowData = response.data.data;
+                console.log(rowData);
+                this.setState({ rowData });
+            });
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig.get(`/admin/dlt_subres_list/${id}`).then(
+        await axiosConfig.get(`/admin/dlt_featured/${id}`).then(
             (response) => {
                 console.log(response);
             },
@@ -269,7 +136,6 @@ class ResourceList extends React.Component {
             }
         );
     }
-
     onGridReady = (params) => {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
@@ -306,17 +172,19 @@ class ResourceList extends React.Component {
                             <Row className="m-2">
                                 <Col>
                                     <h1 sm="6" className="float-left">
-                                        Resources List
+                                        Feature Content List
                                     </h1>
                                 </Col>
-                                <Col className="pt-4">
+                                <Col>
                                     <Route
                                         render={({ history }) => (
                                             <Button
-                                                className=" btn btn-success float-right"
-                                                onClick={() => history.push("/app/brahmaand/resource/addResource")}
+                                                className="btn btn-success float-right"
+                                                onClick={() =>
+                                                    history.push("/app/brahmaand/content/addContent")
+                                                }
                                             >
-                                                Add
+                                                Add Content
                                             </Button>
                                         )}
                                     />
@@ -421,4 +289,4 @@ class ResourceList extends React.Component {
         );
     }
 }
-export default ResourceList;
+export default FeatureContent;

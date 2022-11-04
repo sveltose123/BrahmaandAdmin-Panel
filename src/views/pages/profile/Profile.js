@@ -24,7 +24,6 @@ class Profile extends React.Component {
     this.state = {
       name: "",
       email: "",
-      mobile: "",
       cnfmPassword: "",
       password: "",
       adminimg: "",
@@ -44,7 +43,7 @@ class Profile extends React.Component {
   componentDidMount() {
     // let { id } = this.props.match.params;
     axiosConfig
-      .get(`/viewoneadmin/62e125db337df218d9c152f9`)
+      .get(`/admin/viewoneadmin/6343ec888e7a479c70336029`)
       .then((response) => {
         //console.log(response.data);
         console.log(response);
@@ -52,7 +51,7 @@ class Profile extends React.Component {
           data: response.data.data,
           name: response.data.data.name,
           email: response.data.data.email,
-          mobile: response.data.data.mobile,
+          // mobile: response.data.data.mobile,
           password: response.data.data.password,
           cnfmPassword: response.data.data.cnfmPassword,
         });
@@ -72,7 +71,7 @@ class Profile extends React.Component {
     const data = new FormData();
     data.append("name", this.state.name);
     data.append("email", this.state.email);
-    data.append("mobile", this.state.mobile);
+    // data.append("mobile", this.state.mobile);
     data.append("password", this.state.password);
     data.append("cnfmPassword", this.state.cnfmPassword);
     if (this.state.selectedFile !== null) {
@@ -88,10 +87,8 @@ class Profile extends React.Component {
     }
     //  let { id } = this.props.match.params;
     axiosConfig
-      .post(`/editAdmin/62e125db337df218d9c152f9`, data, {
-        headers: {
-          "ad-token": localStorage.getItem("ad-token"),
-        },
+      .post(`/admin/editMyProfile/6343ec888e7a479c70336029`, data, {
+
       })
       .then((response) => {
         console.log(response.data.message);
@@ -128,10 +125,10 @@ class Profile extends React.Component {
                       Name:{" "}
                       <span className="lst-3">{this.state.data.name}</span>
                     </li>
-                    <li className="lst-2">
+                    {/* <li className="lst-2">
                       Mobile:{" "}
                       <span className="lst-3">{this.state.data.mobile}</span>
-                    </li>
+                    </li> */}
                     <li className="lst-2">
                       Email:{" "}
                       <span className="lst-3">{this.state.data.email}</span>
@@ -173,14 +170,14 @@ class Profile extends React.Component {
                             value={this.state.email}
                             onChange={this.changeHandler}
                           />
-                          <Label>Mobile No.</Label>
+                          {/* <Label>Mobile No.</Label>
                           <Input
                             type="number"
                             name="mobile"
                             placeholder="Mobile No."
                             value={this.state.mobile}
                             onChange={this.changeHandler}
-                          />
+                          /> */}
                           <Label>Password</Label>
                           <Input
                             type="password"

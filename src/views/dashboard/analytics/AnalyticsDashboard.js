@@ -149,7 +149,22 @@ class AnalyticsDashboard extends React.Component {
               style={{ borderColor: "white", background: '#FFFF33', padding: '2.4rem' }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "black", textAlign: 'center' }}>
-                Total no of points
+                Total no of current points
+              </CardTitle>
+              <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
+                {this.state.freeusers.data}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="4" md="12">
+            <Card
+              className="gt-4"
+              body
+              inverse
+              style={{ borderColor: "white", background: '#FF0033', padding: '2.4rem' }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "black", textAlign: 'center' }}>
+                Total no of all time points
               </CardTitle>
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
                 {this.state.freeusers.data}

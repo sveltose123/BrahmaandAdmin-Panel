@@ -89,60 +89,119 @@ class AddBasedcategory extends React.Component {
                         />
                     </Col>
                 </Row>
+
                 <CardBody>
                     <Form onSubmit={this.submitHandler}>
-                        <Col lg="6" md="6" className="mb-2">
-                            <Label>Title</Label>
-                            <Input
-                                type="text"
-                                name="title"
-                                value={this.state.title}
-                                onChange={this.changeHandler}
-                            />
-                        </Col>
-                        <Col lg="6" md="6" sm="6" className="mb-2">
-                            <Label>Creator Name</Label>
-                            <Input
-                                type="text"
-                                name="Name"
-                                value={this.state.planId?.pack_name}
-                                onChange={this.changeHandler}
-                            >
-                                {/* <option>Select Plan</option>
+                        <Row>
+                            <Col lg="6" md="6" className="mb-2">
+                                <Label>Title</Label>
+                                <Input
+                                    type="text"
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col lg="6" md="6" sm="6" className="mb-2">
+                                <Label>Creator Name</Label>
+                                <Input
+                                    type="text"
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.changeHandler}
+                                >
+                                    {/* <option>Select Plan</option>
                                 {this.state.pack_nameM?.map((planmemship) => (
                                     <option value={planmemship?._id} key={planmemship?._id}>
                                         {planmemship?.pack_name}
                                     </option> */}
-                                {/* ))} */}
-                            </Input>
-                        </Col>
-                        <Col lg="6" md="6" className="mb-2">
-                            <Label>Upload Image</Label>
-                            <Input
-                                type="file"
-                                name="title"
-                                value={this.state.title}
-                                onChange={this.changeHandler}
-                            />
-                        </Col>
-                        <Col lg="6" md="6" sm="6" className="mb-2">
-                            <Label>Descripiton</Label>
-                            <Input
-                                type="text"
-                                name="name"
-                                value={this.state.planId?.pack_name}
-                                onChange={this.changeHandler}
-                            >
-                                {/* <option>Select Plan</option>
-                                {this.state.pack_nameM?.map((planmemship) => (
-                                    <option value={planmemship?._id} key={planmemship?._id}>
-                                        {planmemship?.pack_name}
-                                    </option> */}
-                                {/* ))} */}
-                            </Input>
-                        </Col>
+                                    {/* ))} */}
+                                </Input>
+                            </Col>
+                            <Col lg="6" md="6" className="mb-2">
+                                <Label for="exampleSelect">Category</Label>
+                                <Input
+                                    id="exampleSelect"
+                                    name="script_type"
+                                    type="select"
+                                    value={this.state.script_type}
+                                    onChange={this.changeHandler}
+                                >
+                                    <option>Education</option>
+                                    <option>Music</option>
+                                    <option>Astrology</option>
 
-                        {/* <Editor
+                                </Input>
+                            </Col>
+                            <Col lg="6" md="6" className="mb-2">
+                                <Label for="exampleSelect">SubCategory</Label>
+                                <Input
+                                    id="exampleSelect"
+                                    name="script_type"
+                                    type="select"
+                                    value={this.state.script_type}
+                                    onChange={this.changeHandler}
+                                >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+
+                                </Input>
+                            </Col>
+                            <Col lg="6" md="6" className="mb-2">
+                                <Label for="exampleSelect">Type</Label>
+                                <Input
+                                    id="exampleSelect"
+                                    name="script_type"
+                                    type="select"
+                                    value={this.state.script_type}
+                                    onChange={this.changeHandler}
+                                >
+                                    <option>Free</option>
+                                    <option>Paid</option>
+                                </Input>
+                            </Col>
+                            <Col lg="6" md="6" className="mb-2">
+                                <Label for="exampleSelect">Format</Label>
+                                <Input
+                                    id="exampleSelect"
+                                    name="script_type"
+                                    type="select"
+                                    value={this.state.script_type}
+                                    onChange={this.changeHandler}
+                                >
+                                    <option>Video</option>
+                                    <option>Text</option>
+                                    <option>Video and Text</option>
+
+                                </Input>
+                            </Col>
+
+                            <Col lg="6" md="6" sm="6" className="mb-2">
+                                <Label>Upload Image</Label>
+                                <CustomInput
+                                    type="file"
+                                    //   multiple
+                                    onChange={this.onChangeHandler} />
+                            </Col>
+                            <Col lg="6" md="6" sm="6" className="mb-2">
+                                <Label>Descripiton</Label>
+                                <Input
+                                    type="text"
+                                    name="desc"
+                                    value={this.state.desc}
+                                    onChange={this.changeHandler}
+                                >
+                                    {/* <option>Select Plan</option>
+                                {this.state.pack_nameM?.map((planmemship) => (
+                                    <option value={planmemship?._id} key={planmemship?._id}>
+                                        {planmemship?.pack_name}
+                                    </option> */}
+                                    {/* ))} */}
+                                </Input>
+                            </Col>
+
+                            {/* <Editor
                             toolbarClassName="demo-toolbar-absolute"
                             wrapperClassName="demo-wrapper"
                             editorClassName="demo-editor"
@@ -175,10 +234,12 @@ class AddBasedcategory extends React.Component {
                                 },
                             }}
                         /> */}
-                        <br />
+                            <br />
+                        </Row>
                         <Button color="primary"> Add</Button>
                     </Form>
                 </CardBody>
+
             </Card>
         );
     }

@@ -4,19 +4,19 @@ import { useAuth0 } from "../../../../authServices/auth0/auth0Service"
 
 const RegisterAuth0 = (props) => {
   let { isAuthenticated, loginWithRedirect } = useAuth0()
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
       <CardBody className="pt-1 pb-3">
         <Button.Ripple
           color="primary"
           className="mt-1"
-          onClick={ e => {
+          onClick={e => {
             e.preventDefault()
 
-            if (!isAuthenticated){
+            if (!isAuthenticated) {
               loginWithRedirect()
             }
-            else{
+            else {
               console.log('Already Logged In')
             }
           }}
@@ -25,7 +25,7 @@ const RegisterAuth0 = (props) => {
         </Button.Ripple>
       </CardBody>
     </React.Fragment>
-    )
+  )
 }
 
 export default RegisterAuth0

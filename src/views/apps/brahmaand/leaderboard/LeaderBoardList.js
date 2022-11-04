@@ -9,12 +9,19 @@ import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
+// import Calendar from "../../calendar/Calendar";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import AddEventSidebar from "../../calendar/AddEventSidebar";
+
+
 class LeaderBoardList extends React.Component {
     state = {
         rowData: [],
         paginationPageSize: 20,
         currenPageSize: "",
         getPageSize: "",
+        value: "",
         defaultColDef: {
             sortable: true,
             editable: true,
@@ -22,20 +29,37 @@ class LeaderBoardList extends React.Component {
             suppressMenu: true,
         },
 
+
         columnDefs: [
             {
                 headerName: "S.No",
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
                 width: 150,
+                pinned: window.innerWidth > 992 ? "left" : false,
                 // filter: true,
                 // checkboxSelection: true,
                 // headerCheckboxSelectionFilteredOnly: true,
                 // headerCheckboxSelection: true,
             },
+            {
+                headerName: "Name",
+                field: "desc",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
+                        </div>
+                    );
+                },
+            },
+
 
             {
-                headerName: "Current Point",
+                headerName: "Current Month Point",
                 field: "title",
                 // filter: true,
                 width: 150,
@@ -49,10 +73,10 @@ class LeaderBoardList extends React.Component {
                 },
             },
             {
-                headerName: " Total Point",
+                headerName: "All Time Point",
                 field: "desc",
                 // filter: true,
-                width: 200,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
@@ -63,73 +87,84 @@ class LeaderBoardList extends React.Component {
                 },
             },
             {
-                headerName: "Name",
-                field: "desc",
-                // filter: true,
-                width: 200,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.desc}</span>
-                        </div>
-                    );
-                },
-            },
-
-            {
-                headerName: "Upload Image",
+                headerName: "Image",
                 field: "file",
                 // filter: true,
-                width: 200,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.cat_img} />
+
+                    );
+                },
+            },
+            {
+                headerName: "Planet Position",
+                field: "desc",
+                // filter: true,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.image}</span>
+                            <span>{params.data.desc}</span>
                         </div>
                     );
                 },
             },
-
-
             {
-                headerName: "Actions",
-                field: "sortorder",
-                width: 200,
-                // pinned: window.innerWidth > 992 ? "right" : false,
+                headerName: "Amount",
+                field: "desc",
+                // filter: true,
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
-                        <div className="actions cursor-pointer">
-                            <Route
-                                render={({ history }) => (
-                                    <Edit
-                                        className="mr-50"
-                                        size="25px"
-                                        color="blue"
-                                        onClick={() =>
-                                            history.push(
-                                                `/app/brahmaand/leaderboard/editLeader/${params.data._id}`
-                                            )
-                                        }
-                                    />
-                                )}
-                            />
-
-                            <Trash2
-                                className="mr-50"
-                                size="25px"
-                                color="red"
-                                onClick={() => {
-                                    let selectedData = this.gridApi.getSelectedRows();
-                                    this.runthisfunction(params.data._id);
-                                    this.gridApi.updateRowData({ remove: selectedData });
-                                }}
-                            />
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
                         </div>
                     );
                 },
             },
+
+            // {
+            //     headerName: "Actions",
+            //     field: "sortorder",
+            //     width: 150,
+            //     // pinned: window.innerWidth > 992 ? "right" : false,
+            //     cellRendererFramework: (params) => {
+            //         return (
+            //             <div className="actions cursor-pointer">
+            //                 <Route
+            //                     render={({ history }) => (
+            //                         <Edit
+            //                             className="mr-50"
+            //                             size="25px"
+            //                             color="blue"
+            //                             onClick={() =>
+            //                                 history.push(
+            //                                     `/app/brahmaand/leaderboard/editLeader/${params.data._id}`
+            //                                 )
+            //                             }
+            //                         />
+            //                     )}
+            //                 />
+
+            //     <Trash2
+            //         className="mr-50"
+            //         size="25px"
+            //         color="red"
+            //         onClick={() => {
+            //             let selectedData = this.gridApi.getSelectedRows();
+            //             this.runthisfunction(params.data._id);
+            //             this.gridApi.updateRowData({ remove: selectedData });
+            //         }}
+            //     />
+            // </div>
+            // );
+            // },
+            //     },
         ],
     };
 
@@ -182,22 +217,45 @@ class LeaderBoardList extends React.Component {
     };
 
     render() {
+
         const { rowData, columnDefs, defaultColDef } = this.state;
         return (
             console.log(rowData),
             (
-                <Row className="app-user-list">
-                    <Col sm="12"></Col>
-                    <Col sm="12">
+                <Row sm="12">
+                    <Col>
                         <Card>
-                            <Row className="m-2">
-                                <Col>
-                                    <h1 sm="6" className="float-left">
+                            <Row className="m-1">
+                                <Col sm="6" className="tb">
+                                    <h1 className="float-left">
                                         Leader Board List
                                     </h1>
                                 </Col>
-                                <Col>
-                                    <Route
+                                <Col style={{ marginLeft: "120px" }}>
+
+                                    <h5>Start Date</h5>
+                                    <Input className="btn btn-success"
+                                        required
+                                        type="date"
+                                        name="date"
+                                        placeholder="Enter name"
+                                        value={this.state.date}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+                                </Col>
+                                <Col> <h5>End Date</h5>
+                                    <Input className="btn btn-success"
+                                        required
+                                        type="date"
+                                        name="date"
+                                        placeholder="Enter name"
+                                        value={this.state.date}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+
+                                </Col>
+                                <Col className="m-1">
+                                    {/* <Route
                                         render={({ history }) => (
                                             <Button
                                                 className="btn btn-success float-right"
@@ -205,10 +263,10 @@ class LeaderBoardList extends React.Component {
                                                     history.push("/app/brahmaand/leaderboard/addLeader")
                                                 }
                                             >
-                                                Add Leader
+                                                Choose Winner
                                             </Button>
                                         )}
-                                    />
+                                    /> */}
                                 </Col>
                             </Row>
                             <CardBody>

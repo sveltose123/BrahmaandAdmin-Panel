@@ -15,6 +15,7 @@ import { Route } from "react-router-dom";
 class Blogs extends React.Component {
     state = {
         rowData: [],
+        status: "",
         paginationPageSize: 20,
         currenPageSize: "",
         getPageSize: "",
@@ -31,22 +32,16 @@ class Blogs extends React.Component {
                 valueGetter: "node.rowIndex + 1",
                 field: "node.rowIndex + 1",
                 width: 150,
-                // filter: true,
-                // checkboxSelection: true,
-                // headerCheckboxSelectionFilteredOnly: true,
-                // headerCheckboxSelection: true,
             },
-
             {
                 headerName: "Title",
-                field: "title",
-                // filter: true,
+                field: "blog_title",
                 width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.title}</span>
+                            <span>{params.data.blog_title}</span>
                         </div>
                     );
                 },
@@ -54,7 +49,6 @@ class Blogs extends React.Component {
             {
                 headerName: "Descripiton",
                 field: "desc",
-                // filter: true,
                 width: 200,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
@@ -66,38 +60,80 @@ class Blogs extends React.Component {
                 },
             },
             {
-                headerName: "Upload Image",
-                field: "image",
+                headerName: "Blog Type",
+                field: "blog_type",
                 // filter: true,
-                width: 200,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.image}</span>
-                        </div>
-                    );
-                },
-            },
-            {
-                headerName: "Posted By",
-                field: "post",
-                // filter: true,
-                width: 200,
-                // pinned: window.innerWidth > 992 ? "left" : false,
-                cellRendererFramework: (params) => {
-                    return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.video_link}</span>
+                            <span>{params.data.blog_type}</span>
                         </div>
                     );
                 },
             },
 
             {
+                headerName: " Thumnail Image",
+                field: "blogImg",
+                // filter: true,
+                width: 120,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.blogImg} />
+                    );
+                },
+            },
+            {
+                headerName: "Posted By",
+                field: "posted_by",
+                // filter: true,
+                width: 120,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.posted_by}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                headerName: "Posted Image",
+                field: "posted_by_img",
+                // filter: true,
+                width: 120,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.posted_by_img} />
+                    );
+                },
+            },
+            {
+                headerName: "Status",
+                field: "status",
+                filter: true,
+                width: 120,
+                cellRendererFramework: (params) => {
+                    return params.value == "Active" ? (
+                        <div className="badge badge-pill badge-success">
+                            {params.data.status}
+                        </div>
+                    ) : params.value == "Deactive" ? (
+                        <div className="badge badge-pill badge-warning">
+                            {params.data.status}
+                        </div>
+                    ) : null;
+                },
+            },
+
+            {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 200,
+                width: 150,
                 // pinned: window.innerWidth > 992 ? "right" : false,
                 cellRendererFramework: (params) => {
                     return (
@@ -109,14 +145,11 @@ class Blogs extends React.Component {
                                         size="25px"
                                         color="blue"
                                         onClick={() =>
-                                            history.push(
-                                                `/app/brahmaand/blogs/editBlog/${params.data._id}`
-                                            )
+                                            history.push(`/app/brahmaand/blogs/editBlog/${params.data._id}`)
                                         }
                                     />
                                 )}
                             />
-
                             <Trash2
                                 className="mr-50"
                                 size="25px"
@@ -136,11 +169,7 @@ class Blogs extends React.Component {
 
     async componentDidMount() {
         await axiosConfig
-            .get("/get_startup", {
-                // headers: {
-                //   "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                // },
-            })
+            .get("/admin/getBlog")
             .then((response) => {
                 const rowData = response.data.data;
                 console.log(rowData);
@@ -149,7 +178,7 @@ class Blogs extends React.Component {
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig.get(`/dlt_startup/${id}`).then(
+        await axiosConfig.get(`/admin/delBlog/${id}`).then(
             (response) => {
                 console.log(response);
             },

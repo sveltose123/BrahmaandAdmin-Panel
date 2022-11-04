@@ -99,6 +99,17 @@ export default class EditLeader extends Component {
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
+                                    <Label>Name</Label>
+                                    <Input
+                                        required
+                                        type="text"
+                                        name="script_name"
+                                        placeholder="Enter name"
+                                        value={this.state.script_name}
+                                        onChange={this.changeHandler}
+                                    ></Input>
+                                </Col>
+                                <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Current Point</Label>
                                     <Input
                                         required
@@ -120,20 +131,10 @@ export default class EditLeader extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Name</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder="Enter name"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
+
 
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Image</Label>
+                                    <Label> Upload Image</Label>
                                     <Input
                                         required
                                         type="file"

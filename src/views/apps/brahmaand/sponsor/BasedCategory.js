@@ -32,11 +32,12 @@ class BasedCategory extends React.Component {
                 // headerCheckboxSelectionFilteredOnly: true,
                 // headerCheckboxSelection: true,
             },
+
             {
                 headerName: "Title",
                 field: "title",
                 // filter: true,
-                width: 200,
+                width: 100,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
@@ -50,7 +51,7 @@ class BasedCategory extends React.Component {
                 headerName: "Creator Name",
                 field: "pack_name",
                 // filter: true,
-                width: 200,
+                width: 100,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
@@ -61,19 +62,100 @@ class BasedCategory extends React.Component {
                 },
             },
             {
-                headerName: "Upload Image",
+                headerName: "Link",
                 field: "file",
                 // filter: true,
-                width: 200,
+                width: 100,
                 // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
-                        <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.planId?.pack_name}</span>
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.cat_img} />
+
+                    );
+                },
+            },
+            {
+                headerName: "Image",
+                field: "file",
+                // filter: true,
+                width: 100,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.cat_img} />
+
+                    );
+                },
+            },
+            {
+                headerName: "Category",
+                field: "expDate",
+                width: 100,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex  align-items-center cursor-pointer">
+                            <span>{params.data.expiryDate?.expDate}</span>
                         </div>
                     );
                 },
             },
+            {
+                headerName: "SubCategory",
+                field: "type",
+                width: 100,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.type}</span>
+                        </div>
+                    );
+                },
+            },
+
+            {
+                headerName: "Type",
+                field: "scriptName",
+                width: 100,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex  align-items-center cursor-pointer">
+                            <span>{params.data.fnoindex_scrpt_name?.scriptName}</span>
+                            <span>{params.data.fnoequty_scrpt_name?.scriptName}</span>
+                            <span>{params.data.cash_scrpt_name?.scriptName}</span>
+                        </div>
+                    );
+                },
+            },
+
+
+            {
+                headerName: "Language",
+                field: "call_type",
+                width: 100,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.call_type}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                headerName: "Topic",
+                field: "active_value",
+                width: 140,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.active_value}</span>
+                        </div>
+                    );
+                },
+            },
+
+
             {
                 headerName: "Descripiton",
                 field: "desc",

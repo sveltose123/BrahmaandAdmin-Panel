@@ -4,87 +4,44 @@ import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
-export default class EditBlog extends Component {
+import { data } from "jquery";
+export default class EditContent extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            blog_title: "",
-            blogImg: "",
-            posted_by: "",
-            desc: "",
-            blog_type: "",
-            selectedFile: null,
-            selectedName: "",
             status: "",
         };
     }
-    onChangeHandler = (event) => {
-        this.setState({ selectedFile: event.target.files[0] });
-        this.setState({ selectedName: event.target.files[0].name });
-        console.log(event.target.files[0]);
-    };
-    onChangeHandler = (event) => {
-        this.setState({ selectedFile: event.target.files });
-        this.setState({ selectedName: event.target.files.name });
-        console.log(event.target.files);
-    };
-    changeHandler1 = (e) => {
-        this.setState({ status: e.target.value });
-    };
-
-    changeHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-
     componentDidMount() {
         let { id } = this.props.match.params;
         axiosConfig
-            .get(`/admin/viewoneBlog/${id}`, {
+            .get(`/admin/getone_featurde/${id}`, {
 
             })
             .then((response) => {
                 console.log(response);
                 this.setState({
-                    blog_title: response.data.data.blog_title,
-                    posted_by: response.data.data.posted_by,
-                    desc: response.data.data.desc,
-                    blog_type: response.data.data.blog_type,
-                    blogImg: response.data.data.blogImg,
-                    status: response.data.data.status,
                 });
+
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+
+    changeHandler1 = (e) => {
+        this.setState({ status: e.target.value });
+    };
     submitHandler = (e) => {
         e.preventDefault();
         let { id } = this.props.match.params;
-        const data = new FormData();
-        data.append("blog_title", this.state.blog_title);
-        data.append("posted_by", this.state.posted_by);
-        data.append("desc", this.state.desc);
-        data.append("blog_type", this.state.blog_type);
-        data.append("status", this.state.status);
-        for (const file of this.state.selectedFile) {
-            if (this.state.selectedFile !== null) {
-                data.append("blogImg", file, file.name);
 
-            }
-        }
-        for (var value of data.values()) {
-            console.log(value);
-        }
-        for (var key of data.keys()) {
-            console.log(key);
-        }
         axiosConfig
-            .post(`/admin/editBlog/${id}`, data)
+            .post(`/admin/edit_featurde/${id}`, this.state)
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
-                this.props.history.push("/app/brahmaand/blogs/blogList");
+                this.props.history.push("/app/brahmaand/content/featureContent");
             })
             .catch((error) => {
                 console.log(error);
@@ -100,10 +57,10 @@ export default class EditBlog extends Component {
                                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                                     Home
                                 </BreadcrumbItem>
-                                <BreadcrumbItem href="/app/brahmaand/blogs/blogList" tag="a">
-                                    Blog List
+                                <BreadcrumbItem href="/app/brahmaand/content/featureContent" tag="a">
+                                    Feature Content
                                 </BreadcrumbItem>
-                                <BreadcrumbItem active>Edit Blog </BreadcrumbItem>
+                                <BreadcrumbItem active>Edit Content </BreadcrumbItem>
                             </Breadcrumb>
                         </div>
                     </Col>
@@ -112,7 +69,7 @@ export default class EditBlog extends Component {
                     <Row className="m-2">
                         <Col>
                             <h1 col-sm-6 className="float-left">
-                                Edit Blog
+                                Edit Content
                             </h1>
                         </Col>
                         <Col>
@@ -120,7 +77,7 @@ export default class EditBlog extends Component {
                                 render={({ history }) => (
                                     <Button
                                         className=" btn btn-danger float-right"
-                                        onClick={() => history.push("/app/brahmaand/blogs/blogList")}
+                                        onClick={() => history.push("/app/brahmaand/content/featureContent")}
                                     >
                                         Back
                                     </Button>
@@ -131,62 +88,25 @@ export default class EditBlog extends Component {
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Title</Label>
+                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
+                                    <Label>Video Link</Label>
                                     <Input
                                         required
                                         type="text"
-                                        name="blog_title"
+                                        name="video_link"
                                         placeholder=""
-                                        value={this.state.blog_title}
+                                        value={this.state.video_link}
                                         onChange={this.changeHandler}
                                     ></Input>
-                                </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Posted By</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="posted_by"
-                                        placeholder="Enter Name"
-                                        value={this.state.posted_by}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Descripiton</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="desc"
-                                        placeholder=""
-                                        value={this.state.desc}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                </Col> */}
+                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Thumnail Image</Label>
                                     <CustomInput
                                         type="file"
                                         //   multiple
                                         onChange={this.onChangeHandler} />
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
-                                    <Label for="exampleSelect"> Blog Type</Label>
-                                    <Input
+                                </Col> */}
 
-                                        name="blog_type"
-                                        type="select"
-                                        value={this.state.blog_type}
-                                        onChange={this.changeHandler}
-                                    >
-                                        <option>Select Type</option>
-
-                                        <option value="Recommended">Recommended</option>
-                                        <option value="Popular">Popular</option>
-
-                                    </Input>
-                                </Col>
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">

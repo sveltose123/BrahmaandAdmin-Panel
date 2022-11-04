@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, CustomInput, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
@@ -8,30 +8,43 @@ export default class EditCategory extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            script_type: "",
-            script_name: "",
+            title: "",
+            desc: "",
+            cat_img: "",
+            selectedFile: null,
+            selectedName: "",
+
         };
     }
 
     componentDidMount() {
         let { id } = this.props.match.params;
         axiosConfig
-            .get(`/getone_script/${id}`, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
+            .get(`/admin/getoneCategory/${id}`, {
             })
             .then((response) => {
                 console.log(response);
                 this.setState({
-                    script_type: response.data.data.script_type,
-                    script_name: response.data.data.script_name,
+                    title: response.data.data.title,
+                    desc: response.data.data.desc,
+                    cat_img: response.data.data.cat_img,
+
                 });
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files[0] });
+        this.setState({ selectedName: event.target.files[0].name });
+        console.log(event.target.files[0]);
+    };
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files });
+        this.setState({ selectedName: event.target.files.name });
+        console.log(event.target.files);
+    };
     changeHandler1 = (e) => {
         this.setState({ status: e.target.value });
     };
@@ -42,12 +55,25 @@ export default class EditCategory extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         let { id } = this.props.match.params;
+
+        const data = new FormData();
+        data.append("title", this.state.title);
+        data.append("desc", this.state.desc);
+        for (const file of this.state.selectedFile) {
+            if (this.state.selectedFile !== null) {
+                data.append("cat_img", file, file.name);
+            }
+        }
+        for (var value of data.values()) {
+            console.log(value);
+        }
+        for (var key of data.keys()) {
+            console.log(key);
+        }
+
         axiosConfig
-            .post(`/editScript/${id}`, this.state, {
-                headers: {
-                    "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                },
-            })
+
+            .post(`/admin/editCategory/${id}`, data)
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
@@ -103,9 +129,9 @@ export default class EditCategory extends Component {
                                     <Input
                                         required
                                         type="text"
-                                        name="script_name"
+                                        name="title"
                                         placeholder=""
-                                        value={this.state.script_name}
+                                        value={this.state.title}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
@@ -114,23 +140,20 @@ export default class EditCategory extends Component {
                                     <Input
                                         required
                                         type="text"
-                                        name="script_name"
+                                        name="desc"
                                         placeholder=""
-                                        value={this.state.script_name}
+                                        value={this.state.desc}
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Mobile No.</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="script_name"
-                                        placeholder="Enter mobile no"
-                                        value={this.state.script_name}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
+
+                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                    <Label>Upload Image</Label>
+                                    <CustomInput
+                                        type="file"
+                                        //   multiple
+                                        onChange={this.onChangeHandler} />
+                                </Col>
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
