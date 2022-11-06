@@ -59,19 +59,19 @@ class CommentBlog extends React.Component {
                     );
                 },
             },
-            // {
-            //     headerName: "Review",
-            //     field: "title",
-            //     width: 150,
-            //     // pinned: window.innerWidth > 992 ? "left" : false,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex  align-items-center cursor-pointer">
-            //                 <span>{params.data.category?.title}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
+            {
+                headerName: "Descripition",
+                field: "desc",
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "left" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex  align-items-center cursor-pointer">
+                            <span>{params.data.desc}</span>
+                        </div>
+                    );
+                },
+            },
             {
                 headerName: "Date",
                 field: "createdAt",
@@ -167,7 +167,7 @@ class CommentBlog extends React.Component {
     };
     async componentDidMount() {
 
-        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
+        await axiosConfig.get(`admin/adminBlog_Cmntlist`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
@@ -175,7 +175,7 @@ class CommentBlog extends React.Component {
     }
     async runthisfunction(id) {
         console.log(id);
-        await axiosConfig.get(`/admin/dlt_subres_list/${id}`).then(
+        await axiosConfig.get(`/admin/dltBlog_Cmntlist/${id}`).then(
             (response) => {
                 console.log(response);
             },

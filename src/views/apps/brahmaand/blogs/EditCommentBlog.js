@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, CustomInput, BreadcrumbItem, } from "reactstrap";
+import { Card, CardBody, Row, Col, Form, Label, Input, FormGroup, Button, Breadcrumb, CustomInput, BreadcrumbItem, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
-// import { history } from "../../../history";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import "react-toastify/dist/ReactToastify.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export default class EditCommentBlog extends Component {
     constructor (props) {
         super(props);
@@ -15,10 +19,16 @@ export default class EditCommentBlog extends Component {
             status: "",
         };
     }
+    onEditorStateChange = (editorState) => {
+        this.setState({
+            editorState,
+            desc: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+        });
+    };
     componentDidMount() {
         let { id } = this.props.match.params;
         axiosConfig
-            .get(`/admin/viewoneBlog/${id}`, {
+            .get(`/admin/getoneBlog_Cmntlist/${id}`, {
             })
             .then((response) => {
                 console.log(response);
@@ -40,7 +50,7 @@ export default class EditCommentBlog extends Component {
         e.preventDefault();
         let { id } = this.props.match.params;
         axiosConfig
-            .post(`/admin/editBlog/${id}`, this.state)
+            .post(`/admin/editBlog_Cmntlist/${id}`, this.state)
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
@@ -90,7 +100,7 @@ export default class EditCommentBlog extends Component {
                         </Col>
                     </Row>
                     <CardBody>
-                        <Form className="m-1" onSubmit={this.submitHandler}>
+                        <Form className="m-2" onSubmit={this.submitHandler}>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Username</Label>
@@ -125,35 +135,79 @@ export default class EditCommentBlog extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
+                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                    <FormGroup>
+                                        <Label>Descripition</Label>
+                                        <Editor
+                                            toolbarClassName="demo-toolbar-absolute"
+                                            wrapperClassName="demo-wrapper"
+                                            editorClassName="demo-editor"
+                                            editorState={this.state.editorState}
+                                            onEditorStateChange={this.onEditorStateChange}
+                                            toolbar={{
+                                                options: [
+                                                    "inline",
+                                                    "blockType",
+                                                    "fontSize",
+                                                    "fontFamily",
+                                                ],
+                                                inline: {
+                                                    options: [
+                                                        "bold",
+                                                        "italic",
+                                                        "underline",
+                                                        "strikethrough",
+                                                        "monospace",
+                                                    ],
+                                                    bold: { className: "bordered-option-classname" },
+                                                    italic: { className: "bordered-option-classname" },
+                                                    underline: { className: "bordered-option-classname" },
+                                                    strikethrough: {
+                                                        className: "bordered-option-classname",
+                                                    },
+                                                    code: { className: "bordered-option-classname" },
+                                                },
+                                                blockType: {
+                                                    className: "bordered-option-classname",
+                                                },
+                                                fontSize: {
+                                                    className: "bordered-option-classname",
+                                                },
+                                                fontFamily: {
+                                                    className: "bordered-option-classname",
+                                                },
+                                            }}
+
+                                        />
+                                    </FormGroup>
+                                </Col>
+
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
-                                        <Label className="mb-1"><h4>Status</h4></Label>
-                                        <div
-                                            className="form-label-group"
-                                            onChange={this.changeHandler1}
-                                        >
-                                            <input
-                                                style={{ marginRight: "3px" }}
-                                                type="radio"
-                                                name="status"
-                                                value="Active"
-                                            />
-                                            <span style={{ marginRight: "20px" }}>Active</span>
+                                    <Label className="mb-1"><h4>Status</h4></Label>
+                                    <div
+                                        className="form-label-group"
+                                        onChange={this.changeHandler1}
+                                    >
+                                        <input
+                                            style={{ marginRight: "3px" }}
+                                            type="radio"
+                                            name="status"
+                                            value="Active"
+                                        />
+                                        <span style={{ marginRight: "20px" }}>Active</span>
 
-                                            <input
-                                                style={{ marginRight: "3px" }}
-                                                type="radio"
-                                                name="status"
-                                                value="Deactive"
-                                            />
-                                            <span style={{ marginRight: "3px" }}>Deactive</span>
-                                        </div>
-                                    </Col>
+                                        <input
+                                            style={{ marginRight: "3px" }}
+                                            type="radio"
+                                            name="status"
+                                            value="Deactive"
+                                        />
+                                        <span style={{ marginRight: "3px" }}>Deactive</span>
+                                    </div>
                                 </Col>
                             </Row>
-
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Button.Ripple

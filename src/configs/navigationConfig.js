@@ -44,23 +44,6 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/subcategory/subcategoryList",
   },
-  // {
-  //   id: "membershipList",
-  //   title: "Membership List",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/membership/membershipList",
-  // },
-  // {
-  //   id: "packagePlanList",
-  //   title: "Active Members ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/package/packagePlanList",
-  // },
-
   {
     type: "groupHeader",
     groupTitle: "Resources list ",
@@ -184,6 +167,30 @@ const navigationConfig = [
     navLink: "/app/brahmaand/newsletter/NewsLetter",
   },
   {
+    id: "faq",
+    title: "FAQ ",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/faq/faqList",
+  },
+  {
+    id: "term & condition",
+    title: "Term & Condition",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/termscondition/TermConditionList",
+  },
+  {
+    id: "privacypolicy",
+    title: "PrivacyPolicy",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/privacypolicy/PrivacyPolicy",
+  },
+  {
     id: "logout",
     title: "Logout",
     type: "item",
@@ -191,35 +198,6 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     // navLink: "/pages/login",
   },
-
-
-
-  // {
-  //   id: "nonActivePlanList",
-  //   title: "Transction History ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   // navLink: "/app/package/nonActivePlanList",
-  //   navLink: "/",
-  // },
-  // {
-  //   id: "feedbackList",
-  //   title: "Feedback List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/feedback/feedbackList",
-  // },
-  // {
-  //   id: "userAppreciation",
-  //   title: "User Appreciation List ",
-  //   type: "item",
-  //   icon: <Icon.ArrowRight size={12} />,
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/app/showAppre/userAppreciation",
-  // },
-
   // {
   //   id: "login",
   //   title: "Logout ",

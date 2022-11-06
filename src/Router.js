@@ -16,63 +16,27 @@ const ecommerceDashboard = lazy(() =>
 
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
 
-//Discount Code//
-const DiscountCode = lazy(() => import("./views/apps/discount/DiscountCode"));
-const DiscountList = lazy(() => import("./views/apps/discount/DiscountList"));
 
-// feedback //
-const FeedBackList = lazy(() => import("./views/apps/feedback/FeedBackList"));
 
 //pageSetUp//
 const aboutUs = lazy(() => import("./views/apps/pageSetUp/about/AboutUs"));
-const AllaboutUs = lazy(() =>
-  import("./views/apps/pageSetUp/about/AllaboutUs"));
-const EditAboutUs = lazy(() =>
-  import("./views/apps/pageSetUp/about/EditAboutUs"));
+const AllaboutUs = lazy(() => import("./views/apps/pageSetUp/about/AllaboutUs"));
+const EditAboutUs = lazy(() => import("./views/apps/pageSetUp/about/EditAboutUs"));
 
-const TermConditionList = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/TermConditionList"));
-const AddTermsCondition = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/AddTermsCondition"));
-const EditTermCondition = lazy(() =>
-  import("./views/apps/pageSetUp/termscondition/EditTermCondition"));
+
 const helpUs = lazy(() => import("./views/apps/pageSetUp/helpUs/HelpUS"));
-const EdithelpusForm = lazy(() =>
-  import("./views/apps/pageSetUp/helpUs/EdithelpusForm"));
-const ViewHelpUs = lazy(() =>
-  import("./views/apps/pageSetUp/helpUs/ViewHelpUs"));
+const EdithelpusForm = lazy(() => import("./views/apps/pageSetUp/helpUs/EdithelpusForm"));
+const ViewHelpUs = lazy(() => import("./views/apps/pageSetUp/helpUs/ViewHelpUs"));
+const notificationList = lazy(() => import("./views/apps/notification/NotificationList"));
+const addNotification = lazy(() => import("./views/apps/notification/AddNotification"));
 
-const membershipList = lazy(() =>
-  import("./views/apps/membership/MembershipList"));
-const AddMembership = lazy(() =>
-  import("./views/apps/membership/AddMembership"));
 
-const EditMembership = lazy(() =>
-  import("./views/apps/membership/EditMembership")
-);
-const notificationList = lazy(() =>
-  import("./views/apps/notification/NotificationList")
-);
-const addNotification = lazy(() =>
-  import("./views/apps/notification/AddNotification")
-);
-const productDetail = lazy(() =>
-  import("./views/apps/ecommerce/detail/Detail")
-);
-const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 
-// my component
-const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
-const editSubplanvideos = lazy(() =>
-  import("./views/apps/subplan/EditSubplanvideos")
-);
-const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
-// Exp Date
-const ExpDateList = lazy(() =>
-  import("./views/apps/trade/expdate/ExpDateList")
-);
-const AddDate = lazy(() => import("./views/apps/trade/expdate/AddDate"));
-const EditDate = lazy(() => import("./views/apps/trade/expdate/EditDate"));
+
+//Term & Condition//
+const TermConditionList = lazy(() => import("./views/apps/brahmaand/termscondition/TermConditionList"));
+const AddTermsCondition = lazy(() => import("./views/apps/brahmaand/termscondition/AddTermsCondition"));
+const EditTermCondition = lazy(() => import("./views/apps/brahmaand/termscondition/EditTermCondition"));
 
 // user//
 const UsersList = lazy(() => import("./views/apps/users/UsersList"));
@@ -148,18 +112,49 @@ const Contact = lazy(() => import("./views/apps/brahmaand/contact/Contact"))
 const NewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/NewsLetter"))
 const AddNewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/AddNewsLetter"))
 
+//FAQ//
+const FaqList = lazy(() => import("./views/apps/brahmaand/faq/FaqList"));
+const AddFaq = lazy(() => import("./views/apps/brahmaand/faq/AddFaq"));
+
+//{PrivacyPolicy}//
+const PrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/PrivacyPolicy"))
 
 
 
 
 
 
+//Discount Code//
+const DiscountCode = lazy(() => import("./views/apps/discount/DiscountCode"));
+const DiscountList = lazy(() => import("./views/apps/discount/DiscountList"));
 
+// feedback //
+const FeedBackList = lazy(() => import("./views/apps/feedback/FeedBackList"));
+const membershipList = lazy(() =>
+  import("./views/apps/membership/MembershipList"));
+const AddMembership = lazy(() =>
+  import("./views/apps/membership/AddMembership"));
 
+const EditMembership = lazy(() =>
+  import("./views/apps/membership/EditMembership")
+);
+const productDetail = lazy(() =>
+  import("./views/apps/ecommerce/detail/Detail")
+);
+const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 
-
-
-
+// my component
+const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
+const editSubplanvideos = lazy(() =>
+  import("./views/apps/subplan/EditSubplanvideos")
+);
+const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
+// Exp Date
+const ExpDateList = lazy(() =>
+  import("./views/apps/trade/expdate/ExpDateList")
+);
+const AddDate = lazy(() => import("./views/apps/trade/expdate/AddDate"));
+const EditDate = lazy(() => import("./views/apps/trade/expdate/EditDate"));
 // script//
 const ScriptList = lazy(() => import("./views/apps/script/ScriptList"));
 const AddScript = lazy(() => import("./views/apps/script/AddScript"));
@@ -212,9 +207,7 @@ const RefferalWalletList = lazy(() =>
 const AddRefferalWallet = lazy(() =>
   import("./views/apps/package/AddRefferalWallet")
 );
-//FAQ//
-const FaqList = lazy(() => import("./views/apps/faq/FaqList"));
-const AddFaq = lazy(() => import("./views/apps/faq/AddFaq"));
+
 
 //Premium//
 const AddPaidServeice = lazy(() =>
@@ -521,58 +514,11 @@ class AppRouter extends React.Component {
               path="/ecommerce-dashboard"
               component={ecommerceDashboard}
             />
-            {/* MemberShipContent */}
-            <AppRoute
-              path="/app/membercontent/memberShipContent"
-              component={MemberShipContent}
-            />
-            <AppRoute
-              path="/app/membercontent/editMemContent/:id"
-              component={EditMemContent}
-            />
             {/* user */}
             <AppRoute path="/app/users/usersList" component={UsersList} />
             <AppRoute path="/app/users/addUsers" component={AddUsers} />
             <AppRoute path="/app/users/editUsers/:id" component={EditUsers} />
             <AppRoute path="/app/users/viewUsers/:id" component={ViewUsers} />
-            {/* package */}
-            <AppRoute
-              path="/app/package/packagePlanList"
-              component={PackagePlanList}
-            />
-            <AppRoute
-              path="/app/package/addPackagePlan"
-              component={AddPackagePlan}
-            />
-            <AppRoute
-              path="/app/package/editPackagePlan/:id"
-              component={EditPackagePlan}
-            />
-            <AppRoute
-              path="/app/package/refferalWalletList"
-              component={RefferalWalletList}
-            />
-            <AppRoute
-              path="/app/package/addRefferalWallet"
-              component={AddRefferalWallet}
-            />
-            {/* FAQ */}
-            <AppRoute path="/app/faq/faqList" component={FaqList} />
-            <AppRoute path="/app/faq/addFaq" component={AddFaq} />
-            {/* FeedBack */}
-            <AppRoute
-              path="/app/feedback/FeedBackList"
-              component={FeedBackList}
-            />
-            {/* Premium */}
-            <AppRoute
-              path="/app/premium/paidServeiceList"
-              component={PaidServeiceList}
-            />
-            <AppRoute
-              path="/app/premium/addPaidServeice"
-              component={AddPaidServeice}
-            />
 
             {/* RegisterUser */}
 
@@ -592,6 +538,9 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/registeruser/viewRegisterUser/:id"
               component={ViewRegisterUser}
             />
+            {/* FAQ */}
+            <AppRoute path="/app/brahmaand/faq/faqList" component={FaqList} />
+            <AppRoute path="/app/brahmaand/faq/addFaq" component={AddFaq} />
 
             {/*Category */}
 
@@ -651,20 +600,6 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/resource/userResourceList"
               component={UserResourceList}
             />
-            {/* Sponsor
-
-            <AppRoute
-              path="/app/brahmaand/sponsor/basedCategory"
-              component={BasedCategory}
-            />
-            <AppRoute
-              path="/app/brahmaand/sponsor/addBasedCategory"
-              component={AddBasedCategory}
-            />
-            <AppRoute
-              path="/app/brahmaand/sponsor/basedSubCategory"
-              component={BasedSubCategory}
-            /> */}
             {/*Notification*/}
             <AppRoute
               path="/app/notif/Notification"
@@ -700,6 +635,9 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/newsletter/addNewsLetter"
               component={AddNewsLetter}
             />
+            {/*FAQ */}
+            <AppRoute path="/app/faq/faqList" component={FaqList} />
+            <AppRoute path="/app/faq/addFaq" component={AddFaq} />
 
             {/*Contact */}
             <AppRoute
@@ -766,6 +704,24 @@ class AppRouter extends React.Component {
               component={WeeklyWinner}
             />
 
+            {/*Term & Condition*/}
+            <AppRoute
+              path="/app/brahmaand/termscondition/AddTermsCondition"
+              component={AddTermsCondition}
+            />
+            <AppRoute
+              path="/app/brahmaand/termscondition/EditTermCondition/:id"
+              component={EditTermCondition}
+            />
+            <AppRoute
+              path="/app/brahmaand/termscondition/TermConditionList"
+              component={TermConditionList}
+            />
+            {/* PrivacyPolicy*/}
+            <AppRoute
+              path="/app/brahmaand/privacypolicy/PrivacyPolicy"
+              component={PrivacyPolicy}
+            />
 
 
 
@@ -775,13 +731,65 @@ class AppRouter extends React.Component {
 
 
 
+            {/* MemberShipContent */}
+            <AppRoute
+              path="/app/membercontent/memberShipContent"
+              component={MemberShipContent}
+            />
+            <AppRoute
+              path="/app/membercontent/editMemContent/:id"
+              component={EditMemContent}
+            />
+            {/* package */}
+            <AppRoute
+              path="/app/package/packagePlanList"
+              component={PackagePlanList}
+            />
+            <AppRoute
+              path="/app/package/addPackagePlan"
+              component={AddPackagePlan}
+            />
+            <AppRoute
+              path="/app/package/editPackagePlan/:id"
+              component={EditPackagePlan}
+            />
+            <AppRoute
+              path="/app/package/refferalWalletList"
+              component={RefferalWalletList}
+            />
+            <AppRoute
+              path="/app/package/addRefferalWallet"
+              component={AddRefferalWallet}
+            />
 
+            {/* FeedBack */}
+            <AppRoute
+              path="/app/feedback/FeedBackList"
+              component={FeedBackList}
+            />
+            {/* Premium */}
+            <AppRoute
+              path="/app/premium/paidServeiceList"
+              component={PaidServeiceList}
+            />
+            <AppRoute
+              path="/app/premium/addPaidServeice"
+              component={AddPaidServeice}
+            />
+            {/* Sponsor
 
-
-
-
-
-
+            <AppRoute
+              path="/app/brahmaand/sponsor/basedCategory"
+              component={BasedCategory}
+            />
+            <AppRoute
+              path="/app/brahmaand/sponsor/addBasedCategory"
+              component={AddBasedCategory}
+            />
+            <AppRoute
+              path="/app/brahmaand/sponsor/basedSubCategory"
+              component={BasedSubCategory}
+            /> */}
 
             {/* scripts
             <AppRoute path="/app/scripts/fnIndex" component={FnIndex} />
@@ -1004,18 +1012,7 @@ class AppRouter extends React.Component {
               path="/app/pageSetUp/about/EditAboutUs/:id"
               component={EditAboutUs}
             />
-            <AppRoute
-              path="/app/pageSetUp/termscondition/AddTermsCondition"
-              component={AddTermsCondition}
-            />
-            <AppRoute
-              path="/app/pageSetUp/termscondition/EditTermCondition/:id"
-              component={EditTermCondition}
-            />
-            <AppRoute
-              path="/app/pageSetUp/termscondition/TermConditionList"
-              component={TermConditionList}
-            />
+
             <AppRoute path="/app/pageSetUp/helpUs/HelpUs" component={helpUs} />
             <AppRoute
               path="/app/pageSetUp/helpUs/EdithelpusForm/:id"

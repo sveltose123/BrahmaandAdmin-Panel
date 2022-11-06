@@ -39,7 +39,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Link",
                 field: "link",
-                width: 100,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -51,7 +51,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Category",
                 field: "title",
-                width: 100,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -63,7 +63,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "SubCategory",
                 field: "title",
-                width: 100,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -76,7 +76,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Type",
                 field: "type",
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -89,7 +89,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Format",
                 field: "format",
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -102,7 +102,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Language",
                 field: "language",
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -117,7 +117,7 @@ class UserResourceList extends React.Component {
                 headerName: "Image",
                 field: "img",
                 filter: true,
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <img className="w-50 h-50  rounded-circle" src={params.data.img} />
@@ -127,7 +127,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Topic",
                 field: "topics",
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -139,7 +139,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Descripition",
                 field: "desc",
-                width: 90,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -165,7 +165,7 @@ class UserResourceList extends React.Component {
                 headerName: "Status",
                 field: "aprv_status",
                 filter: true,
-                width: 120,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">
@@ -181,7 +181,7 @@ class UserResourceList extends React.Component {
             {
                 headerName: "Actions",
                 field: "sortorder",
-                width: 100,
+                width: 110,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
@@ -215,7 +215,7 @@ class UserResourceList extends React.Component {
 
     async componentDidMount() {
 
-        await axiosConfig.get(`user/user_sub_res_lsit`).then((response) => {
+        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
