@@ -4,8 +4,6 @@ import axiosConfig from "../../../../axiosConfig";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 import swal from "sweetalert";
-import Accordion from 'react-bootstrap/Accordion';
-import { FiArrowDown } from "react-icons/fi";
 export default class EditComment extends Component {
     constructor (props) {
         super(props);
@@ -25,13 +23,16 @@ export default class EditComment extends Component {
             .then((response) => {
                 console.log(response);
                 this.setState({
-                    categoryT: response.data.data,
+
                 });
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+    changeHandler1 = (e) => {
+        this.setState({ status: e.target.value });
+    };
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
@@ -112,21 +113,11 @@ export default class EditComment extends Component {
                                         onChange={this.changeHandler}
                                     ></Input>
                                 </Col>
-                                {/* <Col lg="6" md="6" className="mb-2">
-                                    <Label>Review</Label>
-                                    <Input
-                                        name="script_type"
-                                        type="select"
-                                        value={this.state.script_type}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
-
                                 <Col lg="6" md="6" className="mb-2">
                                     <Label>Comment</Label>
                                     <Input
                                         name="comment"
-                                        type="select"
+                                        type="text"
                                         value={this.state.comment}
                                         onChange={this.changeHandler}
                                     ></Input>

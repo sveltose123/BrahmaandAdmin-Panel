@@ -1,15 +1,12 @@
 import React from "react";
 import { Card, CardBody, Input, Row, Col, Button, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
-import moment from "moment";
-
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import { Edit, Trash2, ChevronDown, Smartphone } from "react-feather";
+import { Edit, Trash2, ChevronDown } from "react-feather";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
-import swal from "sweetalert";
 
 class SubcategoryList extends React.Component {
     state = {

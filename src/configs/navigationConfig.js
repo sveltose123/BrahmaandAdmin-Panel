@@ -120,7 +120,7 @@ const navigationConfig = [
   },
   {
     id: "leaderBoard",
-    title: "leaderboard leaders ",
+    title: "leaderboard Leaders ",
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
@@ -180,7 +180,7 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    navLink: "/app/brahmaand/termscondition/TermConditionList",
+    navLink: "/app/brahmaand/termscondition/termConditionList",
   },
   {
     id: "privacypolicy",
@@ -188,7 +188,15 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    navLink: "/app/brahmaand/privacypolicy/PrivacyPolicy",
+    navLink: "/app/brahmaand/privacypolicy/privacyPolicy",
+  },
+  {
+    id: "how its works",
+    title: "How Its Works",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/works/works",
   },
   {
     id: "logout",

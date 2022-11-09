@@ -67,7 +67,7 @@ const ViewResource = lazy(() => import("./views/apps/brahmaand/resource/ViewReso
 const UserResourceList = lazy(() => import("./views/apps/brahmaand/resource/UserResourceList"));
 const ResourceComment = lazy(() => import("./views/apps/brahmaand/resource/ResourceComment"));
 const EditUserResource = lazy(() => import("./views/apps/brahmaand/resource/EditUserResource"))
-
+const EditComment = lazy(() => import("./views/apps/brahmaand/resource/EditComment"))
 //Sponsor//
 
 // const BasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedCategory"));
@@ -118,9 +118,12 @@ const AddFaq = lazy(() => import("./views/apps/brahmaand/faq/AddFaq"));
 
 //{PrivacyPolicy}//
 const PrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/PrivacyPolicy"))
-
-
-
+const EditPrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/EditPrivacyPolicy"))
+const AddPrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/AddPrivacyPolicy"))
+//Works//
+const Works = lazy(() => import("./views/apps/brahmaand/works/Works"))
+const EditWorks = lazy(() => import("./views/apps/brahmaand/works/EditWorks"))
+const AddWorks = lazy(() => import("./views/apps/brahmaand/works/AddWorks"))
 
 
 
@@ -523,9 +526,7 @@ class AppRouter extends React.Component {
             {/* RegisterUser */}
 
             <AppRoute
-              path="/app/brahmaand/registeruser/registerUserList"
-              component={RegisterUserList}
-            />
+              path="/app/brahmaand/registeruser/registerUserList" component={RegisterUserList} />
             {/* <AppRoute
               path="/app/brahmaand/registeruser/addRegisterUser"
               component={AddRegisterUser}
@@ -538,7 +539,7 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/registeruser/viewRegisterUser/:id"
               component={ViewRegisterUser}
             />
-            {/* FAQ */}
+            FAQ
             <AppRoute path="/app/brahmaand/faq/faqList" component={FaqList} />
             <AppRoute path="/app/brahmaand/faq/addFaq" component={AddFaq} />
 
@@ -600,6 +601,10 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/resource/userResourceList"
               component={UserResourceList}
             />
+            <AppRoute
+              path="/app/brahmaand/resource/editComment/:id"
+              component={EditComment}
+            />
             {/*Notification*/}
             <AppRoute
               path="/app/notif/Notification"
@@ -635,10 +640,6 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/newsletter/addNewsLetter"
               component={AddNewsLetter}
             />
-            {/*FAQ */}
-            <AppRoute path="/app/faq/faqList" component={FaqList} />
-            <AppRoute path="/app/faq/addFaq" component={AddFaq} />
-
             {/*Contact */}
             <AppRoute
               path="/app/brahmaand/contact/contact"
@@ -688,7 +689,7 @@ class AppRouter extends React.Component {
             {/*LeaderBoard*/}
 
             <AppRoute
-              path="/app/brahmaand/leaderboard/LeaderBoardList"
+              path="/app/brahmaand/leaderboard/leaderBoardList"
               component={LeaderBoardList}
             />
             <AppRoute
@@ -706,21 +707,42 @@ class AppRouter extends React.Component {
 
             {/*Term & Condition*/}
             <AppRoute
-              path="/app/brahmaand/termscondition/AddTermsCondition"
+              path="/app/brahmaand/termscondition/addTermsCondition"
               component={AddTermsCondition}
             />
             <AppRoute
-              path="/app/brahmaand/termscondition/EditTermCondition/:id"
+              path="/app/brahmaand/termscondition/editTermCondition/:id"
               component={EditTermCondition}
             />
             <AppRoute
-              path="/app/brahmaand/termscondition/TermConditionList"
+              path="/app/brahmaand/termscondition/termConditionList"
               component={TermConditionList}
             />
             {/* PrivacyPolicy*/}
             <AppRoute
-              path="/app/brahmaand/privacypolicy/PrivacyPolicy"
+              path="/app/brahmaand/privacypolicy/privacyPolicy"
               component={PrivacyPolicy}
+            />
+            <AppRoute
+              path="/app/brahmaand/privacypolicy/editPrivacyPolicy/:id"
+              component={EditPrivacyPolicy}
+            />
+            <AppRoute
+              path="/app/brahmaand/privacypolicy/addPrivacyPolicy"
+              component={AddPrivacyPolicy}
+            />
+            {/* Works*/}
+            <AppRoute
+              path="/app/brahmaand/works/works"
+              component={Works}
+            />
+            <AppRoute
+              path="/app/brahmaand/works/editWorks/:id"
+              component={EditWorks}
+            />
+            <AppRoute
+              path="/app/brahmaand/works/addWorks"
+              component={AddWorks}
             />
 
 

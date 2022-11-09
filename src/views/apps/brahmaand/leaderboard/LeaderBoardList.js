@@ -128,43 +128,43 @@ class LeaderBoardList extends React.Component {
                 },
             },
 
-            // {
-            //     headerName: "Actions",
-            //     field: "sortorder",
-            //     width: 150,
-            //     // pinned: window.innerWidth > 992 ? "right" : false,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="actions cursor-pointer">
-            //                 <Route
-            //                     render={({ history }) => (
-            //                         <Edit
-            //                             className="mr-50"
-            //                             size="25px"
-            //                             color="blue"
-            //                             onClick={() =>
-            //                                 history.push(
-            //                                     `/app/brahmaand/leaderboard/editLeader/${params.data._id}`
-            //                                 )
-            //                             }
-            //                         />
-            //                     )}
-            //                 />
+            {
+                headerName: "Actions",
+                field: "sortorder",
+                width: 150,
+                // pinned: window.innerWidth > 992 ? "right" : false,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="actions cursor-pointer">
+                            <Route
+                                render={({ history }) => (
+                                    <Edit
+                                        className="mr-50"
+                                        size="25px"
+                                        color="blue"
+                                        onClick={() =>
+                                            history.push(
+                                                `/app/brahmaand/leaderboard/editLeader/${params.data._id}`
+                                            )
+                                        }
+                                    />
+                                )}
+                            />
 
-            //     <Trash2
-            //         className="mr-50"
-            //         size="25px"
-            //         color="red"
-            //         onClick={() => {
-            //             let selectedData = this.gridApi.getSelectedRows();
-            //             this.runthisfunction(params.data._id);
-            //             this.gridApi.updateRowData({ remove: selectedData });
-            //         }}
-            //     />
-            // </div>
-            // );
-            // },
-            //     },
+                            <Trash2
+                                className="mr-50"
+                                size="25px"
+                                color="red"
+                                onClick={() => {
+                                    let selectedData = this.gridApi.getSelectedRows();
+                                    this.runthisfunction(params.data._id);
+                                    this.gridApi.updateRowData({ remove: selectedData });
+                                }}
+                            />
+                        </div>
+                    );
+                },
+            },
         ],
     };
 
@@ -223,22 +223,22 @@ class LeaderBoardList extends React.Component {
             console.log(rowData),
             (
                 <Row sm="12">
+
                     <Col>
                         <Card>
-                            <Row className="m-1">
+                            <Row className="m-2">
                                 <Col sm="6" className="tb">
                                     <h1 className="float-left">
                                         Leader Board List
                                     </h1>
                                 </Col>
-                                <Col style={{ marginLeft: "120px" }}>
-
+                                <Col style={{ marginLeft: "8rem" }}>
                                     <h5>Start Date</h5>
                                     <Input className="btn btn-success"
                                         required
                                         type="date"
                                         name="date"
-                                        placeholder="Enter name"
+                                        placeholder="Enter Date"
                                         value={this.state.date}
                                         onChange={this.changeHandler}
                                     ></Input>
@@ -248,25 +248,11 @@ class LeaderBoardList extends React.Component {
                                         required
                                         type="date"
                                         name="date"
-                                        placeholder="Enter name"
+                                        placeholder="Enter Date"
                                         value={this.state.date}
                                         onChange={this.changeHandler}
                                     ></Input>
 
-                                </Col>
-                                <Col className="m-1">
-                                    {/* <Route
-                                        render={({ history }) => (
-                                            <Button
-                                                className="btn btn-success float-right"
-                                                onClick={() =>
-                                                    history.push("/app/brahmaand/leaderboard/addLeader")
-                                                }
-                                            >
-                                                Choose Winner
-                                            </Button>
-                                        )}
-                                    /> */}
                                 </Col>
                             </Row>
                             <CardBody>

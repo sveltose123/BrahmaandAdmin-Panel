@@ -38,17 +38,12 @@ class PerformanceSheet extends React.Component {
         valueGetter: "node.rowIndex + 1",
         field: "node.rowIndex + 1",
         width: 150,
-        // filter: true,
-        // checkboxSelection: true,
-        // headerCheckboxSelectionFilteredOnly: true,
-        // headerCheckboxSelection: true,
       },
       {
         headerName: "Month",
         field: "month",
-        // filter: true,
         width: 250,
-        // pinned: window.innerWidth > 992 ? "left" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -76,7 +71,7 @@ class PerformanceSheet extends React.Component {
         field: "dst_price",
         // filter: true,
         width: 250,
-        
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -262,11 +257,11 @@ class PerformanceSheet extends React.Component {
                           {this.gridApi
                             ? this.state.currenPageSize
                             : "" * this.state.getPageSize -
-                              (this.state.getPageSize - 1)}{" "}
+                            (this.state.getPageSize - 1)}{" "}
                           -{" "}
                           {this.state.rowData.length -
                             this.state.currenPageSize * this.state.getPageSize >
-                          0
+                            0
                             ? this.state.currenPageSize * this.state.getPageSize
                             : this.state.rowData.length}{" "}
                           of {this.state.rowData.length}

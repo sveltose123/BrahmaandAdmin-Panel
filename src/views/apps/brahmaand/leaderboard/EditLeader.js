@@ -51,7 +51,7 @@ export default class EditLeader extends Component {
             .then((response) => {
                 console.log(response);
                 swal("Success!", "Submitted SuccessFull!", "success");
-                this.props.history.push("/app/brahmaand/leaderboard/LeaderBoardList");
+                this.props.history.push("/app/brahmaand/leaderboard/leaderBoardList");
             })
             .catch((error) => {
                 console.log(error);
@@ -67,7 +67,7 @@ export default class EditLeader extends Component {
                                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                                     Home
                                 </BreadcrumbItem>
-                                <BreadcrumbItem href="/app/brahmaand/leaderboard/LeaderBoardList" tag="a">
+                                <BreadcrumbItem href="/app/brahmaand/leaderboard/leaderBoardList" tag="a">
                                     Leader Board List
                                 </BreadcrumbItem>
                                 <BreadcrumbItem active>Edit Leader</BreadcrumbItem>
@@ -87,7 +87,7 @@ export default class EditLeader extends Component {
                                 render={({ history }) => (
                                     <Button
                                         className=" btn btn-danger float-right"
-                                        onClick={() => history.push("/app/brahmaand/leaderboard/LeaderBoardList")}
+                                        onClick={() => history.push("/app/brahmaand/leaderboard/leaderBoardList")}
                                     >
                                         Back
                                     </Button>

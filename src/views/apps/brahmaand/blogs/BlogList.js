@@ -7,7 +7,6 @@ import axiosConfig from "../../../../axiosConfig";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
-//import classnames from "classnames";
 import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
@@ -37,7 +36,6 @@ class Blogs extends React.Component {
                 headerName: "Title",
                 field: "blog_title",
                 width: 150,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -50,7 +48,6 @@ class Blogs extends React.Component {
                 headerName: "Descripiton",
                 field: "desc",
                 width: 200,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -62,9 +59,7 @@ class Blogs extends React.Component {
             {
                 headerName: "Blog Type",
                 field: "blog_type",
-                // filter: true,
                 width: 150,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -77,9 +72,7 @@ class Blogs extends React.Component {
             {
                 headerName: " Thumnail Image",
                 field: "blogImg",
-                // filter: true,
                 width: 120,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.blogImg} />
@@ -89,9 +82,7 @@ class Blogs extends React.Component {
             {
                 headerName: "Posted By",
                 field: "posted_by",
-                // filter: true,
                 width: 120,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -103,9 +94,7 @@ class Blogs extends React.Component {
             {
                 headerName: "Posted Image",
                 field: "posted_by_img",
-                // filter: true,
                 width: 120,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <img className=" d-flex align-items-center cursor-pointer w-50 h-50 rounded" src={params.data.posted_by_img} />
@@ -134,7 +123,6 @@ class Blogs extends React.Component {
                 headerName: "Actions",
                 field: "sortorder",
                 width: 150,
-                // pinned: window.innerWidth > 992 ? "right" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
@@ -151,8 +139,7 @@ class Blogs extends React.Component {
                                 )}
                             />
                             <Trash2
-                                className="mr-50"
-                                size="25px"
+                                size={20}
                                 color="red"
                                 onClick={() => {
                                     let selectedData = this.gridApi.getSelectedRows();

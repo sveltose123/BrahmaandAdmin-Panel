@@ -100,7 +100,7 @@ export default class EditCommentBlog extends Component {
                         </Col>
                     </Row>
                     <CardBody>
-                        <Form className="m-2" onSubmit={this.submitHandler}>
+                        <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Username</Label>
@@ -119,7 +119,7 @@ export default class EditCommentBlog extends Component {
                                         required
                                         type="text"
                                         name="rating"
-                                        placeholder="Enter Name"
+                                        placeholder="Enter Rating"
                                         value={this.state.rating}
                                         onChange={this.changeHandler}
                                     ></Input>

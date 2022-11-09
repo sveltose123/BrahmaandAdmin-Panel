@@ -17,7 +17,7 @@ export default class EditSubcategory extends Component {
 
         };
         this.state = {
-            categoryT: []
+            categoryT: [],
         };
 
     }
@@ -43,9 +43,7 @@ export default class EditSubcategory extends Component {
         let { id } = this.props.match.params;
         axiosConfig
             .get(`/admin/getoneSubCategory/${id}`, {
-                // headers: {
-                //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                // },
+
             })
             .then((response) => {
                 console.log(response);
@@ -91,9 +89,7 @@ export default class EditSubcategory extends Component {
 
         axiosConfig
             .post(`/admin/editSubCategory/${id}`, this.state, {
-                // headers: {
-                //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                // },
+
             })
             .then((response) => {
                 console.log(response);

@@ -4,13 +4,10 @@ import axiosConfig from "../../../../axiosConfig";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
-//import classnames from "classnames";
 import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
-import Switch from "react-switch";
-import swal from "sweetalert";
 
 class CommentBlog extends React.Component {
     state = {
@@ -25,8 +22,6 @@ class CommentBlog extends React.Component {
             resizable: true,
             suppressMenu: true,
         },
-
-
         columnDefs: [
             {
                 headerName: "S.No",
@@ -42,7 +37,7 @@ class CommentBlog extends React.Component {
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.username}</span>
+                            <span>{params.data.userid?.username}</span>
                         </div>
                     );
                 },
@@ -63,7 +58,6 @@ class CommentBlog extends React.Component {
                 headerName: "Descripition",
                 field: "desc",
                 width: 150,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -103,7 +97,7 @@ class CommentBlog extends React.Component {
                 headerName: "Status",
                 field: "status",
                 filter: true,
-                width: 120,
+                width: 200,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">

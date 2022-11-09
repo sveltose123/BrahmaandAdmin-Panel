@@ -43,7 +43,7 @@ class ResourceComment extends React.Component {
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.username}</span>
+                            <span>{params.data.userid?.username}</span>
                         </div>
                     );
                 },

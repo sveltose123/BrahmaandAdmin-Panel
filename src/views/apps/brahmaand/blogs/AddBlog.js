@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { EditorState, convertToRaw } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import "react-toastify/dist/ReactToastify.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "../../../../assets/scss/plugins/extensions/editor.scss";
 import { Card, CardBody, Row, Col, Form, Label, Input, Button, Breadcrumb, BreadcrumbItem, CustomInput, } from "reactstrap";
 import axiosConfig from "../../../../axiosConfig";
-// import { history } from "../../../history";
 import swal from "sweetalert";
 import { Route } from "react-router-dom";
 
@@ -21,6 +26,12 @@ export default class AddBlog extends Component {
             selectedFile1: null,
         };
     }
+    onEditorStateChange = (editorState) => {
+        this.setState({
+            editorState,
+            desc: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+        });
+    };
     onChangeHandler = (event) => {
         this.setState({ selectedFile: event.target.files[0] });
         this.setState({ selectedName: event.target.files[0].name });
@@ -147,14 +158,62 @@ export default class AddBlog extends Component {
                                 </Col>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>Descripition</Label>
-                                    <Input
-                                        required
-                                        type="textarea"
-                                        name="desc"
-                                        placeholder="Enter Text"
-                                        value={this.state.desc}
-                                        onChange={this.changeHandler}
-                                    ></Input>
+                                    <Editor
+                                        toolbarClassName="demo-toolbar-absolute"
+                                        wrapperClassName="demo-wrapper"
+                                        editorClassName="demo-editor"
+                                        editorState={this.state.editorState}
+                                        onEditorStateChange={this.onEditorStateChange}
+                                    // toolbar={{
+                                    //     options: [
+                                    //         "inline",
+                                    //         "blockType",
+                                    //         "fontSize",
+                                    //         "fontFamily",
+
+                                    //         "image",
+
+
+                                    //     ],
+                                    //     inline: {
+                                    //         options: [
+                                    //             "bold",
+                                    //             "italic",
+                                    //             "underline",
+                                    //             "strikethrough",
+                                    //             "monospace",
+                                    //         ],
+                                    //         bold: {
+                                    //             className: "bordered-option-classname",
+                                    //         },
+                                    //         italic: {
+                                    //             className: "bordered-option-classname",
+                                    //         },
+                                    //         underline: {
+                                    //             className: "bordered-option-classname",
+                                    //         },
+                                    //         strikethrough: {
+                                    //             className: "bordered-option-classname",
+                                    //         },
+                                    //         code: {
+                                    //             className: "bordered-option-classname",
+                                    //         },
+                                    //     },
+                                    //     blockType: {
+                                    //         className: "bordered-option-classname",
+                                    //     },
+                                    //     fontSize: {
+                                    //         className: "bordered-option-classname",
+                                    //     },
+                                    //     fontFamily: {
+                                    //         className: "bordered-option-classname",
+                                    //     },
+                                    //     image: {
+                                    //         className: "bordered-option-classname"
+                                    //     },
+
+                                    // }}
+                                    />
                                 </Col>
                                 <Col lg="6" md="6" className="mb-2">
                                     <Label for="exampleSelect"> Blog Type</Label>
@@ -188,19 +247,6 @@ export default class AddBlog extends Component {
                                         onChange={this.onChangeHandler1}
                                     ></CustomInput>
                                 </Col>
-                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                                    <Label>Tags</Label>
-                                    <Input
-                                        required
-                                        type="text"
-                                        name="desc"
-                                        placeholder="Enter name"
-                                        value={this.state.desc}
-                                        onChange={this.changeHandler}
-                                    ></Input>
-                                </Col> */}
-
-
                             </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">

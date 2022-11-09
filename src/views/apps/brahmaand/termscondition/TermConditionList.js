@@ -6,7 +6,7 @@ import {
 import axiosConfig from "../../../../axiosConfig";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../../utility/context/Layout";
-import { ChevronDown, Edit } from "react-feather";
+import { ChevronDown, Edit, Trash2 } from "react-feather";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
@@ -43,24 +43,6 @@ class termscondition extends React.Component {
           );
         },
       },
-
-      // {
-      //   headerName: "Status",
-      //   field: "userverified",
-      //   // filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return params.value === "Active" ? (
-      //       <div className="badge badge-pill badge-success">
-      //         {params.data.userverified}
-      //       </div>
-      //     ) : params.value === "Inactive" ? (
-      //       <div className="badge badge-pill badge-warning">
-      //         {params.data.userverified}
-      //       </div>
-      //     ) : null;
-      //   },
-      // },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -75,13 +57,13 @@ class termscondition extends React.Component {
                     size="25px"
                     color="blue"
                     onClick={() =>
-                      history.push(`/app/brahmaand/termscondition/EditTermCondition/${params.data._id}`)
+                      history.push(`/app/brahmaand/termscondition/editTermCondition/${params.data._id}`)
                     }
                   />
                 )}
               />
 
-              {/* <Trash2
+              <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -90,7 +72,7 @@ class termscondition extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              /> */}
+              />
             </div>
           );
         },
@@ -98,20 +80,20 @@ class termscondition extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig.get("/get_term_cond").then((response) => {
+    await axiosConfig.get("/admin/get_term_cond").then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
     });
   }
-  //   async runthisfunction(id) {
-  //     console.log(id);
-  //     await axiosConfig
-  //       .get(`/admin/deleteabout/${id}`)
-  //       .then((response) => {
-  //         console.log(response);
-  //       });
-  //   }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig
+      .get(`/admin/dlt_term_cond/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
 
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -141,11 +123,6 @@ class termscondition extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        {/* <Breadcrumbs
-          breadCrumbTitle="Term & Condition List"
-          breadCrumbParent="Home"
-          breadCrumbActive="Term & Condition List"
-        /> */}
         <Card className="overflow-hidden agGrid-card">
           <Row className="m-2">
             <Col>
@@ -160,7 +137,7 @@ class termscondition extends React.Component {
                   <Button
                     className="btn btn-success float-right"
                     onClick={() =>
-                      history.push("/app/brahmaand/termscondition/AddTermsCondition")
+                      history.push("/app/brahmaand/termscondition/addTermsCondition")
                     }
                   >
                     Add TermConditionList

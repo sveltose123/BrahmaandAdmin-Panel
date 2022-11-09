@@ -1,19 +1,11 @@
 import React from "react";
-import {
-    Card,
-    CardBody,
-    Row,
-    Col,
-    Button,
-    Breadcrumb,
-    BreadcrumbItem,
-} from "reactstrap";
+import { Card, CardBody, Row, Col, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import { history } from "../../../../history";
 import "../../../../assets/scss/pages/app-ecommerce-shop.scss";
 import "../../../../assets/scss/pages/users.scss";
 import axiosConfig from "../../../../axiosConfig";
-import axios from "axios";
 import { Route } from "react-router-dom";
+
 class ViewUsers extends React.Component {
     constructor (props) {
         super(props);
