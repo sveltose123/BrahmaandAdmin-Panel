@@ -228,7 +228,7 @@ class WeeklyWinner extends React.Component {
                                         Weekly Winner List
                                     </h1>
                                 </Col>
-                                <Col style={{ marginLeft: "8rem" }}>
+                                <Col style={{ marginLeft: "15rem" }}>
 
                                     <h5>Start Date</h5>
                                     <Input className="btn btn-success"

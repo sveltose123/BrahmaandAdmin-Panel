@@ -23,11 +23,16 @@ class Notification extends React.Component {
 
         columnDefs: [
             {
+                headerName: "S.No",
+                valueGetter: "node.rowIndex + 1",
+                field: "node.rowIndex + 1",
+                width: 110,
+
+            },
+            {
                 headerName: "Title",
                 field: "title",
-                // filter: true,
                 width: 400,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -39,9 +44,7 @@ class Notification extends React.Component {
             {
                 headerName: "Descripiton",
                 field: "desc",
-                // filter: true,
                 width: 500,
-                // pinned: window.innerWidth > 992 ? "left" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -54,25 +57,24 @@ class Notification extends React.Component {
                 headerName: "Actions",
                 field: "sortorder",
                 width: 150,
-                // pinned: window.innerWidth > 992 ? "right" : false,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
                             {/* <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push(
-                        
-                        `/app/about/EditAboutUs/${params.data._id}`
-                      )
-                    }
-                  />
-                )}
-              /> */}
+                                render={({ history }) => (
+                                    <Edit
+                                        className="mr-50"
+                                        size="25px"
+                                        color="blue"
+                                        onClick={() =>
+                                            history.push(
+
+                                                `/admin/edit_notification/${params.data._id}`
+                                            )
+                                        }
+                                    />
+                                )}
+                            /> */}
 
                             <Trash2
                                 className="mr-50"
@@ -105,7 +107,7 @@ class Notification extends React.Component {
     async runthisfunction(id) {
         console.log(id);
         await axiosConfig
-            .get(`/admin/deletenotification/${id}`)
+            .get(`/admin/dlt_notification/${id}`)
             .then((response) => {
                 console.log(response);
             });

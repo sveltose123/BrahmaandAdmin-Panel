@@ -51,15 +51,7 @@ export class AddNotification extends Component {
         e.preventDefault();
 
         axiosConfig
-            .post(
-                "/add_notification",
-                this.state
-                // {
-                //   headers: {
-                //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-                //   },
-                // }
-            )
+            .post("/admin/add_notification", this.state)
             .then((response) => {
                 console.log(response);
                 // swal("Success!", "Submitted SuccessFull!", "success");

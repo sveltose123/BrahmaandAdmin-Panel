@@ -8,6 +8,7 @@ import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/pages/users.scss";
 import { Route } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 class CommentBlog extends React.Component {
     state = {
@@ -33,7 +34,7 @@ class CommentBlog extends React.Component {
             {
                 headerName: "User Name",
                 field: "username",
-                width: 150,
+                width: 200,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -45,7 +46,7 @@ class CommentBlog extends React.Component {
             {
                 headerName: "Rating",
                 field: "rating",
-                width: 150,
+                width: 180,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
@@ -57,11 +58,11 @@ class CommentBlog extends React.Component {
             {
                 headerName: "Descripition",
                 field: "desc",
-                width: 150,
+                width: 180,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">
-                            <span>{params.data.desc}</span>
+                            <span>{ReactHtmlParser(params.data.desc)}</span>
                         </div>
                     );
                 },
@@ -69,7 +70,7 @@ class CommentBlog extends React.Component {
             {
                 headerName: "Date",
                 field: "createdAt",
-                width: 150,
+                width: 200,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +83,7 @@ class CommentBlog extends React.Component {
             {
                 headerName: "Comment",
                 field: "comment",
-                width: 150,
+                width: 200,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex  align-items-center cursor-pointer">

@@ -10,7 +10,7 @@ export default class EditResource extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            aprv_status: "",
+            status: "",
         };
     }
     componentDidMount() {
@@ -31,7 +31,7 @@ export default class EditResource extends Component {
 
     }
     changeHandler1 = (e) => {
-        this.setState({ aprv_status: e.target.value });
+        this.setState({ status: e.target.value });
     };
 
     changeHandler = (e) => {
@@ -105,7 +105,7 @@ export default class EditResource extends Component {
                                             <input
                                                 style={{ marginRight: "3px" }}
                                                 type="radio"
-                                                name="aprv_status"
+                                                name="status"
                                                 value="Active"
                                             />
                                             <span style={{ marginRight: "20px" }}>Active</span>
@@ -113,7 +113,7 @@ export default class EditResource extends Component {
                                             <input
                                                 style={{ marginRight: "3px" }}
                                                 type="radio"
-                                                name="aprv_status"
+                                                name="status"
                                                 value="Deactive"
                                             />
                                             <span style={{ marginRight: "3px" }}>Deactive</span>

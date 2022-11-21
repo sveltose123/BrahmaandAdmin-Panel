@@ -594,7 +594,7 @@ class AppRouter extends React.Component {
             />
 
             <AppRoute
-              path="/app/brahmaand/resource/viewResource"
+              path="/app/brahmaand/resource/viewResource/:id"
               component={ViewResource}
             />
             <AppRoute

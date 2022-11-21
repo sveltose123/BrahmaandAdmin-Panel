@@ -12,7 +12,6 @@ import { history } from "../../../../history";
 import swal from "sweetalert";
 import { Route } from "react-router-dom";
 
-
 class AddTermsCondition extends React.Component {
   constructor (props) {
     super(props);
@@ -28,6 +27,25 @@ class AddTermsCondition extends React.Component {
       desc: draftToHtml(convertToRaw(editorState.getCurrentContent())),
     });
   };
+  uploadImageCallBack = (file) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "https://api.imgur.com/3/image");
+      xhr.setRequestHeader("Authorization", "Client-ID 7e1c3e366d22aa3");
+      const data = new FormData();
+      data.append("image", file);
+      xhr.send(data);
+      xhr.addEventListener("load", () => {
+        const response = JSON.parse(xhr);
+        resolve(response);
+      });
+      xhr.addEventListener("error", () => {
+        const error = JSON.parse(xhr);
+        reject(error);
+      });
+    });
+  };
+
   submitHandler = (e) => {
     e.preventDefault();
     axiosConfig
@@ -77,36 +95,46 @@ class AddTermsCondition extends React.Component {
                 editorClassName="demo-editor"
                 editorState={this.state.editorState}
                 onEditorStateChange={this.onEditorStateChange}
-              // toolbar={{
-              //   options: ["inline", "blockType", "fontSize", "fontFamily", "image"],
-              //   inline: {
-              //     options: [
-              //       "bold",
-              //       "italic",
-              //       "underline",
-              //       "strikethrough",
-              //       "monospace",
-              //     ],
-              //     bold: { className: "bordered-option-classname" },
-              //     italic: { className: "bordered-option-classname" },
-              //     underline: { className: "bordered-option-classname" },
-              //     strikethrough: { className: "bordered-option-classname" },
-              //     code: { className: "bordered-option-classname" },
-              //   },
-              //   blockType: {
-              //     className: "bordered-option-classname",
-              //   },
-              //   fontSize: {
-              //     className: "bordered-option-classname",
-              //   },
-              //   fontFamily: {
-              //     className: "bordered-option-classname",
-              //   },
-              //   image: {
-              //     className: "bordered-option-classname",
-              //   },
-
-              // }}
+                toolbar={{
+                  // options: [
+                  //   "inline",
+                  //   "blockType",
+                  //   "fontSize",
+                  //   "fontFamily",
+                  // ],
+                  // inline: {
+                  //   options: [
+                  //     "bold",
+                  //     "italic",
+                  //     "underline",
+                  //     "strikethrough",
+                  //     "monospace",
+                  //   ],
+                  //   bold: { className: "bordered-option-classname" },
+                  //   italic: { className: "bordered-option-classname" },
+                  //   underline: { className: "bordered-option-classname" },
+                  //   strikethrough: {
+                  //     className: "bordered-option-classname",
+                  //   },
+                  //   code: { className: "bordered-option-classname" },
+                  // },
+                  // blockType: {
+                  //   className: "bordered-option-classname",
+                  // },
+                  // fontSize: {
+                  //   className: "bordered-option-classname",
+                  // },
+                  // fontFamily: {
+                  //   className: "bordered-option-classname",
+                  // },
+                  image: {
+                    uploadCallback: this.uploadImageCallBack,
+                    previewImage: true,
+                    alt: { present: false, mandatory: false },
+                    uploadEnabled: true,
+                    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                  },
+                }}
               />
               <br />
               <Button color="primary">Add New T&C</Button>

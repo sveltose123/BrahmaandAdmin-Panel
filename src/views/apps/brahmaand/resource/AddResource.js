@@ -41,6 +41,8 @@ export default class AddResource extends Component {
             sub_categoryT: [],
             yrN: [],
             langL: [],
+            option: []
+
         };
         this.style = {
             chips: {
@@ -55,22 +57,38 @@ export default class AddResource extends Component {
             desc: draftToHtml(convertToRaw(editorState.getCurrentContent())),
         });
     };
-    onSelect(selectedList, selectItem) {
-        var selectItem1 = [];
-        for (var i = 0; i < selectedList.length; i++) {
-            selectItem1.push(selectedList[i]._id);
-        }
-        // this.setState({ selectedLang: selectItem1 });
-        console.log("aa", selectItem1);
-    }
-    onRemove(selectedList, removedItem) {
-        console.log(selectedList);
-    }
+
+    // handleChange = (language) => {
+    //     this.setState({ language }, () =>
+    //         console.log(`Option selected:`, this.state.language)
+    //     );
+    // };
+    // onSelect(selectedList, selectItem) {
+    //     var selectItem1 = [];
+    //     for (var i = 0; i < selectedList.length; i++) {
+    //         selectItem1.push(selectedList[i]._id);
+    //     }
+    //     // this.setState({ selectItem1: [...this.state.selectItem1, ...[1, 2, 3]] })
+    //     //  this.setState.selectedLang = { selectItem1 };
+    //     console.log("aa", selectItem1);
+
+    //     // console.log("selectedLang", selectedLang);
+    // }
+
+    // onRemove(selectedList, removedItem) {
+    //     console.log(selectedList);
+    // }
     onChangeHandler = (event) => {
         this.setState({ selectedFile: event.target.files[0] });
         this.setState({ selectedName: event.target.files[0].name });
         console.log(event.target.files[0]);
     };
+    onChangeHandler = (event) => {
+        this.setState({ selectedFile: event.target.files });
+        this.setState({ selectedName: event.target.files.name });
+        console.log(event.target.files);
+    };
+
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     };
@@ -329,14 +347,41 @@ export default class AddResource extends Component {
                                 <Col lg="6" md="6" className="mb-2">
                                     <FormGroup>
                                         <Label>Language</Label>
-                                        <Multiselect
+                                        <CustomInput
+                                            type="select"
+                                            name="language"
+                                            value={this.state.language}
+
+                                            onChange={this.changeHandler}
+                                        >
+                                            <option>select Language</option>
+                                            {this.state.langL?.map((allLang) => (
+                                                <option
+                                                    value={allLang?._id}
+                                                    key={allLang?._id}
+                                                >
+                                                    {allLang?.language}
+                                                </option>
+                                            ))}
+                                        </CustomInput>
+
+                                        {/* <Select */}
+                                        {/* isMulti
+                                            type="select"
+                                            classNamePrefix="select"
+                                            options={this.state.langL}
+                                            style={this.style}
+                                
+                                        /> */}
+                                        {/* <Multiselect
                                             options={this.state.langL}
                                             selectedValues={this.state.selectedValues}
                                             onSelect={this.onSelect}
                                             onRemove={this.onRemove}
                                             displayValue="language"
-                                            style={this.style}
-                                        />
+                                            onChange={() => this.selectHandler(this)}
+                                          
+                                        /> */}
                                     </FormGroup>
                                 </Col>
                                 <Col lg="6" md="6" className="mb-2">
@@ -376,106 +421,106 @@ export default class AddResource extends Component {
                                                 </AccordionItemButton>
                                             </Col>
                                             <AccordionItemPanel>
-                                                {/* <Form onSubmit={this.submitHandler}> */}
-                                                <FormGroup>
-                                                    {" "}
-                                                    <Label>Title</Label>
-                                                    <Input
-                                                        type="text"
-                                                        name="resTitle"
-                                                        value={this.state.resTitle}
-                                                        onChange={this.changeHandler}
-                                                    />
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label>Release Year</Label>
-                                                    <CustomInput
-                                                        type="select"
-                                                        name="relYear"
-                                                        value={this.state.yrName}
-                                                        onChange={this.changeHandler}
-                                                    >
-                                                        <option>select Year</option>
-                                                        {this.state.yrN?.map((allYear) => (
-                                                            <option
-                                                                value={allYear?._id}
-                                                                key={allYear?._id}
-                                                            >
-                                                                {allYear?.yrName}
-                                                            </option>
-                                                        ))}
-                                                    </CustomInput>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label>Descripition</Label>
-                                                    <Editor
-                                                        toolbarClassName="demo-toolbar-absolute"
-                                                        wrapperClassName="demo-wrapper"
-                                                        editorClassName="demo-editor"
-                                                        editorState={this.state.editorState}
-                                                        onEditorStateChange={this.onEditorStateChange}
-                                                    // toolbar={{
-                                                    //     options: [
-                                                    //         "inline",
-                                                    //         "blockType",
-                                                    //         "fontSize",
-                                                    //         "fontFamily",
+                                                <Form onSubmit={this.submitHandler}>
+                                                    <FormGroup>
+                                                        {" "}
+                                                        <Label>Title</Label>
+                                                        <Input
+                                                            type="text"
+                                                            name="resTitle"
+                                                            value={this.state.resTitle}
+                                                            onChange={this.changeHandler}
+                                                        />
+                                                    </FormGroup>
+                                                    <FormGroup>
+                                                        <Label>Release Year</Label>
+                                                        <CustomInput
+                                                            type="select"
+                                                            name="relYear"
+                                                            value={this.state.yrName}
+                                                            onChange={this.changeHandler}
+                                                        >
+                                                            <option>select Year</option>
+                                                            {this.state.yrN?.map((allYear) => (
+                                                                <option
+                                                                    value={allYear?._id}
+                                                                    key={allYear?._id}
+                                                                >
+                                                                    {allYear?.yrName}
+                                                                </option>
+                                                            ))}
+                                                        </CustomInput>
+                                                    </FormGroup>
+                                                    <FormGroup>
+                                                        <Label>Descripition</Label>
+                                                        <Editor
+                                                            toolbarClassName="demo-toolbar-absolute"
+                                                            wrapperClassName="demo-wrapper"
+                                                            editorClassName="demo-editor"
+                                                            editorState={this.state.editorState}
+                                                            onEditorStateChange={this.onEditorStateChange}
+                                                        // toolbar={{
+                                                        //     options: [
+                                                        //         "inline",
+                                                        //         "blockType",
+                                                        //         "fontSize",
+                                                        //         "fontFamily",
 
-                                                    //         "image",
+                                                        //         "image",
 
 
-                                                    //     ],
-                                                    //     inline: {
-                                                    //         options: [
-                                                    //             "bold",
-                                                    //             "italic",
-                                                    //             "underline",
-                                                    //             "strikethrough",
-                                                    //             "monospace",
-                                                    //         ],
-                                                    //         bold: {
-                                                    //             className: "bordered-option-classname",
-                                                    //         },
-                                                    //         italic: {
-                                                    //             className: "bordered-option-classname",
-                                                    //         },
-                                                    //         underline: {
-                                                    //             className: "bordered-option-classname",
-                                                    //         },
-                                                    //         strikethrough: {
-                                                    //             className: "bordered-option-classname",
-                                                    //         },
-                                                    //         code: {
-                                                    //             className: "bordered-option-classname",
-                                                    //         },
-                                                    //     },
-                                                    //     blockType: {
-                                                    //         className: "bordered-option-classname",
-                                                    //     },
-                                                    //     fontSize: {
-                                                    //         className: "bordered-option-classname",
-                                                    //     },
-                                                    //     fontFamily: {
-                                                    //         className: "bordered-option-classname",
-                                                    //     },
-                                                    //     image: {
-                                                    //         className: "bordered-option-classname"
-                                                    //     },
+                                                        //     ],
+                                                        //     inline: {
+                                                        //         options: [
+                                                        //             "bold",
+                                                        //             "italic",
+                                                        //             "underline",
+                                                        //             "strikethrough",
+                                                        //             "monospace",
+                                                        //         ],
+                                                        //         bold: {
+                                                        //             className: "bordered-option-classname",
+                                                        //         },
+                                                        //         italic: {
+                                                        //             className: "bordered-option-classname",
+                                                        //         },
+                                                        //         underline: {
+                                                        //             className: "bordered-option-classname",
+                                                        //         },
+                                                        //         strikethrough: {
+                                                        //             className: "bordered-option-classname",
+                                                        //         },
+                                                        //         code: {
+                                                        //             className: "bordered-option-classname",
+                                                        //         },
+                                                        //     },
+                                                        //     blockType: {
+                                                        //         className: "bordered-option-classname",
+                                                        //     },
+                                                        //     fontSize: {
+                                                        //         className: "bordered-option-classname",
+                                                        //     },
+                                                        //     fontFamily: {
+                                                        //         className: "bordered-option-classname",
+                                                        //     },
+                                                        //     image: {
+                                                        //         className: "bordered-option-classname"
+                                                        //     },
 
-                                                    // }}
-                                                    />
-                                                </FormGroup>
-                                                <FormGroup>
+                                                        // }}
+                                                        />
+                                                    </FormGroup>
+                                                    <FormGroup>
 
-                                                    <Label>Comments</Label>
-                                                    <Input
-                                                        type="text"
-                                                        name="comment"
-                                                        value={this.state.comment}
-                                                        onChange={this.changeHandler}
-                                                    />
-                                                </FormGroup>
-                                                {/* </Form> */}
+                                                        <Label>Comments</Label>
+                                                        <Input
+                                                            type="text"
+                                                            name="comment"
+                                                            value={this.state.comment}
+                                                            onChange={this.changeHandler}
+                                                        />
+                                                    </FormGroup>
+                                                </Form>
                                             </AccordionItemPanel>
                                         </AccordionItem>
                                     </Accordion>
@@ -495,7 +540,7 @@ export default class AddResource extends Component {
                             </Row>
                         </Form>
                     </CardBody>
-                </Card>
+                </Card >
             </div >
         );
     }

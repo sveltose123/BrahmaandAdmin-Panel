@@ -1,82 +1,91 @@
 import React from "react";
 import { Row, Col, Card, CardTitle, CardText } from "reactstrap";
 import SalesCard from "./SalesCard";
-
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/pages/dashboard-analytics.scss";
-
 
 class AnalyticsDashboard extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      total7sayplan: {},
-      activetrade: {},
-      Completetrade: {},
-      Activeuser: {},
-      endtoend: {},
-      day7planearnig: {},
       basicplanearning: {},
       freeusers: {},
+      subcategory: {},
+      category: {},
+      user: {},
+      freeresrc: {},
+      subresrc: {},
+      paidresrc: {}
+
     };
   }
-
   componentDidMount() {
-    // //end dealer //
     axiosConfig
-      .get("/totlactivetrade")
+      .get("/admin/total_user")
       .then((response) => {
         console.log(response.data);
-        //console.log(response.data.data);
-        this.setState({ activetrade: response.data });
+        this.setState({ user: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
 
     axiosConfig
-      .get("/ttlCompletetrade")
+      .get("/admin/total_sub_resrc")
       .then((response) => {
         console.log(response.data);
-        //console.log(response.data.data);
-        this.setState({ Completetrade: response.data });
+        this.setState({ subresrc: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
 
     axiosConfig
-      .get("/ttlfreeusers")
+      .get("/admin/total_category")
       .then((response) => {
         console.log(response.data);
-        //console.log(response.data.data);
-        this.setState({ freeusers: response.data });
+        this.setState({ category: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
 
     axiosConfig
-      .get("/ttlActiveuser")
+      .get("/admin/total_subcategory")
       .then((response) => {
         console.log(response.data);
-        //console.log(response.data.data);
-        this.setState({ Activeuser: response.data });
+        this.setState({ subcategory: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
 
+    axiosConfig
+      .get("/admin/total_free_resrc")
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ freeresrc: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
+    axiosConfig
+      .get("/admin/total_paid_resrc")
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ paidresrc: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <React.Fragment>
         <Col lg="12" md="12">
-          <SalesCard />
         </Col>
-        {/* <h3>Menbership Plans</h3> */}
         <Row className="match-height">
           <Col lg="4" md="12" >
             <Card
@@ -90,7 +99,7 @@ class AnalyticsDashboard extends React.Component {
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.activetrade.data}
+                {this.state.user.data}
               </CardText>
             </Card>
           </Col>
@@ -106,7 +115,7 @@ class AnalyticsDashboard extends React.Component {
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.activetrade.data}
+                {this.state.subresrc.data}
               </CardText>
             </Card>
           </Col>
@@ -122,7 +131,7 @@ class AnalyticsDashboard extends React.Component {
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.Completetrade.data}
+                {this.state.category.data}
               </CardText>
             </Card>
           </Col>
@@ -137,7 +146,7 @@ class AnalyticsDashboard extends React.Component {
                 Total no of subcategory
               </CardTitle>
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.Activeuser.data}
+                {this.state.subcategory.data}
               </CardText>
             </Card>
           </Col>
@@ -183,7 +192,7 @@ class AnalyticsDashboard extends React.Component {
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.basicplanearning.Earning}
+                {this.state.paidresrc.data}
               </CardText>
             </Card>
           </Col>
@@ -200,7 +209,7 @@ class AnalyticsDashboard extends React.Component {
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
-                {this.state.basicplanearning.Earning}
+                {this.state.freeresrc.data}
               </CardText>
             </Card>
           </Col>
@@ -212,7 +221,7 @@ class AnalyticsDashboard extends React.Component {
               style={{ borderColor: "white", background: '#B266FF', padding: '2.4rem' }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "black", textAlign: 'center' }}>
-                Total no of sponser
+                Total no of Promotion
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "black", textAlign: 'center' }}>
@@ -220,13 +229,6 @@ class AnalyticsDashboard extends React.Component {
               </CardText>
             </Card>
           </Col>
-        </Row>
-
-        <Row>
-          {/* <Col sm="12">
-            <DispatchedOrders />
-          </Col> */}
-          <Col sm="12">{/* <Notification />  */}</Col>
         </Row>
       </React.Fragment>
     );

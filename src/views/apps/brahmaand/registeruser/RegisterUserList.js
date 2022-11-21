@@ -40,7 +40,7 @@ class RegisterUserList extends React.Component {
             {
                 headerName: "Name",
                 field: "username",
-                width: 250,
+                width: 180,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -52,7 +52,7 @@ class RegisterUserList extends React.Component {
             {
                 headerName: "Email Id",
                 field: "email",
-                width: 210,
+                width: 180,
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
@@ -72,12 +72,37 @@ class RegisterUserList extends React.Component {
                     );
                 },
             },
+            {
+                headerName: "Current Point",
+                field: "currentpoint",
+                width: 180,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.email}</span>
+                        </div>
+                    );
+                },
+            },
+            {
+                headerName: "Total Point",
+                field: "totalpoint",
+                width: 180,
+                cellRendererFramework: (params) => {
+                    return (
+                        <div className="d-flex align-items-center cursor-pointer">
+                            <span>{params.data.email}</span>
+                        </div>
+                    );
+                },
+            },
+
 
             {
                 headerName: "Status",
                 field: "status",
                 filter: true,
-                width: 250,
+                width: 180,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">

@@ -77,7 +77,6 @@ export default class EditTermCondition extends Component {
 
           </Col>
         </Row>
-
         <Card>
           <Row className="m-2">
             <Col>

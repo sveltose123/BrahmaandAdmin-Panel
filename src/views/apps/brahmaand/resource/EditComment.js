@@ -8,23 +8,15 @@ export default class EditComment extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            comment: "",
-            desc: "",
-            rating: "",
             status: "",
-            username: "",
+
         };
     }
-
-
     async componentDidMount() {
         axiosConfig
             .get("/admin/getone_coment_list")
             .then((response) => {
                 console.log(response);
-                this.setState({
-
-                });
             })
             .catch((error) => {
                 console.log(error);
@@ -93,7 +85,7 @@ export default class EditComment extends Component {
                     <CardBody>
                         <Form className="m-1" onSubmit={this.submitHandler}>
                             <Row>
-                                <Col lg="6" md="6" sm="6" className="mb-2">
+                                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Label>UserName</Label>
                                     <Input
                                         required
@@ -103,8 +95,8 @@ export default class EditComment extends Component {
                                         value={this.state.username}
                                         onChange={this.changeHandler}
                                     ></Input>
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
+                                </Col> */}
+                                {/* <Col lg="6" md="6" className="mb-2">
                                     <Label>Rating</Label>
                                     <Input
                                         name="rating"
@@ -112,8 +104,8 @@ export default class EditComment extends Component {
                                         value={this.state.rating}
                                         onChange={this.changeHandler}
                                     ></Input>
-                                </Col>
-                                <Col lg="6" md="6" className="mb-2">
+                                </Col> */}
+                                {/* <Col lg="6" md="6" className="mb-2">
                                     <Label>Comment</Label>
                                     <Input
                                         name="comment"
@@ -121,7 +113,8 @@ export default class EditComment extends Component {
                                         value={this.state.comment}
                                         onChange={this.changeHandler}
                                     ></Input>
-                                </Col></Row>
+                                </Col> */}
+                            </Row>
                             <Row>
                                 <Col lg="6" md="6" sm="6" className="mb-2">
                                     <Col lg="6" md="6" sm="6" className="mb-2 mt-1">

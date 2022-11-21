@@ -10,6 +10,7 @@ import { ChevronDown, Edit, Trash2 } from "react-feather";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 
 class Works extends React.Component {
     state = {
@@ -38,7 +39,7 @@ class Works extends React.Component {
                 cellRendererFramework: (params) => {
                     return (
                         <div className="d-flex align-items-center cursor-pointer">
-                            <span>{params.data.desc}</span>
+                            <span>{ReactHtmlParser(params.data.desc)}</span>
                         </div>
                     );
                 },
@@ -50,18 +51,18 @@ class Works extends React.Component {
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
-                            <Route
-                                render={({ history }) => (
-                                    <Edit
-                                        className="mr-50"
-                                        size="25px"
-                                        color="blue"
-                                        onClick={() =>
-                                            history.push(`/app/brahmaand/works/editWorks/${params.data._id}`)
-                                        }
-                                    />
-                                )}
-                            />
+                            {/* <Route
+                                render={({ history }) => ( */}
+                            {/* //         <Edit */}
+                            {/* //            */}
+                            {/* //                 history.push(`/app/brahmaand/works/editWorks/${params.data._id}`)
+                            //             }  className="mr-50"
+                            //             size="25px"
+                            //             color="blue"
+                            //             onClick={() =>
+                            //         />
+                            //     )}
+                            // /> */}
 
                             <Trash2
                                 className="mr-50"

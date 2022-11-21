@@ -144,39 +144,39 @@ export default class EditCommentBlog extends Component {
                                             editorClassName="demo-editor"
                                             editorState={this.state.editorState}
                                             onEditorStateChange={this.onEditorStateChange}
-                                            toolbar={{
-                                                options: [
-                                                    "inline",
-                                                    "blockType",
-                                                    "fontSize",
-                                                    "fontFamily",
-                                                ],
-                                                inline: {
-                                                    options: [
-                                                        "bold",
-                                                        "italic",
-                                                        "underline",
-                                                        "strikethrough",
-                                                        "monospace",
-                                                    ],
-                                                    bold: { className: "bordered-option-classname" },
-                                                    italic: { className: "bordered-option-classname" },
-                                                    underline: { className: "bordered-option-classname" },
-                                                    strikethrough: {
-                                                        className: "bordered-option-classname",
-                                                    },
-                                                    code: { className: "bordered-option-classname" },
-                                                },
-                                                blockType: {
-                                                    className: "bordered-option-classname",
-                                                },
-                                                fontSize: {
-                                                    className: "bordered-option-classname",
-                                                },
-                                                fontFamily: {
-                                                    className: "bordered-option-classname",
-                                                },
-                                            }}
+                                        // toolbar={{
+                                        //     options: [
+                                        //         "inline",
+                                        //         "blockType",
+                                        //         "fontSize",
+                                        //         "fontFamily",
+                                        //     ],
+                                        //     inline: {
+                                        //         options: [
+                                        //             "bold",
+                                        //             "italic",
+                                        //             "underline",
+                                        //             "strikethrough",
+                                        //             "monospace",
+                                        //         ],
+                                        //         bold: { className: "bordered-option-classname" },
+                                        //         italic: { className: "bordered-option-classname" },
+                                        //         underline: { className: "bordered-option-classname" },
+                                        //         strikethrough: {
+                                        //             className: "bordered-option-classname",
+                                        //         },
+                                        //         code: { className: "bordered-option-classname" },
+                                        //     },
+                                        //     blockType: {
+                                        //         className: "bordered-option-classname",
+                                        //     },
+                                        //     fontSize: {
+                                        //         className: "bordered-option-classname",
+                                        //     },
+                                        //     fontFamily: {
+                                        //         className: "bordered-option-classname",
+                                        //     },
+                                        // }}
 
                                         />
                                     </FormGroup>

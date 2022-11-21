@@ -204,14 +204,8 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-    // navLink: "/pages/login",
+
   },
-  // {
-  //   id: "login",
-  //   title: "Logout ",
-  //   type: "item",
-  //   permissions: ["admin", "editor"],
-  //   navLink: "/pages/login",
-  // },
+
 ];
 export default navigationConfig;

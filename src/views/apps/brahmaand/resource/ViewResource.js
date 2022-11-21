@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Row, Col, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
+import { Card, CardBody, Row, Col, Media, Button, Breadcrumb, BreadcrumbItem, } from "reactstrap";
 import { history } from "../../../../history";
 import "../../../../assets/scss/pages/app-ecommerce-shop.scss";
 import "../../../../assets/scss/pages/users.scss";
@@ -17,7 +17,7 @@ class ViewUsers extends React.Component {
     componentDidMount() {
         let { id } = this.props.match.params;
         axiosConfig
-            .get(`/getoneuser/${id}`)
+            .get(`/admin/getone_reslist/${id}`)
 
             .then((response) => {
                 // console.log(response.data);
@@ -69,18 +69,18 @@ class ViewUsers extends React.Component {
                             </Col>
                         </Row>
                         <CardBody className="pb-0">
-                            <Row className="ml-4">
-                                <Col sm="9" md="12" lg="12">
+                            <Row className="mb-5 mt-2">
+                                <Col md="12" sm="12" className="mb-2">
                                     <div className="users-page-view-table">
                                         <div className="d-flex user-info">
                                             <div className="user-info-title font-weight-bold">
                                                 Creator Name :
+
                                             </div>
                                             <div className="text-truncate">
-                                                <span>
-                                                    {this.state.data.creatorName}
-                                                </span>
+                                                <span>{this.state.data.creatorName}</span>
                                             </div>
+
                                         </div>
                                         <div className="d-flex user-info">
                                             <div className="user-info-title font-weight-bold">
@@ -89,6 +89,7 @@ class ViewUsers extends React.Component {
                                             <div className="text-truncate">
                                                 <span>{this.state.data.link}</span>
                                             </div>
+
                                         </div>
                                         <div className="d-flex user-info">
                                             <div className="user-info-title font-weight-bold">
@@ -127,7 +128,9 @@ class ViewUsers extends React.Component {
                                                 Language :
                                             </div>
                                             <div className="text-truncate">
-                                                <span>{this.state.data.language}</span>
+                                                {this.state.data.language?.map((lang) => (
+                                                    <span key={lang._id}>{lang?.language}</span>
+                                                ))}
                                             </div>
                                         </div>
                                         <div className="d-flex user-info">
@@ -137,6 +140,17 @@ class ViewUsers extends React.Component {
                                             <div className="text-truncate">
                                                 <span>{this.state.data.img}</span>
                                             </div>
+                                            <Media className="mt-md-1 mt-0" left>
+                                                {this.state.data?.profileImg?.map((i) => (
+                                                    <img
+                                                        className="border-black m-0"
+                                                        src={i}
+                                                        alt="user avatar"
+                                                        height="400"
+                                                    />
+                                                ))}
+
+                                            </Media>
                                         </div>
                                         <div className="d-flex user-info">
                                             <div className="user-info-title font-weight-bold">

@@ -25,8 +25,6 @@ class UserResourceList extends React.Component {
             resizable: true,
             suppressMenu: true,
         },
-
-
         columnDefs: [
             {
                 headerName: "S.No",
@@ -148,19 +146,6 @@ class UserResourceList extends React.Component {
                     );
                 },
             },
-            // {
-            //     headerName: " Optional",
-            //     field: "optional",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.optional}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
             {
                 headerName: "Status",
                 field: "aprv_status",
@@ -215,7 +200,7 @@ class UserResourceList extends React.Component {
 
     async componentDidMount() {
 
-        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
+        await axiosConfig.get(`user/user_sub_res_lsit`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });

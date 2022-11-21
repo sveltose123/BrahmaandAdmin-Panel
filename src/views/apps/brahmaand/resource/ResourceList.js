@@ -14,7 +14,7 @@ import swal from "sweetalert";
 
 class ResourceList extends React.Component {
     state = {
-        aprv_status: "",
+        status: "",
         rowData: [],
         paginationPageSize: 20,
         currenPageSize: "",
@@ -168,32 +168,19 @@ class ResourceList extends React.Component {
             //     },
             // },
 
-            // {
-            //     headerName: " Optional",
-            //     field: "optional",
-            //     width: 90,
-            //     cellRendererFramework: (params) => {
-            //         return (
-            //             <div className="d-flex align-items-center cursor-pointer">
-            //                 <span>{params.data.optional}</span>
-            //             </div>
-            //         );
-            //     },
-            // },
-
             {
                 headerName: "Status",
-                field: "aprv_status",
+                field: "status",
                 filter: true,
                 width: 110,
                 cellRendererFramework: (params) => {
                     return params.value == "Active" ? (
                         <div className="badge badge-pill badge-success">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : params.value == "Deactive" ? (
                         <div className="badge badge-pill badge-warning">
-                            {params.data.aprv_status}
+                            {params.data.status}
                         </div>
                     ) : null;
                 },
@@ -201,10 +188,7 @@ class ResourceList extends React.Component {
             {
                 headerName: "Actions",
                 field: "sortorder",
-                // field: "transactions",
                 width: 110,
-                // pinned: window.innerWidth > 992 ? "right" : false,
-
                 cellRendererFramework: (params) => {
                     return (
                         <div className="actions cursor-pointer">
@@ -252,7 +236,7 @@ class ResourceList extends React.Component {
 
     async componentDidMount() {
 
-        await axiosConfig.get(`user/user_sub_res_lsit`).then((response) => {
+        await axiosConfig.get(`admin/admin_sub_res_lsit`).then((response) => {
             const rowData = response.data.data;
             console.log(rowData);
             this.setState({ rowData });
