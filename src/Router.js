@@ -10,33 +10,47 @@ import { ContextLayout } from "./utility/context/Layout";
 
 // Route-based code splitting
 const analyticsDashboard = lazy(() =>
-  import("./views/dashboard/analytics/AnalyticsDashboard"));
+  import("./views/dashboard/analytics/AnalyticsDashboard")
+);
 const ecommerceDashboard = lazy(() =>
-  import("./views/dashboard/ecommerce/EcommerceDashboard"));
+  import("./views/dashboard/ecommerce/EcommerceDashboard")
+);
 
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
 
-
-
 //pageSetUp//
 const aboutUs = lazy(() => import("./views/apps/pageSetUp/about/AboutUs"));
-const AllaboutUs = lazy(() => import("./views/apps/pageSetUp/about/AllaboutUs"));
-const EditAboutUs = lazy(() => import("./views/apps/pageSetUp/about/EditAboutUs"));
-
+const AllaboutUs = lazy(() =>
+  import("./views/apps/pageSetUp/about/AllaboutUs")
+);
+const EditAboutUs = lazy(() =>
+  import("./views/apps/pageSetUp/about/EditAboutUs")
+);
 
 const helpUs = lazy(() => import("./views/apps/pageSetUp/helpUs/HelpUS"));
-const EdithelpusForm = lazy(() => import("./views/apps/pageSetUp/helpUs/EdithelpusForm"));
-const ViewHelpUs = lazy(() => import("./views/apps/pageSetUp/helpUs/ViewHelpUs"));
-const notificationList = lazy(() => import("./views/apps/notification/NotificationList"));
-const addNotification = lazy(() => import("./views/apps/notification/AddNotification"));
-
-
-
+const EdithelpusForm = lazy(() =>
+  import("./views/apps/pageSetUp/helpUs/EdithelpusForm")
+);
+const ViewHelpUs = lazy(() =>
+  import("./views/apps/pageSetUp/helpUs/ViewHelpUs")
+);
+const notificationList = lazy(() =>
+  import("./views/apps/notification/NotificationList")
+);
+const addNotification = lazy(() =>
+  import("./views/apps/notification/AddNotification")
+);
 
 //Term & Condition//
-const TermConditionList = lazy(() => import("./views/apps/brahmaand/termscondition/TermConditionList"));
-const AddTermsCondition = lazy(() => import("./views/apps/brahmaand/termscondition/AddTermsCondition"));
-const EditTermCondition = lazy(() => import("./views/apps/brahmaand/termscondition/EditTermCondition"));
+const TermConditionList = lazy(() =>
+  import("./views/apps/brahmaand/termscondition/TermConditionList")
+);
+const AddTermsCondition = lazy(() =>
+  import("./views/apps/brahmaand/termscondition/AddTermsCondition")
+);
+const EditTermCondition = lazy(() =>
+  import("./views/apps/brahmaand/termscondition/EditTermCondition")
+);
 
 // user//
 const UsersList = lazy(() => import("./views/apps/users/UsersList"));
@@ -45,29 +59,63 @@ const EditUsers = lazy(() => import("./views/apps/users/EditUsers"));
 const ViewUsers = lazy(() => import("./views/apps/users/ViewUsers"));
 
 //RegisterUser//
-const RegisterUserList = lazy(() => import("./views/apps/brahmaand/registeruser/RegisterUserList"));// const AddRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/AddRegisterUser"));
-const EditRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/EditRegisterUser"));
-const ViewRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/ViewRegisterUser"));
+const RegisterUserList = lazy(() =>
+  import("./views/apps/brahmaand/registeruser/RegisterUserList")
+); // const AddRegisterUser = lazy(() => import("./views/apps/brahmaand/registeruser/AddRegisterUser"));
+const EditRegisterUser = lazy(() =>
+  import("./views/apps/brahmaand/registeruser/EditRegisterUser")
+);
+const ViewRegisterUser = lazy(() =>
+  import("./views/apps/brahmaand/registeruser/ViewRegisterUser")
+);
 
 // Category//
-const CategoryList = lazy(() => import("./views/apps/brahmaand/category/CategoryList"));
-const AddCategory = lazy(() => import("./views/apps/brahmaand/category/AddCategory"));
-const EditCategory = lazy(() => import("./views/apps/brahmaand/category/EditCategory"));
+const CategoryList = lazy(() =>
+  import("./views/apps/brahmaand/category/CategoryList")
+);
+const AddCategory = lazy(() =>
+  import("./views/apps/brahmaand/category/AddCategory")
+);
+const EditCategory = lazy(() =>
+  import("./views/apps/brahmaand/category/EditCategory")
+);
 
 // SubCategory//
-const SubcategoryList = lazy(() => import("./views/apps/brahmaand/subcategory/SubcategoryList"));
-const AddSubcategory = lazy(() => import("./views/apps/brahmaand/subcategory/AddSubcategory"));
-const EditSubcategory = lazy(() => import("./views/apps/brahmaand/subcategory/EditSubcategory"));
+const SubcategoryList = lazy(() =>
+  import("./views/apps/brahmaand/subcategory/SubcategoryList")
+);
+const AddSubcategory = lazy(() =>
+  import("./views/apps/brahmaand/subcategory/AddSubcategory")
+);
+const EditSubcategory = lazy(() =>
+  import("./views/apps/brahmaand/subcategory/EditSubcategory")
+);
 
 // Resource//
-const ResourceList = lazy(() => import("./views/apps/brahmaand/resource/ResourceList"));
-const AddResource = lazy(() => import("./views/apps/brahmaand/resource/AddResource"));
-const EditResource = lazy(() => import("./views/apps/brahmaand/resource/EditResource"));
-const ViewResource = lazy(() => import("./views/apps/brahmaand/resource/ViewResource"));
-const UserResourceList = lazy(() => import("./views/apps/brahmaand/resource/UserResourceList"));
-const ResourceComment = lazy(() => import("./views/apps/brahmaand/resource/ResourceComment"));
-const EditUserResource = lazy(() => import("./views/apps/brahmaand/resource/EditUserResource"))
-const EditComment = lazy(() => import("./views/apps/brahmaand/resource/EditComment"))
+const ResourceList = lazy(() =>
+  import("./views/apps/brahmaand/resource/ResourceList")
+);
+const AddResource = lazy(() =>
+  import("./views/apps/brahmaand/resource/AddResource")
+);
+const EditResource = lazy(() =>
+  import("./views/apps/brahmaand/resource/EditResource")
+);
+const ViewResource = lazy(() =>
+  import("./views/apps/brahmaand/resource/ViewResource")
+);
+const UserResourceList = lazy(() =>
+  import("./views/apps/brahmaand/resource/UserResourceList")
+);
+const ResourceComment = lazy(() =>
+  import("./views/apps/brahmaand/resource/ResourceComment")
+);
+const EditUserResource = lazy(() =>
+  import("./views/apps/brahmaand/resource/EditUserResource")
+);
+const EditComment = lazy(() =>
+  import("./views/apps/brahmaand/resource/EditComment")
+);
 //Sponsor//
 
 // const BasedCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedCategory"));
@@ -75,57 +123,106 @@ const EditComment = lazy(() => import("./views/apps/brahmaand/resource/EditComme
 // const BasedSubCategory = lazy(() => import("./views/apps/brahmaand/sponsor/BasedSubCategory"));
 
 // Notification//
-const Notification = lazy(() => import("./views/apps/brahmaand/notif/Notification"));
-const AddNotification = lazy(() => import("./views/apps/brahmaand/notif/AddNotification"));
-const UserNotification = lazy(() => import("./views/apps/brahmaand/notif/UserNotification"));
+const Notification = lazy(() =>
+  import("./views/apps/brahmaand/notif/Notification")
+);
+const AddNotification = lazy(() =>
+  import("./views/apps/brahmaand/notif/AddNotification")
+);
+const UserNotification = lazy(() =>
+  import("./views/apps/brahmaand/notif/UserNotification")
+);
 
 //BlogCategory//
-const BlogCategoryList = lazy(() => import("./views/apps/brahmaand/blog/BlogCategoryList"));
-const AddBlogCategory = lazy(() => import("./views/apps/brahmaand/blog/AddBlogCategory"));
-const EditBlogCategory = lazy(() => import("./views/apps/brahmaand/blog/EditBlogCategory"));
+const BlogCategoryList = lazy(() =>
+  import("./views/apps/brahmaand/blog/BlogCategoryList")
+);
+const AddBlogCategory = lazy(() =>
+  import("./views/apps/brahmaand/blog/AddBlogCategory")
+);
+const EditBlogCategory = lazy(() =>
+  import("./views/apps/brahmaand/blog/EditBlogCategory")
+);
 
 //Blogs//
 const BlogList = lazy(() => import("./views/apps/brahmaand/blogs/BlogList"));
 const AddBlog = lazy(() => import("./views/apps/brahmaand/blogs/AddBlog"));
 const EditBlog = lazy(() => import("./views/apps/brahmaand/blogs/EditBlog"));
-const CommentBlog = lazy(() => import("./views/apps/brahmaand/blogs/CommentBlog"));
+const CommentBlog = lazy(() =>
+  import("./views/apps/brahmaand/blogs/CommentBlog")
+);
 const ViewBlog = lazy(() => import("./views/apps/brahmaand/blogs/ViewBlog"));
-const EditCommentBlog = lazy(() => import("./views/apps/brahmaand/blogs/EditCommentBlog"));
+const EditCommentBlog = lazy(() =>
+  import("./views/apps/brahmaand/blogs/EditCommentBlog")
+);
 
 const Profile = lazy(() => import("./views/pages/profile/Profile"));
 
 //LeaderBoard//
-const LeaderBoardList = lazy(() => import("./views/apps/brahmaand/leaderboard/LeaderBoardList"));
-const AddLeader = lazy(() => import("./views/apps/brahmaand/leaderboard/AddLeader"));
-const EditLeader = lazy(() => import("./views/apps/brahmaand/leaderboard/EditLeader"));
-const WeeklyWinner = lazy(() => import("./views//apps/brahmaand/leaderboard/WeeklyWinner"));
-
+const LeaderBoardList = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/LeaderBoardList")
+);
+const AddLeader = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/AddLeader")
+);
+const EditLeader = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/EditLeader")
+);
+const WeeklyWinner = lazy(() =>
+  import("./views//apps/brahmaand/leaderboard/WeeklyWinner")
+);
+const Updatemetors = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/Updatemetors")
+);
+const EditPlanet = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/EditPlanet")
+);
+const Edituserdata = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/Edituserdata")
+);
+const UserEarning = lazy(() =>
+  import("./views/apps/brahmaand/leaderboard/Uservalue")
+);
 //Feature Content//
-const FeatureContent = lazy(() => import("./views/apps/brahmaand/content/FeatureContent"));
-const AddContent = lazy(() => import("./views/apps/brahmaand/content/AddContent"));
-const EditContent = lazy(() => import("./views/apps/brahmaand/content/EditContent"));
+const FeatureContent = lazy(() =>
+  import("./views/apps/brahmaand/content/FeatureContent")
+);
+const AddContent = lazy(() =>
+  import("./views/apps/brahmaand/content/AddContent")
+);
+const EditContent = lazy(() =>
+  import("./views/apps/brahmaand/content/EditContent")
+);
 
 //Contact//
-const Contact = lazy(() => import("./views/apps/brahmaand/contact/Contact"))
+const Contact = lazy(() => import("./views/apps/brahmaand/contact/Contact"));
 
 //Newsletter//
-const NewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/NewsLetter"))
-const AddNewsLetter = lazy(() => import("./views/apps/brahmaand/newsletter/AddNewsLetter"))
+const NewsLetter = lazy(() =>
+  import("./views/apps/brahmaand/newsletter/NewsLetter")
+);
+const AddNewsLetter = lazy(() =>
+  import("./views/apps/brahmaand/newsletter/AddNewsLetter")
+);
 
 //FAQ//
 const FaqList = lazy(() => import("./views/apps/brahmaand/faq/FaqList"));
 const AddFaq = lazy(() => import("./views/apps/brahmaand/faq/AddFaq"));
 
 //{PrivacyPolicy}//
-const PrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/PrivacyPolicy"))
-const EditPrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/EditPrivacyPolicy"))
-const AddPrivacyPolicy = lazy(() => import("./views/apps/brahmaand/privacypolicy/AddPrivacyPolicy"))
+const PrivacyPolicy = lazy(() =>
+  import("./views/apps/brahmaand/privacypolicy/PrivacyPolicy")
+);
+const EditPrivacyPolicy = lazy(() =>
+  import("./views/apps/brahmaand/privacypolicy/EditPrivacyPolicy")
+);
+const AddPrivacyPolicy = lazy(() =>
+  import("./views/apps/brahmaand/privacypolicy/AddPrivacyPolicy")
+);
 //Works//
-const Works = lazy(() => import("./views/apps/brahmaand/works/Works"))
-const EditWorks = lazy(() => import("./views/apps/brahmaand/works/EditWorks"))
-const AddWorks = lazy(() => import("./views/apps/brahmaand/works/AddWorks"))
-
-
+const Works = lazy(() => import("./views/apps/brahmaand/works/Works"));
+const EditWorks = lazy(() => import("./views/apps/brahmaand/works/EditWorks"));
+const AddWorks = lazy(() => import("./views/apps/brahmaand/works/AddWorks"));
 
 //Discount Code//
 const DiscountCode = lazy(() => import("./views/apps/discount/DiscountCode"));
@@ -134,9 +231,11 @@ const DiscountList = lazy(() => import("./views/apps/discount/DiscountList"));
 // feedback //
 const FeedBackList = lazy(() => import("./views/apps/feedback/FeedBackList"));
 const membershipList = lazy(() =>
-  import("./views/apps/membership/MembershipList"));
+  import("./views/apps/membership/MembershipList")
+);
 const AddMembership = lazy(() =>
-  import("./views/apps/membership/AddMembership"));
+  import("./views/apps/membership/AddMembership")
+);
 
 const EditMembership = lazy(() =>
   import("./views/apps/membership/EditMembership")
@@ -210,7 +309,6 @@ const RefferalWalletList = lazy(() =>
 const AddRefferalWallet = lazy(() =>
   import("./views/apps/package/AddRefferalWallet")
 );
-
 
 //Premium//
 const AddPaidServeice = lazy(() =>
@@ -468,8 +566,8 @@ const RouteConfig = ({ component: Component, fullLayout, ...rest }) => (
               fullLayout === true
                 ? context.fullLayout
                 : context.state.activeLayout === "horizontal"
-                  ? context.horizontalLayout
-                  : context.VerticalLayout;
+                ? context.horizontalLayout
+                : context.VerticalLayout;
             return (
               <LayoutTag {...props} permission={props.user}>
                 <Suspense fallback={<Spinner />}>
@@ -522,11 +620,11 @@ class AppRouter extends React.Component {
             <AppRoute path="/app/users/addUsers" component={AddUsers} />
             <AppRoute path="/app/users/editUsers/:id" component={EditUsers} />
             <AppRoute path="/app/users/viewUsers/:id" component={ViewUsers} />
-
             {/* RegisterUser */}
-
             <AppRoute
-              path="/app/brahmaand/registeruser/registerUserList" component={RegisterUserList} />
+              path="/app/brahmaand/registeruser/registerUserList"
+              component={RegisterUserList}
+            />
             {/* <AppRoute
               path="/app/brahmaand/registeruser/addRegisterUser"
               component={AddRegisterUser}
@@ -542,9 +640,7 @@ class AppRouter extends React.Component {
             FAQ
             <AppRoute path="/app/brahmaand/faq/faqList" component={FaqList} />
             <AppRoute path="/app/brahmaand/faq/addFaq" component={AddFaq} />
-
             {/*Category */}
-
             <AppRoute
               path="/app/brahmaand/category/categoryList"
               component={CategoryList}
@@ -558,7 +654,6 @@ class AppRouter extends React.Component {
               component={EditCategory}
             />
             {/*SubCategory */}
-
             <AppRoute
               path="/app/brahmaand/subcategory/subcategoryList"
               component={SubcategoryList}
@@ -592,7 +687,6 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/resource/editResource/:id"
               component={EditResource}
             />
-
             <AppRoute
               path="/app/brahmaand/resource/viewResource/:id"
               component={ViewResource}
@@ -606,10 +700,7 @@ class AppRouter extends React.Component {
               component={EditComment}
             />
             {/*Notification*/}
-            <AppRoute
-              path="/app/notif/Notification"
-              component={Notification}
-            />
+            <AppRoute path="/app/notif/Notification" component={Notification} />
             <AppRoute
               path="/app/notif/AddNotification"
               component={AddNotification}
@@ -646,7 +737,6 @@ class AppRouter extends React.Component {
               component={Contact}
             />
             {/*BlogCategory*/}
-
             <AppRoute
               path="/app/brahmaand/blog/blogCategoryList"
               component={BlogCategoryList}
@@ -660,7 +750,6 @@ class AppRouter extends React.Component {
               component={EditBlogCategory}
             />
             {/*Blog*/}
-
             <AppRoute
               path="/app/brahmaand/blogs/blogList"
               component={BlogList}
@@ -669,10 +758,7 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/blogs/viewBlog"
               component={ViewBlog}
             />
-            <AppRoute
-              path="/app/brahmaand/blogs/addBlog"
-              component={AddBlog}
-            />
+            <AppRoute path="/app/brahmaand/blogs/addBlog" component={AddBlog} />
             <AppRoute
               path="/app/brahmaand/blogs/editBlog/:id"
               component={EditBlog}
@@ -685,9 +771,7 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/blogs/editCommentBlog/:id"
               component={EditCommentBlog}
             />
-
             {/*LeaderBoard*/}
-
             <AppRoute
               path="/app/brahmaand/leaderboard/leaderBoardList"
               component={LeaderBoardList}
@@ -704,7 +788,22 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/leaderboard/weeklyWinner/"
               component={WeeklyWinner}
             />
-
+            <AppRoute
+              path="/app/brahmaand/leaderboard/updatemetors/"
+              component={Updatemetors}
+            />
+            <AppRoute
+              path="/app/brahmaand/leaderboard/userearning/"
+              component={UserEarning}
+            />
+            <AppRoute
+              path="/app/brahmaand/leaderboard/editplanet/:id"
+              component={EditPlanet}
+            />
+            <AppRoute
+              path="/app/brahmaand/leaderboard/edituserdata/:id"
+              component={Edituserdata}
+            />
             {/*Term & Condition*/}
             <AppRoute
               path="/app/brahmaand/termscondition/addTermsCondition"
@@ -732,10 +831,7 @@ class AppRouter extends React.Component {
               component={AddPrivacyPolicy}
             />
             {/* Works*/}
-            <AppRoute
-              path="/app/brahmaand/works/works"
-              component={Works}
-            />
+            <AppRoute path="/app/brahmaand/works/works" component={Works} />
             <AppRoute
               path="/app/brahmaand/works/editWorks/:id"
               component={EditWorks}
@@ -744,15 +840,6 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/works/addWorks"
               component={AddWorks}
             />
-
-
-
-
-
-
-
-
-
             {/* MemberShipContent */}
             <AppRoute
               path="/app/membercontent/memberShipContent"
@@ -783,7 +870,6 @@ class AppRouter extends React.Component {
               path="/app/package/addRefferalWallet"
               component={AddRefferalWallet}
             />
-
             {/* FeedBack */}
             <AppRoute
               path="/app/feedback/FeedBackList"
@@ -812,7 +898,6 @@ class AppRouter extends React.Component {
               path="/app/brahmaand/sponsor/basedSubCategory"
               component={BasedSubCategory}
             /> */}
-
             {/* scripts
             <AppRoute path="/app/scripts/fnIndex" component={FnIndex} />
             <AppRoute path="/app/scripts/addFnIndex" component={AddFnIndex} />
@@ -1034,7 +1119,6 @@ class AppRouter extends React.Component {
               path="/app/pageSetUp/about/EditAboutUs/:id"
               component={EditAboutUs}
             />
-
             <AppRoute path="/app/pageSetUp/helpUs/HelpUs" component={helpUs} />
             <AppRoute
               path="/app/pageSetUp/helpUs/EdithelpusForm/:id"

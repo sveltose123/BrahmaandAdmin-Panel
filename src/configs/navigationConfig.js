@@ -127,12 +127,28 @@ const navigationConfig = [
     navLink: "/app/brahmaand/leaderboard/leaderBoardList",
   },
   {
-    id: "leaderBoard",
+    id: "leaderBoard winner",
     title: "Weekly Winner ",
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/leaderboard/weeklyWinner",
+  },
+  {
+    id: "leaderBoard metors",
+    title: "Update Metores ",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/leaderboard/updatemetors",
+  },
+  {
+    id: "leaderBoard dollar",
+    title: "Users Earning ",
+    type: "item",
+    icon: <Icon.ArrowRight size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/brahmaand/leaderboard/userearning/",
   },
   {
     id: "feature Content",
@@ -141,6 +157,10 @@ const navigationConfig = [
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
     navLink: "/app/brahmaand/content/featureContent",
+  },
+  {
+    type: "groupHeader",
+    groupTitle: "other Service",
   },
   {
     id: "notification",
@@ -204,8 +224,6 @@ const navigationConfig = [
     type: "item",
     icon: <Icon.ArrowRight size={12} />,
     permissions: ["admin", "editor"],
-
   },
-
 ];
 export default navigationConfig;
